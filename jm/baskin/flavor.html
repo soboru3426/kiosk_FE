@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>플레이버 선택</title>
   <link rel="stylesheet" href="common.css">
-  <script src="script.js" defer></script>
-  <!-- 인라인 스타일 (최종 CSS) -->
   <style>
+    /* --- 기본 컨테이너 및 레이아웃 --- */
     .container {
       max-width: 1200px;
       margin: 30px auto;
@@ -91,30 +90,83 @@
       color: #666;
       margin: 5px 0;
     }
+    
+    /* --- 옵션(맛 선택) 영역 --- */
     .selection {
-      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
     }
-    .selection .option {
-      background: #f2f2f2;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      padding: 8px 15px;
-      margin: 0 5px;
+    .option {
+      width: 200px;
+      height: 150px;
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      text-align: center;
+      padding: 8px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .option img {
+      width: 55px;
+      height: 55px;
+      margin-bottom: 25px;
+    }
+    .option p {
+      font-size: 13px;
+      margin: 3px 0;
     }
     .selection .option:hover {
-      background: #fffbf9;
+      background: #f5eff3;
+      border: 2px solid #f85bc9;
     }
-    /* 플레이버 섹션 */
+    
+    /* --- 맛 선택 슬롯 영역 --- */
+    .flavor-slots-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px auto 20px;
+      max-width: 600px;
+    }
+    .flavor-slot {
+      width: 80px;
+      height: 80px;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .flavor-slot.active {
+      border-color: #ff1493;
+    }
+    .flavor-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .slot-placeholder {
+      font-size: 30px;
+      color: #ccc;
+    }
+    
+    /* --- 플레이버(맛 옵션) 그리드 --- */
     #flavorTab {
       background: #fafafa;
       padding: 20px;
     }
-    /* 플레이버 패널들을 감싸는 컨테이너 */
     .flavor-panels {
       position: relative;
-      height: 500px;  /* 플레이버 그리드 높이에 맞게 고정 */
+      height: 500px;
       margin-bottom: 20px;
     }
     .flavor-panel {
@@ -147,30 +199,34 @@
     .flavor-grid img.selected {
       border: 2px solid #ff1493;
     }
-    /* 페이지네이션: 플레이버 그리드 아래에 위치 */
+    
+    /* --- 페이지네이션 (숫자 없이 원형 인디케이터) --- */
     .pagination {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 40px;
     }
     .pagination button {
-      padding: 8px 12px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: none;
+      background: #ccc;
       margin: 0 5px;
       cursor: pointer;
-      border: none;
-      background: #f2f2f2;
-      border-radius: 5px;
       transition: background 0.3s;
     }
-    .pagination button:hover {
-      background: #e0e0e0;
+    .pagination button.active {
+      background: #ff1493;
     }
-    /* 하단 영역: 수량/가격 및 내비게이션 버튼 */
+    
+    /* --- 하단 영역 (합계 가격 및 네비게이션 버튼) --- */
     .bottom-actions {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 300px;
-      gap: 15px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      gap: 20px;
     }
     .quantity-price {
       display: flex;
@@ -194,21 +250,10 @@
     }
     .navigation-buttons {
       display: flex;
-      gap: 20px;
+      justify-content: center;
+      gap: 30px;
     }
-    .navigation-buttons button.btn {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      background-color: #ff1493;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .navigation-buttons button.btn:hover {
-      background-color: #ff007f;
-    }
+    /* 이전 버튼 */
     .btn-back {
       background-color: white;
       padding: 10px;
@@ -220,13 +265,15 @@
       justify-content: center;
       width: 200px;
       height: 60px;
-      margin-left: 150px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
     .btn-back:hover {
       color: #ff007f;
-      background-color: rgb(235, 232, 232);
+      background-color: rgb(235,232,232);
     }
+    /* 담기 버튼 */
     .btn-cart {
       background-color: #ff1493;
       color: white;
@@ -235,15 +282,23 @@
       height: 60px;
       padding: 10px;
       border-radius: 60px;
-      margin-right: 150px;
       border: none;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
     .btn-cart:hover {
       background-color: #ff007f;
+    }
+    
+    #gob {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: red;
+      text-align: center;
     }
   </style>
 </head>
@@ -265,16 +320,43 @@
           <p id="product-price">₩3200</p>
         </div>
         <p>원하는 맛을 자유롭게 선택하세요!</p>
+        <p id="gob">** 본 제품은 포장이 불가합니다 **</p>
         <div class="selection">
-          <button class="option" onclick="selectOption('cup')">컵</button>
-          <button class="option" onclick="selectOption('cone')">콘</button>
-          <button class="option" onclick="selectOption('waffle')">와플콘</button>
+          <div class="option selected" onclick="selectOption('cup')">
+            <img src="./pd_cup.png" alt="컵 이미지">
+            <p>컵(포장불가)</p>
+            <div class="quantity-price">
+              <button onclick="changeQuantityForOption(-1, 'cup'); event.stopPropagation();">-</button>
+              <span id="finalQuantity-cup">0</span>
+              <button onclick="changeQuantityForOption(1, 'cup'); event.stopPropagation();">+</button>
+            </div>
+          </div>
+          <div class="option" onclick="selectOption('cone')">
+            <img src="./pd_corn.png" alt="콘 이미지">
+            <p>콘(포장불가)</p>
+            <div class="quantity-price">
+              <button onclick="changeQuantityForOption(-1, 'cone'); event.stopPropagation();">-</button>
+              <span id="finalQuantity-cone">0</span>
+              <button onclick="changeQuantityForOption(1, 'cone'); event.stopPropagation();">+</button>
+            </div>
+          </div>
+          <div class="option" onclick="selectOption('waffle')">
+            <img src="./pd_corn.png" alt="와플 이미지">
+            <p>와플콘(포장불가)</p>
+            <div class="quantity-price">
+              <button onclick="changeQuantityForOption(-1, 'waffle'); event.stopPropagation();">-</button>
+              <span id="finalQuantity-waffle">0</span>
+              <button onclick="changeQuantityForOption(1, 'waffle'); event.stopPropagation();">+</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     
     <!-- 플레이버 탭 -->
     <div id="flavorTab" class="tab-content">
+      <!-- 맛 선택 슬롯들 (동적으로 생성됨) -->
+      <div class="flavor-slots-container"></div>
       <div class="flavor-panels">
         <div class="flavor-panel active" id="flavorPanel1">
           <h3>플레이버 1페이지</h3>
@@ -312,124 +394,225 @@
         </div>
       </div>
       <div class="pagination">
-        <button onclick="showFlavorPanel(1)">1</button>
-        <button onclick="showFlavorPanel(2)">2</button>
+        <button onclick="showFlavorPanel(1)" data-page="1"></button>
+        <button onclick="showFlavorPanel(2)" data-page="2"></button>
       </div>
     </div>
 
     <!-- 하단 영역 -->
     <div class="bottom-actions">
       <div class="quantity-price">
-        <button onclick="changeQuantity(-1)">-</button>
-        <span id="finalQuantity">1</span>
-        <button onclick="changeQuantity(1)">+</button>
         <p style="margin: 0;">합계 가격: ₩<span id="totalPrice">3200</span></p>
       </div>
       <div class="navigation-buttons">
-        <button onclick="saveOrderData()" class="btn-back">이전</button>
+        <button onclick="goBackToTestPage()" class="btn-back">이전</button>
         <button onclick="saveOrderData()" class="btn-cart">담기</button>
       </div>
     </div>
   </div>
-
-  <!-- 스크립트 영역 -->
+  
   <script>
-    // 전역 객체: 선택된 옵션, 수량, 맛, 단가
-    var orderData = {
-      optionType: null,
-      quantity: 1,
-      flavor: null,
-      price: 3200
-    };
+    // 전역 객체: 선택된 옵션, 수량, 맛, 단가, 그리고 선택된 맛 배열
+// 전역 객체: 선택된 옵션, 수량, 맛, 단가, 그리고 선택된 맛 배열
+var orderData = {
+  cupQuantity: 1,
+  coneQuantity: 1,
+  waffleQuantity: 1,
+  price: 3200,         // 단가 (unit price)
+  totalQuantity: 3,    // 초기값: 각 옵션 1개씩
+  optionType: null,    // 사용자가 선택한 옵션 (cup, cone, waffle)
+  flavor: null,        // 최근 선택된 맛 (참고용 단일 값)
+  maxFlavors: 3,       // 기본값: 파인트(3개). 실제 값은 제품명에 따라 변경됨
+  selectedFlavors: []  // 선택된 맛들을 순서대로 저장 (배열 길이 == maxFlavors)
+};
 
-    document.addEventListener("DOMContentLoaded", function () {
-      // 헤더 동적 삽입
-      fetch("header.html")
-        .then(response => response.text())
-        .then(data => {
-          const headerContainer = document.getElementById("header-container");
-          if (headerContainer) {
-            headerContainer.innerHTML = data;
-          }
-        });
-    
-      // 닫기 버튼 동작 (필요한 경우)
-      document.addEventListener("click", function (event) {
-        if (event.target.classList.contains("close-btn")) {
-          window.location.href = "index.html";
-        }
-      });
+var activeFlavorSlotIndex = 0; // 현재 활성화된 맛 슬롯 인덱스
 
-      // URL 파라미터에서 상품명, 가격 저장
-      const params = new URLSearchParams(window.location.search);
-      const name = params.get("name");
-      const price = params.get("price");
-      if (name) {
-        document.getElementById("product-name").textContent = name;
-      }
-      if (price) {
-        const parsedPrice = parseInt(price, 10);
-        document.getElementById("product-price").textContent = `₩${parsedPrice.toLocaleString('ko-KR')}`;
-        orderData.price = parsedPrice;
-        document.getElementById("totalPrice").textContent = parsedPrice.toLocaleString('ko-KR');
+document.addEventListener("DOMContentLoaded", function () {
+  // 헤더 동적 삽입 (header.html에 상단바 디자인 포함)
+  fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+      const headerContainer = document.getElementById("header-container");
+      if (headerContainer) {
+        headerContainer.innerHTML = data;
       }
     });
-    
-    function showTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(function(tab) {
-        tab.classList.remove('active');
-      });
-      document.getElementById(tabId).classList.add('active');
-      document.getElementById("tabProduct").classList.toggle("active", tabId === "productTab");
-      document.getElementById("tabFlavor").classList.toggle("active", tabId === "flavorTab");
-    }
-    
-    function showFlavorPanel(page) {
-      document.querySelectorAll('.flavor-panel').forEach(function(panel) {
-        panel.classList.remove('active');
-      });
-      const targetPanel = document.getElementById('flavorPanel' + page);
-      if (targetPanel) {
-        targetPanel.classList.add('active');
-      } else {
-        console.error('flavorPanel' + page + ' 요소를 찾을 수 없습니다.');
+
+  // 푸터 동적 삽입 (필요 시 footer.html 사용)
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      const footerContainer = document.getElementById("footer-container");
+      if (footerContainer) {
+        footerContainer.innerHTML = data;
       }
+    });
+
+  // 닫기 버튼 동작 추가 (header의 X 버튼)
+  document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("close-btn")) {
+      window.location.href = "test.html";
     }
-    
-    function selectFlavor(imgElement) {
-      const panel = imgElement.parentNode;
-      panel.querySelectorAll('img').forEach(function(img) {
-        img.classList.remove('selected');
-      });
-      imgElement.classList.add('selected');
-      // 선택된 맛을 orderData에 저장 (여기서는 alt 속성을 flavor 이름으로 활용)
-      orderData.flavor = imgElement.alt;
-      console.log("선택된 맛:", orderData.flavor);
+  });
+
+  // URL 파라미터에서 상품명, 가격 저장
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get("name");
+  const price = params.get("price");
+  if (name) {
+    document.getElementById("product-name").textContent = name;
+    // 제품명에 따라 맛 선택 슬롯 개수를 결정
+    if (name === "싱글레귤러" || name === "싱글킹") {
+      orderData.maxFlavors = 1;
+    } else if (name === "더블주니어" || name === "더블레귤러") {
+      orderData.maxFlavors = 2;
+    } else if (name === "파인트") {
+      orderData.maxFlavors = 3;
+    } else if (name === "쿼터") {
+      orderData.maxFlavors = 4;
+    } else if (name === "패밀리") {
+      orderData.maxFlavors = 5;
+    } else if (name === "하프갤런") {
+      orderData.maxFlavors = 6;
+    } else {
+      orderData.maxFlavors = 3; // 기본값
     }
-    
-    function selectOption(option) {
-      console.log("선택된 옵션:", option);
-      orderData.optionType = option;
+  }
+  if (price) {
+    const parsedPrice = parseInt(price, 10);
+    document.getElementById("product-price").textContent = `₩${parsedPrice.toLocaleString('ko-KR')}`;
+    orderData.price = parsedPrice; // 단가 저장
+    // 총 가격은 나중에 updateTotalQuantityAndPrice()에서 계산
+    updateTotalQuantityAndPrice();
+  }
+  
+  // 맛 슬롯 생성: orderData.maxFlavors 개수만큼 동적으로 생성
+  generateFlavorSlots();
+  
+  // 초기 페이지네이션 활성화 (플레이버 1페이지)
+  document.querySelector('.pagination button[data-page="1"]').classList.add('active');
+});
+
+function goBackToTestPage() {
+  window.location.href = "test.html";
+}
+
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(function(tab) {
+    tab.classList.remove('active');
+  });
+  document.getElementById(tabId).classList.add('active');
+  document.getElementById("tabProduct").classList.toggle("active", tabId === "productTab");
+  document.getElementById("tabFlavor").classList.toggle("active", tabId === "flavorTab");
+}
+
+function showFlavorPanel(page) {
+  document.querySelectorAll('.flavor-panel').forEach(function(panel) {
+    panel.classList.remove('active');
+  });
+  const targetPanel = document.getElementById('flavorPanel' + page);
+  if (targetPanel) {
+    targetPanel.classList.add('active');
+  } else {
+    console.error('flavorPanel' + page + ' 요소를 찾을 수 없습니다.');
+  }
+  // 페이지네이션 인디케이터 업데이트
+  document.querySelectorAll('.pagination button').forEach((btn) => {
+    if (btn.getAttribute('data-page') === page.toString()) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
     }
-    
-    function changeQuantity(delta) {
-      let finalQtyElem = document.getElementById("finalQuantity");
-      let current = parseInt(finalQtyElem.textContent, 10);
-      current = Math.max(1, current + delta);
-      finalQtyElem.textContent = current;
-      orderData.quantity = current;
-      document.getElementById("totalPrice").textContent = (current * orderData.price).toLocaleString('ko-KR');
+  });
+}
+
+function selectFlavor(imgElement) {
+  // 현재 활성 슬롯 가져오기
+  let slot = document.querySelector(`.flavor-slot[data-slot-index="${activeFlavorSlotIndex}"]`);
+  if (!slot) {
+    alert("먼저 맛 선택 슬롯을 선택해 주세요.");
+    return;
+  }
+  // 슬롯에 이미지 태그 채워넣기 (CSS에서 크기에 맞게 조정)
+  slot.innerHTML = `<img src="${imgElement.src}" alt="${imgElement.alt}">`;
+  // 선택된 맛을 orderData.selectedFlavors 배열에 저장
+  orderData.selectedFlavors[activeFlavorSlotIndex] = imgElement.alt;
+  // 최신 선택한 맛 (참고용) 업데이트
+  orderData.flavor = imgElement.alt;
+  console.log("선택된 맛 슬롯 업데이트:", orderData.selectedFlavors);
+}
+
+function selectOption(option) {
+  console.log("선택된 옵션:", option);
+  orderData.optionType = option;
+}
+
+function changeQuantityForOption(delta, option) {
+  let spanId = "finalQuantity-" + option;
+  let qtyElem = document.getElementById(spanId);
+  let current = parseInt(qtyElem.textContent, 10);
+  current = Math.max(0, current + delta); // 0부터 시작 (맛 선택 수량은 0부터)
+  qtyElem.textContent = current;
+  if (option === "cup") {
+    orderData.cupQuantity = current;
+  } else if (option === "cone") {
+    orderData.coneQuantity = current;
+  } else if (option === "waffle") {
+    orderData.waffleQuantity = current;
+  }
+  updateTotalQuantityAndPrice();
+}
+
+function updateTotalQuantityAndPrice() {
+  orderData.totalQuantity = orderData.cupQuantity + orderData.coneQuantity + orderData.waffleQuantity;
+  // 총 가격(totalPrice)을 새로 계산해서 저장
+  orderData.totalPrice = orderData.totalQuantity * orderData.price;
+  document.getElementById("totalPrice").textContent =
+    orderData.totalPrice.toLocaleString('ko-KR');
+}
+
+// 맛 슬롯 생성 함수: flavor-slots-container 내에 orderData.maxFlavors 개의 슬롯 생성
+function generateFlavorSlots() {
+  const container = document.querySelector('.flavor-slots-container');
+  container.innerHTML = '';
+  orderData.selectedFlavors = [];
+  for (let i = 0; i < orderData.maxFlavors; i++) {
+    orderData.selectedFlavors.push(null);
+    const slot = document.createElement('div');
+    slot.className = 'flavor-slot';
+    slot.setAttribute('data-slot-index', i);
+    slot.innerHTML = '<span class="slot-placeholder">+</span>';
+    slot.addEventListener('click', function(e) {
+      e.stopPropagation();
+      setActiveFlavorSlot(i);
+    });
+    container.appendChild(slot);
+  }
+  // 기본 활성 슬롯 0
+  setActiveFlavorSlot(0);
+}
+
+function setActiveFlavorSlot(index) {
+  activeFlavorSlotIndex = index;
+  document.querySelectorAll('.flavor-slot').forEach((slot, i) => {
+    if (i === index) {
+      slot.classList.add('active');
+    } else {
+      slot.classList.remove('active');
     }
-    
-    // 저장된 데이터들을 로컬 스토리지에 저장하고 다음 페이지로 이동하는 예제 함수
-    function saveOrderData() {
-      console.log("최종 주문 데이터:", orderData);
-      // 예시: 로컬 스토리지에 저장 (나중에 다른 페이지에서 활용)
-      localStorage.setItem("orderData", JSON.stringify(orderData));
-      // 예시: 다음 페이지로 이동
-      // window.location.href = "nextpage.html";
-      alert("주문 데이터가 저장되었습니다. 다음 페이지에서 활용하세요!");
-    }
+  });
+}
+
+function saveOrderData() {
+  console.log("최종 주문 데이터:", orderData);
+  // price 값을 총가격(totalPrice)으로 덮어씁니다.
+  orderData.price = orderData.totalPrice;
+  localStorage.setItem("orderData", JSON.stringify(orderData));
+  // alert 메시지 없이 test.html 페이지로 이동
+  window.location.href = "test.html";
+}
+
   </script>
 </body>
 </html>

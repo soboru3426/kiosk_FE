@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 닫기 버튼 동작 추가
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("close-btn")) {
-            window.location.href = "index.html";
+            window.location.href = "test.html";
         }
     });
 });

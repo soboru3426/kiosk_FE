@@ -68,5 +68,53 @@
         <!-- 푸터 동적 삽입 -->
         <div id="footer-container"></div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          // localStorage에서 orderData 가져오기
+          var orderData = JSON.parse(localStorage.getItem("orderData"));
+          if (orderData) {
+            // 총 수량 및 총금액 불러오기
+            var totalQty = orderData.totalQuantity;
+            // saveOrderData() 함수에서는 orderData.price에 총금액(totalPrice)를 덮어썼습니다.
+            var totalPrice = orderData.price; // 총 금액으로 사용
+        
+            // 장바구니 아이콘에 뱃지 추가 (이미 .cart 요소가 존재한다고 가정)
+            const cartEl = document.querySelector('.cart');
+            if (cartEl) {
+              // 기존 뱃지가 있으면 제거
+              let existingBadge = cartEl.querySelector('.cart-badge');
+              if (existingBadge) {
+                existingBadge.remove();
+              }
+              // 뱃지 생성
+              const badge = document.createElement("span");
+              badge.className = "cart-badge";
+              badge.textContent = totalQty;
+              cartEl.appendChild(badge);
+            }
+        
+            // 결제하기 버튼에 총 금액 표기 (₩ 한국 통화형식)
+            const payBtn = document.querySelector('.pay-btn');
+            if (payBtn) {
+              let formattedPrice = "₩" + Number(totalPrice).toLocaleString('ko-KR');
+              payBtn.textContent = `결제하기 → ${formattedPrice}`;
+            }
+        
+            // 일정 시간 후 (예를 들어, 10초 후) localStorage 초기화 및 UI 초기화
+            setTimeout(function() {
+              localStorage.removeItem("orderData");
+              // 장바구니 뱃지 제거
+              if (cartEl && cartEl.querySelector(".cart-badge")) {
+                cartEl.querySelector(".cart-badge").remove();
+              }
+              // 결제하기 버튼 원래 텍스트로 복원
+              if (payBtn) {
+                payBtn.textContent = "결제하기 →";
+              }
+            }, 100000); // 10,000밀리초 = 10초
+          }
+        });
+        </script>
+        
 </body>
 </html>
