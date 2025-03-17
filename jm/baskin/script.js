@@ -20,3 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const products = document.querySelectorAll(".product");
+
+    products.forEach(product => {
+        product.addEventListener("click", function () {
+            const name = product.querySelector("p").textContent;
+            const price = product.querySelector(".price").textContent
+                           .replace("₩", "")
+                           .replace(",", "");
+            // 변경: product.html -> flavor.html
+            window.location.href = `flavor.html?name=${encodeURIComponent(name)}&price=${price}`;
+        });
+    });
+});
