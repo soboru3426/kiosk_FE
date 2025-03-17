@@ -361,35 +361,35 @@
         <div class="flavor-panel active" id="flavorPanel1">
           <h3>플레이버 1페이지</h3>
           <div class="flavor-grid">
-            <img src="./flavor1.png" alt="맛 1" onclick="selectFlavor(this)">
-            <img src="./flavor2.png" alt="맛 2" onclick="selectFlavor(this)">
-            <img src="./flavor3.png" alt="맛 3" onclick="selectFlavor(this)">
-            <img src="./flavor4.png" alt="맛 4" onclick="selectFlavor(this)">
-            <img src="./flavor5.png" alt="맛 5" onclick="selectFlavor(this)">
-            <img src="./flavor6.png" alt="맛 6" onclick="selectFlavor(this)">
-            <img src="./flavor7.png" alt="맛 7" onclick="selectFlavor(this)">
-            <img src="./flavor8.png" alt="맛 8" onclick="selectFlavor(this)">
-            <img src="./flavor9.png" alt="맛 9" onclick="selectFlavor(this)">
-            <img src="./flavor10.png" alt="맛 10" onclick="selectFlavor(this)">
-            <img src="./flavor11.png" alt="맛 11" onclick="selectFlavor(this)">
-            <img src="./flavor12.png" alt="맛 12" onclick="selectFlavor(this)">
+            <img src="./flavor1.png" alt="소금 우유 아이스크림" onclick="selectFlavor(this)">
+            <img src="./flavor2.png" alt="그린티" onclick="selectFlavor(this)">
+            <img src="./flavor3.png" alt="나주배 소르베" onclick="selectFlavor(this)">
+            <img src="./flavor4.png" alt="너는 참 달고나" onclick="selectFlavor(this)">
+            <img src="./flavor5.png" alt="뉴욕치즈케이크" onclick="selectFlavor(this)">
+            <img src="./flavor6.png" alt="딸기연유퐁당" onclick="selectFlavor(this)">
+            <img src="./flavor7.png" alt="레인보우샤베트" onclick="selectFlavor(this)">
+            <img src="./flavor8.png" alt="말랑꿀떡모찌" onclick="selectFlavor(this)">
+            <img src="./flavor9.png" alt="민트초코" onclick="selectFlavor(this)">
+            <img src="./flavor10.png" alt="바람과 함께 사라지다" onclick="selectFlavor(this)">
+            <img src="./flavor11.png" alt="베리베리 스트로베리" onclick="selectFlavor(this)">
+            <img src="./flavor12.png" alt="봉쥬르 마카롱" onclick="selectFlavor(this)">
           </div>
         </div>
         <div class="flavor-panel" id="flavorPanel2">
           <h3>플레이버 2페이지</h3>
           <div class="flavor-grid">
-            <img src="./flavor13.png" alt="맛 13" onclick="selectFlavor(this)">
-            <img src="./flavor14.png" alt="맛 14" onclick="selectFlavor(this)">
-            <img src="./flavor15.png" alt="맛 15" onclick="selectFlavor(this)">
-            <img src="./flavor16.png" alt="맛 16" onclick="selectFlavor(this)">
-            <img src="./flavor17.png" alt="맛 17" onclick="selectFlavor(this)">
-            <img src="./flavor18.png" alt="맛 18" onclick="selectFlavor(this)">
-            <img src="./flavor19.png" alt="맛 19" onclick="selectFlavor(this)">
-            <img src="./flavor20.png" alt="맛 20" onclick="selectFlavor(this)">
-            <img src="./flavor21.png" alt="맛 21" onclick="selectFlavor(this)">
-            <img src="./flavor22.png" alt="맛 22" onclick="selectFlavor(this)">
-            <img src="./flavor23.png" alt="맛 23" onclick="selectFlavor(this)">
-            <img src="./flavor24.png" alt="맛 24" onclick="selectFlavor(this)">
+            <img src="./flavor13.png" alt="블루베리 파나코타" onclick="selectFlavor(this)">
+            <img src="./flavor14.png" alt="사랑에 빠진 딸기" onclick="selectFlavor(this)">
+            <img src="./flavor15.png" alt="슈팅스타" onclick="selectFlavor(this)">
+            <img src="./flavor16.png" alt="아몬드 봉봉" onclick="selectFlavor(this)">
+            <img src="./flavor17.png" alt="아이스 도쿄바나나" onclick="selectFlavor(this)">
+            <img src="./flavor18.png" alt="아이스 호떡" onclick="selectFlavor(this)">
+            <img src="./flavor19.png" alt="아이스초코도쿄바나나" onclick="selectFlavor(this)">
+            <img src="./flavor20.png" alt="애플민트" onclick="selectFlavor(this)">
+            <img src="./flavor21.png" alt="엄마는 외계인" onclick="selectFlavor(this)">
+            <img src="./flavor22.png" alt="에스프레소 앤 크림" onclick="selectFlavor(this)">
+            <img src="./flavor23.png" alt="오레오 쿠키 앤 크림" onclick="selectFlavor(this)">
+            <img src="./flavor24.png" alt="이상한 나라의 솜사탕" onclick="selectFlavor(this)">
           </div>
         </div>
       </div>
@@ -608,8 +608,13 @@ function saveOrderData() {
   console.log("최종 주문 데이터:", orderData);
   // price 값을 총가격(totalPrice)으로 덮어씁니다.
   orderData.price = orderData.totalPrice;
-  localStorage.setItem("orderData", JSON.stringify(orderData));
-  // alert 메시지 없이 test.html 페이지로 이동
+  
+  // 기존 cartOrders 배열을 불러와 새 주문 데이터를 누적합니다.
+  var cartOrders = JSON.parse(localStorage.getItem("cartOrders") || "[]");
+  cartOrders.push(orderData);
+  localStorage.setItem("cartOrders", JSON.stringify(cartOrders));
+  
+  // 별도의 alert 없이 test.html로 즉시 이동
   window.location.href = "test.html";
 }
 

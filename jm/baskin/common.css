@@ -123,6 +123,7 @@ body {
     border-bottom-right-radius: 10px;
 }
 .cart {
+    position: relative;
     background-color: white;
     padding: 10px;
     border-radius: 50px;
@@ -157,4 +158,28 @@ body {
 .pay-btn:hover {
     background-color: #ff007f;
 }
-
+.cart {
+    position: relative;
+  }
+  
+  .cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff1493;
+    color: white;
+    font-size: 14px;
+    padding: 4px 6px;
+    border-radius: 50%;
+    min-width: 20px;
+    text-align: center;
+  }
+  
+  .total-price-indicator {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff1493;
+    padding: 10px;
+    margin-right: 20px;
+  }
+  
