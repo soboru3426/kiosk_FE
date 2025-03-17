@@ -52,6 +52,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .icon-background {
@@ -62,6 +63,7 @@ header {
     padding-top: 33px;
     padding-left: 17px;
     padding: 1px;
+    border-style: none;
     gap: 10px;
     display: flex;
     justify-content: center;
@@ -78,7 +80,7 @@ header {
     align-items: center; /* 수직 중앙 정렬 */
     width: 1024px;
     height: 100px;
-    padding: 33px 0 13px 0;
+    padding: 16px 0 0 0;
     background-color: #FAFAFA;
 }
 
@@ -186,6 +188,11 @@ font-weight: bold;
     padding: 5px 15px; /* 버튼 크기 증가 */
     font-size: 20px; /* 적당한 글씨 크기 */
     margin: 0 10px; /* 좌우 간격 */
+    cursor: pointer;
+}
+.quantity-button {
+    position: relative;
+    z-index: 10; /* 버튼을 다른 요소보다 위에 놓음 */
 }
 
 /* 수량 숫자 스타일 */
@@ -223,6 +230,7 @@ font-weight: bold;
 .delete-button {
     background: none;
     border: none;
+    cursor: pointer;
 }
 
 footer {
@@ -232,8 +240,6 @@ footer {
 }
 
 .total-price {
-    display: inline-block;
-    text-align: right;
     font-size: 30px;
     margin-left: 300px;
     font-weight: bold;
@@ -242,28 +248,29 @@ footer {
 
 
 .payment-methods {
-    width: 1024px;
-    height: 267px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-left: 55px;
+    margin-top: 90px;
 }
+
 
 .cash-button {
     width: 446px;
     height: 150px;
     background-color: #fff;
     color: #f20c93;
-    border: 30px;
-    border-color: #f20c93;
+    border: 1px solid #f20c93; /* 두께 5px, 실선, 색상 #f20c93 */
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 30px; /* 버튼 텍스트 크기 조정 */
-    margin-right: 10px;
+    font-size: 45px; /* 버튼 텍스트 크기 조정 */
+    margin-right: 20px;
 }
+
 .custom-button {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 446px; /* 버튼 너비 조정 */
     height: 150px;
     padding: 20px;
@@ -272,21 +279,25 @@ footer {
     line-height: 1.5; /* 줄 간격 설정 */
     text-align: center;
     border: none;
-    border-radius: 10px;
-    background-color: #ff69b4;
+    border-radius: 12px;
+    background-color: #f20c93;
     color: white;
+    gap: 30px;
     cursor: pointer;
 }
-.custom-button span {
-    
+.custom-button div {
+    z-index: 5;
 }
-.payment-text {
-    flex: 2;
-    text-align: center;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 30px;
-    color: #333;
+
+.custom-button div {
+    display: inline-block;
+}
+
+.scard {
+    font-size: 45px;
+}
+
+.more {
+    font-size: 25px;
+    text-align: left;  /* 왼쪽 정렬 */
 }
