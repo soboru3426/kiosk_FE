@@ -415,11 +415,11 @@
     // 전역 객체: 선택된 옵션, 수량, 맛, 단가, 그리고 선택된 맛 배열
 // 전역 객체: 선택된 옵션, 수량, 맛, 단가, 그리고 선택된 맛 배열
 var orderData = {
-  cupQuantity: 1,
-  coneQuantity: 1,
-  waffleQuantity: 1,
+  cupQuantity: 0,
+  coneQuantity: 0,
+  waffleQuantity: 0,
   price: 3200,         // 단가 (unit price)
-  totalQuantity: 3,    // 초기값: 각 옵션 1개씩
+  totalQuantity: 0,    // 초기값: 각 옵션 1개씩
   optionType: null,    // 사용자가 선택한 옵션 (cup, cone, waffle)
   flavor: null,        // 최근 선택된 맛 (참고용 단일 값)
   maxFlavors: 3,       // 기본값: 파인트(3개). 실제 값은 제품명에 따라 변경됨

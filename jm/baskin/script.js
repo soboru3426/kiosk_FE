@@ -13,9 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("footer-container").innerHTML = data;
         });
 
-    // 닫기 버튼 동작 추가
+    // 닫기 버튼 동작 추가: 로컬 저장소 초기화 후 test.html로 이동
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("close-btn")) {
+            localStorage.clear();  // 로컬 저장소 초기화
             window.location.href = "test.html";
         }
     });
