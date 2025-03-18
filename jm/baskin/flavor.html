@@ -462,6 +462,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const price = params.get("price");
   if (name) {
     document.getElementById("product-name").textContent = name;
+    orderData.name = name;
+    updateOptionButtons();
     // 제품명에 따라 맛 선택 슬롯 개수를 결정
     if (name === "싱글레귤러" || name === "싱글킹") {
       orderData.maxFlavors = 1;
@@ -544,8 +546,17 @@ function selectFlavor(imgElement) {
 }
 
 function selectOption(option) {
+  if (!isOptionSelectable()) {
+    alert("이 제품은 컵, 콘, 와플 선택이 불가능합니다.");
+    return;
+  }
   console.log("선택된 옵션:", option);
   orderData.optionType = option;
+  
+}
+
+function isOptionSelectable() {
+  return ["싱글레귤러", "싱글킹", "더블주니어", "더블레귤러"].includes(orderData.name);
 }
 
 function changeQuantityForOption(delta, option) {
@@ -570,6 +581,19 @@ function updateTotalQuantityAndPrice() {
   orderData.totalPrice = orderData.totalQuantity * orderData.price;
   document.getElementById("totalPrice").textContent =
     orderData.totalPrice.toLocaleString('ko-KR');
+}
+
+function updateOptionButtons() {
+  const buttons = document.querySelectorAll(".option-button");
+  const isSelectable = isOptionSelectable();
+  
+  buttons.forEach(button => {
+    if (isSelectable) {
+      button.removeAttribute("disabled");
+    } else {
+      button.setAttribute("disabled", "true");
+    }
+  });
 }
 
 // 맛 슬롯 생성 함수: flavor-slots-container 내에 orderData.maxFlavors 개의 슬롯 생성
