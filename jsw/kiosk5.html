@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024, initial-scale=1.0">
+    <title>키오스크 화면</title>
+    <!-- jQuery CDN 추가 (최신 버전) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="kiosk5.css">
+    <script src="https://kit.fontawesome.com/872bad34a9.js" crossorigin="anonymous"></script>    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="/jsw/5images/로고.png" alt="로고" class="logo">
+                <button class="close-button">
+                    <div class="icon-background">
+                        <img src="/jsw/5images/X.png" alt="닫기 아이콘" class="close-icon">
+                    </div>
+                </button>
+            </div>
+        </header>
+        <div class="wrapper">
+            <div class="step-box">
+              <span class="step">STEP01</span>
+            </div>
+            <span class="description">주문 내역을 확인해주세요</span>
+        </div>          
+
+        <div class="order-list">
+            <!-- 개별 주문 항목 -->
+            <div class="order-item">
+                <!-- 이미지 영역 -->
+                <div class="item-image-wrap">
+                    <img src="ice-cream.png" alt="Ice Cream" class="item-image">
+                </div>
+          
+                <!-- 상품 상세 정보 -->
+                <div class="item-details">
+                    <div class="details-wrap">
+                        <p class="item-name">싱글레귤러</p>
+                        <p class="item-info">(큰/컵) 컵(포장불가)</p>
+                    </div>
+                </div>
+            
+                <!-- 수량 조절 영역 -->
+                <div class="item-quantity">
+                    <button class="quantity-button" id="decrease">-</button>
+                    <span class="quantity">1</span>
+                    <button class="quantity-button" id="increase">+</button>
+                </div>
+
+                <div class="order-wrap">
+                    <button class="update-button">
+                        <i class="fa-solid fa-file-pen order-update"></i>
+                    </button>
+                </div>
+            
+                <!-- 삭제 버튼 -->
+                <div class="delete-wrap">
+                    <button class="delete-button">
+                        <img src="/jsw/5images/X.png" alt="닫기 아이콘" class="close-icon">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="wrapper">
+                <div class="step-box">
+                    <span class="step">STEP02</span>
+                </div>
+                <span class="description">결제 방법을 선택해주세요</span>
+                <span class="total-price">₩12,800</span>
+            </div>
+            <div class="payment-methods">
+                <button class="cash-button">현금</button>
+                <button class="custom-button">
+                    <div class="scard">신용카드</div>
+                    <div class="more">모바일상품권<br>
+                        각종 PAY<br>
+                        APP카드
+                    </div>
+                </button>
+            </div>
+        </footer>          
+    </div>
+    <script src="kiosk5.js"></script>
+</body>
+</html>
