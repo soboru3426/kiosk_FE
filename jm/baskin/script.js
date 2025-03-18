@@ -7,11 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     // 푸터 불러오기
-    fetch("footer.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("footer-container").innerHTML = data;
-        });
+    // fetch("footer.html")
+    //     .then(response => response.text())
+    //     .then(data => {
+    //         document.getElementById("footer-container").innerHTML = data;
+    //     });
 
     // 닫기 버튼 동작 추가: 로컬 저장소 초기화 후 test.html로 이동
     document.addEventListener("click", function (event) {
