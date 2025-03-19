@@ -302,3 +302,9 @@ button {
     border: 2px solid #eee;
 }
 
+.clickable-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;  /* 커서가 올려지면 손가락 모양으로 변하게 함 */
+    transition: transform 0.2s ease;  /* 클릭 시 애니메이션 효과 */
+}
