@@ -1,0 +1,189 @@
+body {
+    background-color: #f5cff5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    background-color: #ffffff;
+    width: 1024px;
+    height: 1562px;
+    top: 1511px;
+    left: 612px;
+}
+
+.logo-bar {
+    width: 1024px;
+    height: 114px;
+    display: flex;
+    justify-content: space-between;
+    /* 양 끝 배치 */
+    align-items: center;
+    /* 세로 중앙 정렬 */
+}
+
+/* 로고와 엑스 아이콘 스타일 */
+
+.logo img,
+.close-btn img {
+    max-height: 100%;
+    /* 부모 높이에 맞게 이미지 크기 조정 */
+    height: 100%;
+    /* 컨테이너 높이에 맞춤 */
+}
+
+
+.nav-buttons {
+    
+    height: 100px;
+    top: 114px;
+    justify-content: space-between;
+    /* 아이콘을 양 끝으로 정렬 */
+    align-items: center;
+    /* 텍스트 가운데 정렬 (수직) */
+
+    list-style: none;
+    /* 불릿 제거 */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* 수평 정렬 */
+    gap: 20px;
+    /* 메뉴 간격 */
+    padding: 10px 20px;
+}
+
+.nav-button {
+    text-decoration: none;
+    /* 밑줄 제거 */
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: -0.41px;
+    color: #F20C93;
+    border-radius: 99px;
+
+}
+
+.nav-button:hover {
+    background-color: #F20C93;
+    color: #ffffff;
+    transform: scale(1.5);
+    /* 살짝 확대 */
+}
+
+p1{
+    color: #F20C93;
+}
+p, p1 {
+    
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: -0.41px;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+.menu-item {
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    
+}
+
+.menu-item img {
+    max-width: 100%;
+}
+
+.menu-item p {
+    margin: 5px 0;
+}
+
+.menu-item-button {
+    background-color: #ffffff;
+    border: none;
+}
+
+.menu-item-button:hover {
+    transform: scale(1.1);
+    /* 살짝 확대 */
+}
+
+.content {
+    flex: 1;
+    /* 나머지 공간을 채우는 역할 */
+   
+}
+
+footer {
+    width: 1024px;
+    height: 194px;
+    top: 1368px;
+    display: flex;
+    
+
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    margin: 47px;
+    width: 1024px;
+    left: 139.5px;
+    gap: 158px;
+    
+
+
+}
+
+.footer button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    border-radius: 99px;
+
+}
+
+#button1 {
+    width: 202px;
+    height: 100px;
+}
+#button1:hover{
+    background-color: rgb(235, 232, 232);
+}
+
+#button2 {
+    width: 384px;
+    height: 100px;
+    font-size: 30px;
+    background-color: #F20C93;
+    color: #ffffff
+}
+
+#button2 :hover {
+    background-color: #ff007f;
+}
+
+#arrow {
+    position: fixed;
+    top: 1280px;
+    right: 300px;
+
+}
+
+
