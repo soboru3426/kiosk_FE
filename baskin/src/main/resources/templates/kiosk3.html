@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>플레이버 선택</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/kiosk3.css">
+  <script src="js/kiosk3.js"></script>
+</head>
+<body>  
+  <div class="container">
+    <header class="header">
+      <div class="tab-buttons">
+        <button id="tabProduct" class="active" onclick="showTab('productTab')">상품 정보</button>
+        <button id="tabFlavor" onclick="showTab('flavorTab')">플레이버</button>
+      </div>
+    </header>
+
+    <!-- 상품 정보 탭 -->
+    <div id="productTab" class="tab-content active">
+      <div class="product-info">
+        <div class="product-my">
+          <img id="product-img" src="icecream-icon-images/pd_cup.png" alt="상품 이미지">
+          <h3 id="product-name">상품명</h3>
+          <p id="product-price">₩3200</p>
+        </div>
+        <p>원하는 맛을 자유롭게 선택하세요!</p>
+        <p id="gob">** 본 제품은 포장이 불가합니다 **</p>
+        <div class="selection">
+          <div class="option selected" onclick="selectOption('cup')">
+            <img src="icecream-icon-images/pd_cup.png" alt="컵 이미지">
+            <p>컵(포장불가)</p>
+            <div class="quantity-price">
+              <button onclick="changeQuantityForOption(-1, 'cup'); event.stopPropagation();">-</button>
+              <span id="finalQuantity-cup">0</span>
+              <button onclick="changeQuantityForOption(1, 'cup'); event.stopPropagation();">+</button>
+            </div>
+          </div>
+          <div class="option" onclick="selectOption('cone')">
+            <img src="icecream-icon-images/pd_corn.png" alt="콘 이미지">
+            <p>콘(포장불가)</p>
+            <div class="quantity-price">
+              <button onclick="changeQuantityForOption(-1, 'cone'); event.stopPropagation();">-</button>
+              <span id="finalQuantity-cone">0</span>
+              <button onclick="changeQuantityForOption(1, 'cone'); event.stopPropagation();">+</button>
+            </div>
+          </div>
+          <div class="option" onclick="selectOption('waffle')">
+            <img src="icecream-icon-images/pd_corn.png" alt="와플 이미지">
+            <p>와플콘(포장불가)</p>
+            <div class="quantity-price">
+              <button onclick="changeQuantityForOption(-1, 'waffle'); event.stopPropagation();">-</button>
+              <span id="finalQuantity-waffle">0</span>
+              <button onclick="changeQuantityForOption(1, 'waffle'); event.stopPropagation();">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 플레이버 탭 -->
+    <div id="flavorTab" class="tab-content">
+      <!-- 맛 선택 슬롯들 (동적으로 생성됨) -->
+      <div class="flavor-slots-container"></div>
+      <div class="flavor-panels">
+        <div class="flavor-panel active" id="flavorPanel1">
+          <h3>플레이버 1페이지</h3>
+          <div class="flavor-grid">
+            <img src="flavor-images/flavor1.png" alt="소금 우유 아이스크림" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor2.png" alt="그린티" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor3.png" alt="나주배 소르베" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor4.png" alt="너는 참 달고나" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor5.png" alt="뉴욕치즈케이크" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor6.png" alt="딸기연유퐁당" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor7.png" alt="레인보우샤베트" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor8.png" alt="말랑꿀떡모찌" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor9.png" alt="민트초코" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor10.png" alt="바람과 함께 사라지다" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor11.png" alt="베리베리 스트로베리" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor12.png" alt="봉쥬르 마카롱" onclick="selectFlavor(this)">
+          </div>
+        </div>
+        <div class="flavor-panel" id="flavorPanel2">
+          <h3>플레이버 2페이지</h3>
+          <div class="flavor-grid">
+            <img src="flavor-images/flavor13.png" alt="블루베리 파나코타" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor14.png" alt="사랑에 빠진 딸기" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor15.png" alt="슈팅스타" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor16.png" alt="아몬드 봉봉" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor17.png" alt="아이스 도쿄바나나" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor18.png" alt="아이스 호떡" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor19.png" alt="아이스초코도쿄바나나" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor20.png" alt="애플민트" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor21.png" alt="엄마는 외계인" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor22.png" alt="에스프레소 앤 크림" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor23.png" alt="오레오 쿠키 앤 크림" onclick="selectFlavor(this)">
+            <img src="flavor-images/flavor24.png" alt="이상한 나라의 솜사탕" onclick="selectFlavor(this)">
+          </div>
+        </div>
+      </div>
+      <div class="pagination">
+        <button onclick="showFlavorPanel(1)" data-page="1"></button>
+        <button onclick="showFlavorPanel(2)" data-page="2"></button>
+      </div>
+    </div>
+
+    <!-- 하단 영역 -->
+    <div class="bottom-actions">
+      <div class="quantity-price">
+        <p style="margin: 0;">합계 가격: ₩<span id="totalPrice">3200</span></p>
+      </div>
+      <div class="navigation-buttons">
+        <button onclick="goBackToTestPage()" class="btn-back">이전</button>
+        <button onclick="saveOrderData()" class="btn-cart">담기</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

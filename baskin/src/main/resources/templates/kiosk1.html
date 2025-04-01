@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배스킨라빈스</title>
+  <link rel="stylesheet" href="../static/css/common.css">
+  <script src="js/script.js" defer></script>
+  <style>
+    /* pay-wrapper: 결제하기 버튼과 가격을 한 줄에 표시 */
+    .pay-wrapper {
+      display: flex;
+      align-items: center;
+    }
+    /* total-price-indicator: 버튼 옆에 배치 (오른쪽에 약간의 여백) */
+    .total-price-indicator {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ff1493;
+      margin-left: 10px;
+    }
+    /* 수정된 cart-badge 스타일 */
+    .cart-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%);
+      background-color: #ff1493;
+      color: white;
+      font-size: 14px;
+      padding: 2px 6px;
+      border-radius: 50%;
+      min-width: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 헤더 동적 삽입 -->
+    <div id="header-container">
+      <header class="header">
+        <img src="icon-images/logo.png" alt="배스킨라빈스 로고">
+        <button class="close-btn">X</button>
+      </header>
+    </div>
+
+    <main class="content">
+      <nav class="nav">
+        <button class="ice-btn">아이스크림</button>
+        <a href="kiosk1/coffee.html">커피</a>
+        <a href="kiosk1/drink.html">음료</a>
+        <a href="kiosk1/mocchi.html">아이스모찌</a>
+      </nav>
+
+      <!-- 상품 목록 -->
+      <section class="product-list">
+        <div class="product">
+          <img src="icecream-icon-images/sigle_regular.png" alt="싱글레귤러">
+          <p>싱글레귤러</p>
+          <p class="price">₩3,200</p>
+        </div>
+        <div class="product">
+          <img src="icecream-icon-images/sigle_king.png" alt="싱글킹">
+          <p>싱글킹</p>
+          <p class="price">₩4,000</p>
+        </div>
+        <div class="product">
+          <img src="icecream-icon-images/double_junior.png" alt="더블주니어">
+          <p>더블주니어</p>
+          <p class="price">₩4,300</p>
+        </div>
+        <div class="product">
+          <img src="icecream-icon-images/double_regular.png" alt="더블레귤러">
+          <p>더블레귤러</p>
+          <p class="price">₩6,200</p>
+        </div>
+        <div class="product">
+          <img src="icecream-icon-images/pint.png" alt="파인트">
+          <p>파인트</p>
+          <p class="price">₩8,200</p>
+        </div>
+        <div class="product">
+          <img src="icecream-icon-images/quarter.png" alt="쿼터">
+          <p>쿼터</p>
+          <p class="price">₩15,500</p>
+        </div>
+        <div class="product">
+          <img src="icecream-icon-images/family.png" alt="패밀리">
+          <p>패밀리</p>
+          <p class="price">₩22,000</p>
+        </div>
+        <div class="product">
+          <img src="icecream-icon-images/half.png" alt="하프갤런">
+          <p>하프갤런</p>
+          <p class="price">₩26,500</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- footer 동적 삽입 -->
+    <div id="footer-container">
+      <footer class="footer">
+        <!-- 장바구니 아이콘과 주문 개수 표시 -->
+        <div class="cart" onclick="window.location.href='kiosk4.html'">
+          🛒<span class="cart-badge"></span>
+        </div>
+        <!-- 결제하기 버튼과 총 가격 표시 (버튼 옆에 배치) -->
+        <div class="pay-wrapper">
+          <button class="pay-btn" onclick="window.location.href='kiosk5.html'">결제하기 →</button>
+          <span class="total-price-indicator"></span>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // 로컬 스토리지에서 주문 데이터(cartOrders)를 불러옴 (저장된 데이터가 없으면 빈 배열)
+      let storedOrders = localStorage.getItem("cartOrders");
+      let cartOrders = [];
+      if (storedOrders) {
+        try {
+          cartOrders = JSON.parse(storedOrders);
+        } catch (e) {
+          console.error("Error parsing cartOrders:", e);
+        }
+      }
+
+      // 주문 데이터 배열의 개수
+      let totalOrdersCount = cartOrders.length;
+      // 각 주문 객체에서 totalPrice 또는 price 값을 합산하여 총 가격 계산
+      let totalPriceSum = cartOrders.reduce((sum, order) => sum + (order.totalPrice || order.price || 0), 0);
+
+      console.log("Total Orders:", totalOrdersCount, "Total Price:", totalPriceSum);
+
+      // 1. 장바구니 아이콘 옆에 주문 데이터 개수 표시
+      const badge = document.querySelector(".cart-badge");
+      if (badge) {
+        badge.textContent = totalOrdersCount;
+        badge.style.display = totalOrdersCount > 0 ? "block" : "none";
+      }
+
+      // 2. 결제하기 버튼 옆에 총 가격 표시
+      const priceIndicator = document.querySelector(".total-price-indicator");
+      if (priceIndicator) {
+        priceIndicator.textContent = "₩" + Number(totalPriceSum).toLocaleString('ko-KR');
+      }
+    });
+  </script>
+</body>
+</html>
