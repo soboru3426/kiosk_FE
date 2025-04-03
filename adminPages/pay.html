@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>통합품질관리시스템 - Stock Page</title>
+  <!-- 오직 pay.css만 사용 -->
+  <link rel="stylesheet" href="/css/pay.css">
+</head>
+<body>
+  <div class="container">
+    <h3>통합품질관리시스템</h3>
+    <div class="select-session">
+      <a href="pay.html">Stock</a>
+      <a href="payment.html">Pay</a>
+      <a href="menu.html">Menu</a>
+    </div>
+    <p class="divide"></p>
+    <div class="stock-session">
+      <div class="session">
+        <div class="filter-session">
+          <button id="date" class="open-modal-btn">
+            <img src="/images/filter.png" alt="필터 아이콘" class="filter-icon">
+            Date
+          </button>
+          <input class="filter-input" type="text" placeholder=" 메뉴명 입력해주세요">
+        </div>
+        <div class="branch-session">
+          <button class="branch-btn" data-branch="강서지점">강서지점</button>
+          <button class="branch-btn" data-branch="상봉지점">상봉지점</button>
+          <button class="branch-btn" data-branch="하남지점">하남지점</button>
+          <button id="show-all" class="branch-btn active" data-branch="전체">전체</button>
+        </div>
+      </div>
+
+      <!-- 모달 창 영역 (JS에서 동적 생성) -->
+      <div id="modalHere"></div>
+      
+      <!-- 데이터 테이블 -->
+      <table class="stock-table">
+        <thead class="session-name">
+          <tr>
+            <th>NO</th>
+            <th>지점명</th>
+            <th>메뉴명</th>
+            <th>주문발주량</th>
+            <th>상품상태</th>
+            <th>발주상태</th>
+            <th>발주하기</th>
+          </tr>
+        </thead>
+        <tbody class="stock-table-body" id="stock-table-body">
+          <tr>
+            <td colspan="7">조회 내역이 없습니다.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 변경 완료 메시지 표시 영역 -->
+    <div id="summary" class="summary"></div>
+  </div>
+  
+  <!-- 오른쪽 팝업 (발주 상태 선택 팝업) -->
+  <div id="rightPopup"></div>
+  <!-- 화면 중앙 확인 모달 -->
+  <div id="confirmModal"></div>
+  
+  <script src="/js/pay.js"></script>
+</body>
+</html>

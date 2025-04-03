@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>통합품질관리시스템 - 결제 내역</title>
+  <!-- 동일한 CSS를 재사용할 경우 /css/pay.css를 연결 -->
+  <link rel="stylesheet" href="/css/pay.css">
+</head>
+<body>
+  <div class="container">
+    <h3>통합품질관리시스템</h3>
+    <!-- 상단 메뉴 (Stock, Pay, Menu) -->
+    <div class="select-session">
+      <a href="pay.html">Stock</a>
+      <a href="payment.html">Pay</a>
+      <a href="menu.html">Menu</a>
+    </div>
+    <p class="divide"></p>
+
+    <div class="stock-session">
+      <!-- 필터 영역 -->
+      <div class="session">
+        <div class="filter-session">
+          <button id="date" class="open-modal-btn">
+            <img src="/images/filter.png" alt="필터 아이콘" class="filter-icon">
+            Date
+          </button>
+          <input class="filter-input" type="text" placeholder=" 결제내역을 입력해주세요">
+        </div>
+        <!-- 지점 필터 버튼 -->
+        <div class="branch-session">
+          <button class="branch-btn" data-branch="강서지점">강서지점</button>
+          <button class="branch-btn" data-branch="상봉지점">상봉지점</button>
+          <button class="branch-btn" data-branch="하남지점">하남지점</button>
+          <button id="show-all" class="branch-btn active" data-branch="전체">전체</button>
+        </div>
+      </div>
+
+      <!-- 모달 창 영역 (JS에서 동적 생성, 필요 시) -->
+      <div id="modalHere"></div>
+
+      <!-- 결제 내역 테이블 -->
+      <table class="stock-table">
+        <thead class="session-name">
+          <tr>
+            <th>NO</th>
+            <th>결제수단</th>
+            <th>결제내역</th>
+            <th>결제금액</th>
+            <th>결제일</th>
+            <th>결제지점</th>
+            <th>결제 일련번호</th>
+          </tr>
+        </thead>
+        <tbody id="payment-table-body" class="stock-table-body">
+          <tr>
+            <td colspan="7">조회 내역이 없습니다.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 스크립트 -->
+  <script src="/js/payment.js"></script>
+</body>
+</html>
