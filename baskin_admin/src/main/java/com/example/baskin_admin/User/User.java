@@ -1,4 +1,4 @@
-package com.example.baskin_admin.User;
+package com.example.baskin_admin.user;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,9 +17,10 @@ public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer user_id; 
+    @Column(name = "user_id")
+    private Integer userId; 
 
-    @Column(unique = true, nullable = false)
+    @Column( unique = true, nullable = false)
     private String username;
 
     @Column(nullable = false)
@@ -28,5 +29,6 @@ public class User {
     @Column(nullable = false)
     private String role;
 
-    private Integer branch_id;
+    @Column(name = "branch_id")
+    private Integer branchId;
 }

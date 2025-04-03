@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Page</title>
     <link rel="stylesheet" href="/stock/style.css">
-    <script src="/js/button.js"></script>
 </head>
 <body>
     <div class="container">
@@ -20,22 +19,20 @@
         <div class="stock-session">
             <div class="session">
                 <div class="filter-session">
-                    <select id="filter">
-                        <option value="option1" class="option1">Filter</option>
-                        <option value="option2" class="option2">예시1</option>
-                        <option value="option3" class="option3">예시2</option>
-                    </select>
+                    <button id="filter" class="filter-btn">
+                        <img src="/stock/images/filter.png" alt="필터 아이콘" class="filter-icon">
+                        Filter
+                    </button>
                     <input class="filter-input" type="text" placeholder=" 메뉴명 입력해주세요">
                 </div>
                 
                 <div class="branch-session">
-                    <button onclick="location.href='/stock/gangseo'">강서지점</button>
-                    <button onclick="location.href='/stock/sangbong'">상봉지점</button>
-                    <button class="active" onclick="location.href='/stock/hanam'">하남지점</button>
+                    <button class="branch-btn active" data-branch="1">강서지점</button>
+                    <button class="branch-btn" data-branch="2">상봉지점</button>
+                    <button class="branch-btn" data-branch="3">하남지점</button>
                 </div>
             </div>
 
-            
             <table class="stock-table">
                 <thead class="session-name">
                     <tr>
@@ -54,8 +51,9 @@
                     </tr>
                 </tbody>
             </table>
-            
         </div>
     </div>
+
+    <script src="/js/stock.js"></script>
 </body>
 </html>
