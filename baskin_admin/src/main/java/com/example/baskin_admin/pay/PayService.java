@@ -35,10 +35,5 @@ public class PayService {
     public List<Pay> getPaysByBranch(Long branchId) {
         return payRepository.findByBranch_BranchId(branchId);
     }
-
-    // 결제 내역 삭제
-    public void deletePay(Long payId) {
-        payRepository.deleteById(payId);
-    }
 }
 

@@ -3,6 +3,7 @@ package com.example.baskin_admin.stock;
 
 import com.example.baskin_admin.branch.Branch;
 import com.example.baskin_admin.menu.Menu;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.*;
 
@@ -23,6 +24,7 @@ public class Stock {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "branch_id", referencedColumnName = "branch_id", foreignKey = @ForeignKey(name = "FK_stock_branch"))
+    @JsonBackReference
     private Branch branch;
     
     @ManyToOne(fetch = FetchType.EAGER)

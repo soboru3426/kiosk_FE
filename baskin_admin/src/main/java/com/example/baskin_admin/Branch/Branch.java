@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.baskin_admin.pay.Pay;
 import com.example.baskin_admin.stock.Stock;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
