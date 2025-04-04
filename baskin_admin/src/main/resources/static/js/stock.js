@@ -1,16 +1,3 @@
-// 🔹 지점 버튼 클릭 이벤트 설정
-document.querySelectorAll(".branch-session button").forEach(button => {
-    button.addEventListener("click", function() {
-        // 모든 버튼의 active 클래스 제거 후 현재 버튼만 활성화
-        document.querySelectorAll(".branch-session button").forEach(btn => btn.classList.remove("active"));
-        this.classList.add("active");
-
-        // 선택한 지점 ID 가져오기 (data-branch 속성 사용)
-        const branch = this.dataset.branch;
-        fetchBranchData(branch);
-    });
-});
-
 // 🔹 서버에서 지점별 데이터를 가져오는 함수 (예: fetch API 사용)
 async function fetchBranchData(branch) {
     try {
@@ -42,20 +29,88 @@ function updateTable(data) {
             <td>${row.quantity}</td>
             <td>${row.productStatus}</td>
             <td>${row.orderStatus}</td>
-            <td><a href="#" class="pay-btn" data-menu="${row.menuName}" data-branch="${row.branchName}">Pay</a></td>
+            <td>
+                <a href="#" class="pay-btn" data-menu="${row.menuName}" data-branch="${row.branchName}">
+                    <img src="/stock/images/icon.png" alt="Pay" />
+                </a>
+            </td>
         </tr>`;
         tableBody.innerHTML += newRow;
     });
 
     // 🔹 Pay 버튼 클릭 이벤트 추가
     document.querySelectorAll(".pay-btn").forEach(button => {
-        button.addEventListener("click", function(event) {
+        button.addEventListener("click", async function(event) {
             event.preventDefault(); // 기본 동작 방지 (페이지 이동 X)
+    
             const menu = this.dataset.menu;
             const branch = this.dataset.branch;
-            alert(`결제 진행: ${branch} - ${menu}`);
+    
+            // 이미지 경로 동적 생성
+            const imageUrl = `/flavor-images/${menu}.png`;
+    
+            // 배경 흐리게 처리 (팝업 배경 추가)
+            const background = document.createElement("div");
+            background.classList.add("popup-background");
+            document.body.appendChild(background);
+    
+            // 팝업을 동적으로 생성
+            const popup = document.createElement("div");
+            popup.classList.add("popup");
+    
+            // 수량을 저장할 변수
+            let quantity = 1;
+    
+            // 팝업 내용 추가
+            popup.innerHTML = `
+                <div class="content">
+                    <img src="${imageUrl}" alt="${menu}" />
+                    <p>${menu}</p>
+                    <div class="quantity-control">
+                        <button id="decrease-btn">-</button>
+                        <span id="quantity">${quantity}</span>
+                        <button id="increase-btn">+</button>
+                    </div>
+                    <div class="buttons">
+                        <button class="cancel-btn">취소</button>
+                        <button id="order-btn">발주하기</button>
+                    </div>
+                </div>
+            `;
+    
+            // 팝업을 본문에 추가
+            document.body.appendChild(popup);
+    
+            // 팝업 표시
+            popup.style.display = "block";
+    
+            // 버튼 이벤트 핸들러
+            popup.addEventListener("click", (e) => {
+                if (e.target.id === "increase-btn") {
+                    quantity++;
+                    popup.querySelector("#quantity").textContent = quantity;
+                }
+                if (e.target.id === "decrease-btn" && quantity > 1) {
+                    quantity--;
+                    popup.querySelector("#quantity").textContent = quantity;
+                }
+                if (e.target.classList.contains("cancel-btn")) {
+                    closePopup();
+                }
+                if (e.target.id === "order-btn") {
+                    alert(`발주 완료: ${branch} - ${menu} (수량: ${quantity})`);
+                    closePopup();
+                }
+            });
+    
+            function closePopup() {
+                popup.style.display = "none";
+                document.body.removeChild(popup);
+                document.body.removeChild(background);
+            }
         });
     });
+    
 }
 
 // 🔹 첫 번째 지점 데이터를 기본으로 로드

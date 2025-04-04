@@ -38,7 +38,11 @@ CREATE TABLE notification (
     payment_id INT NOT NULL,
     phone_number VARCHAR(15) NOT NULL,
     message_content TEXT NOT NULL,
+<<<<<<< HEAD
     status ENUM('pending', 'sent', 'failed') DEFAULT 'pending',
+=======
+    status ENUM('확인중', '배송중', '배송완료') DEFAULT '확인중',
+>>>>>>> 3f5d09e (b)
     sent_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (payment_id) REFERENCES payment(payment_id) ON DELETE CASCADE
 );
@@ -56,9 +60,15 @@ CREATE TABLE user (
 
 INSERT INTO branch (branch_name, location) 
 VALUES 
+<<<<<<< HEAD
     ('gangseo', 'Seoul, Gangseo-gu'),
     ('sangbong', 'Seoul, Jungnang-gu'),
     ('hanam', 'Gyeonggi-do, Hanam-si');
+=======
+    ('강서지점', 'Seoul, Gangseo-gu'),
+    ('상봉지점', 'Seoul, Jungnang-gu'),
+    ('하남지점', 'Gyeonggi-do, Hanam-si');
+>>>>>>> 3f5d09e (b)
 
 
 -- 어드민 계정 추가 (branch_id 없음)
@@ -102,12 +112,21 @@ VALUES
 
 INSERT INTO stock (branch_id, menu_id, quantity, status, order_status) 
 VALUES 
+<<<<<<< HEAD
     (1, 1, 10, 'available', 'pending'),  -- 강서점에 초코 아이스크림 10개, 상품 상태: available, 발주 상태: pending
     (1, 2, 5, 'available', 'pending'),   -- 강서점에 바닐라 아이스크림 5개, 상품 상태: available, 발주 상태: pending
     (2, 1, 3, 'available', 'pending'),   -- 상봉점에 초코 아이스크림 3개, 상품 상태: available, 발주 상태: pending
     (2, 3, 7, 'available', 'pending'),   -- 상봉점에 딸기 아이스크림 7개, 상품 상태: available, 발주 상태: pending
     (3, 2, 0, 'out_of_stock', 'pending'),   -- 하남점에 바닐라 아이스크림 0개 (재고 없음), 상품 상태: out_of_stock, 발주 상태: pending
     (3, 3, 15, 'available', 'pending');  -- 하남점에 딸기 아이스크림 15개, 상품 상태: available, 발주 상태: pending
+=======
+    (1, 1, 10, '판매중', '확인중'),  -- 강서점에 초코 아이스크림 10개, 상품 상태: 판매중, 발주 상태: 확인중
+    (1, 2, 5, '판매중', '확인중'),   -- 강서점에 바닐라 아이스크림 5개, 상품 상태: 판매중, 발주 상태: 확인중
+    (2, 1, 3, '판매중', '배송중'),   -- 상봉점에 초코 아이스크림 3개, 상품 상태: 판매중, 발주 상태: 배송중
+    (2, 3, 7, '판매중', '배송중'),   -- 상봉점에 딸기 아이스크림 7개, 상품 상태: 판매중, 발주 상태: 배송중
+    (3, 2, 0, '판매중단', '확인중'),   -- 하남점에 바닐라 아이스크림 0개 (재고 없음), 상품 상태: 판매중단, 발주 상태: 확인중
+    (3, 3, 15, '판매중', '배송완료');  -- 하남점에 딸기 아이스크림 15개, 상품 상태: 판매중, 발주 상태: 배송완료
+>>>>>>> 3f5d09e (b)
 
 -- 데이터 확인
 SELECT 

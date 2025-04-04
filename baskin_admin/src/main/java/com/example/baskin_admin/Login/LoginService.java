@@ -1,10 +1,11 @@
-package com.example.baskin_admin.Login;
+package com.example.baskin_admin.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.baskin_admin.User.User;
-import com.example.baskin_admin.User.UserRepository;
+import com.example.baskin_admin.user.User;
+import com.example.baskin_admin.user.UserRepository;
+
 
 @Service
 public class LoginService {
@@ -13,7 +14,7 @@ public class LoginService {
     private UserRepository userRepository;
     
     public boolean login(String username, String password) {
-        User user = userRepository.findByUsernameAndPassword(username, password);
+        User user = userRepository.findByUsername(username);
         return user != null;
     }
 }

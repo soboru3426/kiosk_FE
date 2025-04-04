@@ -2,7 +2,9 @@ package com.example.baskin_admin.menu;
 
 import java.util.List;
 
+import com.example.baskin_admin.pay.Pay;
 import com.example.baskin_admin.stock.Stock;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,7 +50,11 @@ public class Menu {
     @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY)
     private List<Stock> stocks; 
 
+    @OneToMany(mappedBy = "menu")
+    @JsonBackReference
+    private List<Pay> payments;
+
     public enum Category {
-        MAIN, SIDE, DRINK, DESSERT
+        아이스크림, 커피, 음료, 아이스모찌
     }
 }

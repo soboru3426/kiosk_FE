@@ -2,7 +2,9 @@ package com.example.baskin_admin.branch;
 
 import java.util.List;
 
+import com.example.baskin_admin.pay.Pay;
 import com.example.baskin_admin.stock.Stock;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,4 +35,8 @@ public class Branch {
 
     @OneToMany(mappedBy = "branch")
     private List<Stock> stocks;
+
+    @OneToMany(mappedBy = "branch")
+    @JsonBackReference
+    private List<Pay> payments;
 }
