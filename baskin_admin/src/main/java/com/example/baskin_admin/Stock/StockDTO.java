@@ -14,13 +14,15 @@ public class StockDTO {
     private int quantity;
     private String productStatus;
     private String orderStatus;
+    private String image;
 
-    public StockDTO(String branchName, String menuName, int quantity, String productStatus, String orderStatus) {
+    public StockDTO(String branchName, String menuName, int quantity, String productStatus, String orderStatus, String image) {
         this.branchName = branchName;
         this.menuName = menuName;
         this.quantity = quantity;
         this.productStatus = productStatus;
         this.orderStatus = orderStatus;
+        this.image = image;
     }
 
 }

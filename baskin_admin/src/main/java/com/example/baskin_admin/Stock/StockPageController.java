@@ -24,7 +24,8 @@ public class StockPageController {
                 stock.getMenu().getName(),  // menu에서 menuName을 가져옴
                 stock.getQuantity(),
                 stock.getStatus(),
-                stock.getOrderStatus()
+                stock.getOrderStatus(),
+                stock.getMenu().getImage()
         )).toList();
     }
 }

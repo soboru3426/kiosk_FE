@@ -22,10 +22,13 @@ function updateTable(data) {
     }
 
     data.forEach((row, index) => {
+        const imagePath = row.image ? row.image : "경로 없음";
+
         const newRow = `<tr>
             <td>${index + 1}</td>
             <td>${row.branchName}</td>
             <td>${row.menuName}</td>
+            <td>${imagePath}</td>
             <td>${row.quantity}</td>
             <td>${row.productStatus}</td>
             <td>${row.orderStatus}</td>

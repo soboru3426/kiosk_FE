@@ -172,19 +172,25 @@ body {
     width: 5%; /* NO 열 */
 }
 .stock-table th:nth-child(2), .stock-table td:nth-child(2) {
-    width: 15%; /* 지점명 열 */
+    width: 10%; /* 지점명 열 */
 }
 .stock-table th:nth-child(3), .stock-table td:nth-child(3) {
-    width: 25%; /* 메뉴명 열 */
+    width: 15%; /* 메뉴명 열 */
 }
 .stock-table th:nth-child(4), .stock-table td:nth-child(4) {
-    width: 10%; /* 재고량 열 */
+    width: 20%; /* 이미지파일주소 열 */
 }
 .stock-table th:nth-child(5), .stock-table td:nth-child(5) {
-    width: 15%; /* 상품상태 열 */
+    width: 10%; /* 재고량 열 */
 }
 .stock-table th:nth-child(6), .stock-table td:nth-child(6) {
-    width: 15%; /* 발주상태 열 */
+    width: 10%; /* 상품상태 열 */
+}
+.stock-table th:nth-child(7), .stock-table td:nth-child(7) {
+    width: 10%; /* 발주상태 열 */
+}
+.stock-table th:nth-child(8), .stock-table td:nth-child(8) {
+    width: 10%; /* 발주하기 열 */
 }
 
 /* 팝업의 기본 스타일 */

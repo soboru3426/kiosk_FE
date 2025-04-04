@@ -81,6 +81,7 @@ body {
     gap: 10px;
     font-size: 18px;
     color: #25213B;
+    cursor: pointer;
 }
 
 .filter-icon {
@@ -172,141 +173,150 @@ body {
     width: 5%; /* NO 열 */
 }
 .stock-table th:nth-child(2), .stock-table td:nth-child(2) {
-    width: 15%; /* 지점명 열 */
+    width: 10%; /* 결제수단 열 */
 }
 .stock-table th:nth-child(3), .stock-table td:nth-child(3) {
-    width: 25%; /* 메뉴명 열 */
+    width: 15%; /* 메뉴명 열 */
 }
 .stock-table th:nth-child(4), .stock-table td:nth-child(4) {
-    width: 10%; /* 재고량 열 */
+    width: 10%; /* 결제금액 열 */
 }
 .stock-table th:nth-child(5), .stock-table td:nth-child(5) {
-    width: 15%; /* 상품상태 열 */
+    width: 20%; /* 결제 열 */
 }
 .stock-table th:nth-child(6), .stock-table td:nth-child(6) {
-    width: 15%; /* 발주상태 열 */
+    width: 10%; /* 결제지점 열 */
+}
+.stock-table th:nth-child(7), .stock-table td:nth-child(7) {
+    width: 20%; /* 결제일련번호 열 */
 }
 
-/* 팝업의 기본 스타일 */
-.popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 280px;
-    text-align: center;
-    display: none;
-    z-index: 10001;
-}
-
-/* 배경 흐리게 처리 */
-.popup-background {
+.modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 10000;
-}
-
-/* 아이스크림 이미지 스타일 */
-.popup img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-/* 메뉴명 스타일 */
-.popup p {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 5px 0;
-}
-
-/* 수량 조절 버튼 */
-.popup .quantity-control {
+    background-color: rgba(0, 0, 0, 0.3); /* 어두운 배경 */
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
+    align-items: center;
 }
 
-.popup .quantity-control button {
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    font-weight: 500;
-    border: none;
-    background-color: #f3f3f3;
-    cursor: pointer;
-    border-radius: 50%;
+.modal-content {
+    background: white; /* 내부 박스 배경 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 443.74px; /* 원하는 크기 */
+    height: 417.81px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
-.popup .quantity-control #decrease-btn {
-    color: #101010;
+.modal-wrapper {
+    width: 398.58px;
+    height: 350.06px;
+    gap: 27.1px;
 }
 
-.popup .quantity-control #increase-btn {
-    margin-top: 4px;
+.modal-body {
+    width: 398.58px;
+    display: flex;
+    flex-direction: column;
+    gap: 18.07px;
 }
-
-.popup .quantity-control button:hover {
-    background-color: #ddd;
-}
-
-.popup .quantity-control span {
-    font-size: 16px;
-    font-weight: bold;
-    width: 30px;
-    text-align: center;
-}
-
-/* 발주하기 & 취소 버튼 */
-.popup .buttons {
+.date-picker {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
+    width: 100%;
 }
 
-.popup .cancel-btn, .popup #order-btn {
-    flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
-
-.popup .cancel-btn {
-    background-color: white;
-    color: black;
+.input-wrapper input {
+    width: 150px;
+    padding: 8px;
+    border-radius: 4px;
     border: 1px solid #ccc;
-    margin-right: 5px;
+}
+.calendar-icon {
+    position: absolute;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+}
+.date-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
 
-.popup #order-btn {
-    background-color: #7F56D9;
+.date-btn {
+    width: 125.33px;
+    height: 54.2px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ECEDF0;
+    background-color: #fff; /* 기본 색상 */
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.date-btn.active {
+    background-color: #F3F0FF !important; /* 선택된 버튼 색상 */
+}
+
+
+.sort-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+select {
+    padding: 8px;
+    border-radius: 4px;
+    width: 398.58px;
+    height: 54.2px;
+    border: 1px solid #ccc;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+.reset-btn, .apply-btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    width: 398.58px;
+    height: 59.14px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0 12px;
+    margin-top: 24px;
+}
+.reset-btn {
+    background-color: #f0e8ff;
+    color: #5a3e96;
+}
+.apply-btn {
+    background-color: #5a3e96;
     color: white;
-    margin-left: 5px;
 }
 
-.popup .cancel-btn:hover {
-    background-color: #f5f5f5;
+/* 기본 캘린더 아이콘 숨기기 */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
 }
 
-.popup #order-btn:hover {
-    background-color: #5a3ee5;
+/* 아이콘 스타일 */
+.calendar-icon {
+    cursor: pointer;
 }
-
