@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/login/style.css">
+</head>
+<body>
+    <div class="login_area">
+        <div class="login">
+            <h1>System Management</h1>
+            <form method="POST" action="/login" class="login_form">
+                <input class="id" type="text" name="username" placeholder="ID" required>
+                <input class="password" type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="login_btn">Login</button>
+            </form>
+    
+            <div th:if="${error != null}">
+                <script type="text/javascript">
+                    alert('[[${error}]]');
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
