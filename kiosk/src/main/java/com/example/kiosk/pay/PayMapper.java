@@ -1,5 +1,6 @@
 package com.example.kiosk.pay;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,10 +19,10 @@ public interface PayMapper {
 
     PayDTO findById(@Param("id") Long id);
 
-    // ✅ 추가: 날짜 + 다중 지점 필터
-    List<PayDTO> getFilteredPayments(
-        @Param("ids") List<Long> ids,
-        @Param("from") LocalDateTime from,
-        @Param("to") LocalDateTime to
-    );
+    List<PayDTO> getFilteredPayments(@Param("ids") List<Long> ids,
+                                    @Param("from") LocalDateTime from,
+                                    @Param("to") LocalDateTime to);
+    
+    List<Pay> findByBranchIdAndPayDateBetween(Long branchId, LocalDate start, LocalDate end);
+
 }

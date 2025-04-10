@@ -20,16 +20,17 @@ function updateTable(data) {
     const tableBody = document.querySelector(".stock-table-body");
     tableBody.innerHTML = "";
 
-    if (!data || data.length === 0) {
-        tableBody.innerHTML = "<tr><td colspan='8'>조회 내역이 없습니다.</td></tr>";
-        return;
-    }
+    const maxRows = 10;
+    const dataLength = data.length;
+    const validRows = Math.min(dataLength, maxRows);
 
-    data.forEach((row, index) => {
+    // 데이터 있는 행 렌더링
+    for (let i = 0; i < validRows; i++) {
+        const row = data[i];
         const imagePath = row.image || "경로 없음";
-        const newRow = `
+        tableBody.insertAdjacentHTML("beforeend", `
             <tr>
-                <td>${index + 1}</td>
+                <td>${i + 1}</td>
                 <td>${row.branchName}</td>
                 <td>${row.menuName}</td>
                 <td>${imagePath}</td>
@@ -41,11 +42,21 @@ function updateTable(data) {
                         <img src="/stock/images/icon.png" alt="Pay" />
                     </a>
                 </td>
-            </tr>`;
-        tableBody.insertAdjacentHTML("beforeend", newRow);
-    });
+            </tr>
+        `);
+    }
 
-    // 🔹 발주 팝업 이벤트
+    // 나머지 빈 행 렌더링
+    for (let i = validRows; i < maxRows; i++) {
+        tableBody.insertAdjacentHTML("beforeend", `
+            <tr class="empty-row">
+                <td></td>
+                <td colspan="7" style="color: #ccc; text-align: center;">-</td>
+            </tr>
+        `);
+    }
+
+    // 발주 팝업 이벤트 등록 (있는 데이터만)
     document.querySelectorAll(".pay-btn").forEach(button => {
         button.addEventListener("click", function (event) {
             event.preventDefault();
@@ -55,6 +66,7 @@ function updateTable(data) {
         });
     });
 }
+
 
 // 🔹 발주 팝업
 function showOrderPopup(menu, branch) {

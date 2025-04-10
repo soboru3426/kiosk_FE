@@ -43,14 +43,20 @@ function updateTable(data) {
                         </div>
                         
                         <div class="status-menu">
-                            <div class="status-option orange" data-status="확인중">
-                                <span class="dot"></span> 확인중
+                            <div class="select-container">
+                                <div class="status-option orange" data-status="확인중">
+                                    <span class="dot"></span> 확인중
+                                </div>
                             </div>
-                            <div class="status-option green" data-status="배송완료">
-                                <span class="dot"></span> 배송완료
+                            <div class="select-container">
+                                <div class="status-option green" data-status="배송완료">
+                                    <span class="dot"></span> 배송완료
+                                </div>
                             </div>
-                            <div class="status-option pink" data-status="배송중">
-                                <span class="dot"></span> 배송중
+                            <div class="select-container">    
+                                <div class="status-option pink" data-status="배송중">
+                                    <span class="dot"></span> 배송중
+                                </div>
                             </div>
                         </div>
                     </div>

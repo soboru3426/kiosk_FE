@@ -44,7 +44,7 @@ public class StockController {
 
     @GetMapping("/stock/data")
     @ResponseBody
-    public List<StockDTO> getMultipleStockByBranches(@RequestParam List<Integer> branches) {
+    public List<StockDTO> getMultipleStockByBranches(@RequestParam("branches") List<Integer> branches) {
         List<Stock> stocks = new ArrayList<>();
         for (Integer branchId : branches) {
             stocks.addAll(stockService.getStockByBranchId(branchId));

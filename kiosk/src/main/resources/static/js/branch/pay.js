@@ -71,10 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         modalContainer.addEventListener("click", (e) => {
-            if (e.target === modalContainer) {
+            const modalContent = modalContainer.querySelector(".modal-content");
+            // modal-content 바깥을 클릭했는지 확인
+            if (!modalContent.contains(e.target)) {
                 closeModal();
             }
         });
+        
+        
 
         modalContainer.querySelector(".reset-btn").addEventListener("click", () => {
             modalContainer.querySelectorAll(".date-input").forEach(input => {
@@ -83,15 +87,27 @@ document.addEventListener("DOMContentLoaded", () => {
             modalContainer.querySelectorAll(".date-btn").forEach(btn => btn.classList.remove("active"));
         });
 
-        modalContainer.querySelector(".apply-btn").addEventListener("click", () => {
+        modalContainer.querySelector(".apply-btn").addEventListener("click", async () => {
             const fromDate = modalContainer.querySelectorAll(".date-input")[0].value;
             const toDate = modalContainer.querySelectorAll(".date-input")[1].value;
-            const branchId = document.querySelector(".branch-btn.active")?.dataset.branch;
         
-            if (!fromDate || !toDate || !branchId) return;
+            const activeBtn = modalContainer.querySelector(".date-btn.active")?.textContent || "선택 없음";
+            console.log("📌 필터 적용:", { fromDate, toDate, activeBtn });
         
-            // 날짜 범위 기반 결제 필터링 요청
-            fetchFilteredPayments(branchId, fromDate, toDate);
+            // 현재 선택된 지점 버튼에서 data-branch 속성값 가져오기
+            const currentBranchBtn = document.querySelector(".branch-btn.active");
+            const branchId = currentBranchBtn?.getAttribute("data-branch") || 1;
+        
+            try {
+                const response = await fetch(`/branch/api/branch/${branchId}/filter?start=${fromDate}&end=${toDate}`);
+                if (!response.ok) throw new Error("필터링된 데이터를 가져오지 못했습니다.");
+        
+                const filteredData = await response.json();
+                updatePayTable(filteredData);
+            } catch (error) {
+                console.error("❌ 필터 fetch 오류:", error);
+            }
+        
             closeModal();
         });
         
@@ -136,25 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error(`❌ Error fetching branch ${branchId} data:`, error);
         }
     }
-
-    async function fetchFilteredPayments(branchId, fromDate, toDate) {
-        try {
-            const params = new URLSearchParams({
-                ids: branchId,
-                from: fromDate + "T00:00:00",
-                to: toDate + "T23:59:59"
-            });
-    
-            const response = await fetch(`/branch/api/payments/filter?${params}`);
-            if (!response.ok) throw new Error("결제 내역을 불러오지 못했습니다.");
-    
-            const data = await response.json();
-            updatePayTable(data);
-        } catch (error) {
-            console.error("❌ 필터링된 결제 요청 실패:", error);
-        }
-    }
-    
 
     function updatePayTable(data) {
         const tableBody = document.querySelector(".stock-table-body");

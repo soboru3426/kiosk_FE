@@ -35,7 +35,13 @@ body {
     cursor: pointer;
 }
 
-.select-session :nth-child(1) {
+.select-session a {
+    text-decoration: none;
+    color: #000;
+}
+
+.select-session :nth-child(1),
+.select-session a:nth-child(3) {
     color: rgba(110, 104, 147, 1);
 }
 

@@ -35,7 +35,8 @@ body {
     cursor: pointer;
 }
 
-.select-session :nth-child(2) {
+.select-session :nth-child(2),
+.select-session :nth-child(3) {
     color: rgba(110, 104, 147, 1);
 }
 
@@ -172,25 +173,19 @@ body {
     width: 5%; /* NO 열 */
 }
 .stock-table th:nth-child(2), .stock-table td:nth-child(2) {
-    width: 10%; /* 지점명 열 */
+    width: 15%; /* 지점명 열 */
 }
 .stock-table th:nth-child(3), .stock-table td:nth-child(3) {
-    width: 15%; /* 메뉴명 열 */
+    width: 25%; /* 메뉴명 열 */
 }
 .stock-table th:nth-child(4), .stock-table td:nth-child(4) {
-    width: 20%; /* 이미지파일주소 열 */
+    width: 10%; /* 주문발주량 열 */
 }
 .stock-table th:nth-child(5), .stock-table td:nth-child(5) {
-    width: 10%; /* 재고량 열 */
+    width: 20%; /* 상품상태 열 */
 }
 .stock-table th:nth-child(6), .stock-table td:nth-child(6) {
-    width: 10%; /* 상품상태 열 */
-}
-.stock-table th:nth-child(7), .stock-table td:nth-child(7) {
-    width: 10%; /* 발주상태 열 */
-}
-.stock-table th:nth-child(8), .stock-table td:nth-child(8) {
-    width: 10%; /* 발주하기 열 */
+    width: 25%; /* 발주상태 열 */
 }
 
 
@@ -198,89 +193,123 @@ body {
 .status-dropdown {
     position: relative;
     display: inline-block;
-  }
-  
-  /* 버튼 스타일 */
-  .status-btn {
-    background-color: #eee;
+}
+
+/* 드롭다운 버튼 */
+.status-btn {
     border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
+    border-radius: 999px;
+    padding: 6px 14px;
     font-size: 14px;
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 6px;
-  }
-  
-  /* 상태별 색상 */
-  .status-btn.orange {
-    background-color: #ffaf47;
-    color: white;
-  }
-  .status-btn.green {
-    background-color: #4caf50;
-    color: white;
-  }
-  .status-btn.pink {
-    background-color: #e91e63;
-    color: white;
-  }
-  
-  /* 드롭다운 메뉴 */
-  .status-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 100;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    min-width: 140px;
-    padding: 5px 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* 드롭다운 활성화 시 표시 */
-  .status-menu.active {
-    display: block;
-  }
-  
-  /* 드롭다운 항목 */
-  .status-option {
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .status-option:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* dot */
-  .status-option .dot,
-  .status-btn .dot {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 드롭다운 화살표 */
+.status-btn-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 4px;
+    padding: 6px 12px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.select-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border-radius: 999px; /* ✅ 완전 동그랗게 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 8px;
+    white-space: nowrap; /* ✅ 줄 바꿈 방지 */
+}
+
+.arrow {
+    font-size: 10px;
+    color: #000;
+    margin-left: 8px;
+    user-select: none;
+}
+
+/* 상태별 색상 */
+.status-btn.orange, .status-option.orange {
+    background-color: #FFECCC;
+    color: #965E00;
+}
+.status-btn.green, .status-option.green {
+    background-color: #CDFFCD;
+    color: #007F00;
+}
+.status-btn.pink, .status-option.pink {
+    background-color: #FFCCFC;
+    color: #965E00;
+}
+
+/* dot 스타일 */
+.dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     display: inline-block;
-    margin-right: 6px;
-  }
-  
-  .status-option.green .dot,
-  .status-btn.green .dot {
-    background-color: #4caf50;
-  }
-  .status-option.pink .dot,
-  .status-btn.pink .dot {
-    background-color: #e91e63;
-  }
-  .status-option.orange .dot,
-  .status-btn.orange .dot {
-    background-color: #ffaf47;
-  }
-  
-  .popup {
+}
+
+/* dot 색상 */
+.status-option.orange .dot,
+.status-btn.orange .dot {
+    background-color: #965E00;
+}
+
+.status-option.green .dot,
+.status-btn.green .dot  {
+    background-color: #007F00;
+}
+
+.status-option.pink .dot,
+.status-btn.pink .dot {
+    background-color: #FE81F7;
+}
+
+/* 드롭다운 메뉴 */
+.status-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: -15px;
+    z-index: 100;
+    background-color: white;
+    border-radius: 10px;
+    padding: 6px 0;
+    min-width: 122px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* 활성화 시 표시 */
+.status-menu.active {
+    display: block;
+}
+
+/* 옵션 항목 */
+.status-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 30px;
+    white-space: nowrap; /* ✅ 줄 바꿈 방지 */
+    font-size: 14px;
+}
+
+.status-option:hover {
+    filter: brightness(0.95);
+}
+
+.popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -294,11 +323,34 @@ body {
 }
 
 .popup-content {
-    background: white;
-    padding: 24px 32px;
+    background: #F4F2FF;
+    padding: 14px 32px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     text-align: center;
+}
+
+.popup-buttons button {
+    border-radius: 12px;
+    padding: 12px 24px;
+    width: 40%;
+    border-style: none;
+    margin: 8px;
+    cursor: pointer;
+}
+
+#confirm-yes {
+    background-color: #ffffff;
+    color: #6E6893;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+#confirm-no {
+    background-color: #6D5BD0;
+    color: #F5F5F5;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 .popup.hidden {
@@ -313,4 +365,10 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+#confirm-message {
+    color: #6E6893;
+    font-size: 24px;
+    font-weight: 600;
 }

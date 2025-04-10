@@ -67,18 +67,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.target.classList.contains("date-btn")) {
                 modalContainer.querySelectorAll(".date-btn").forEach(btn => btn.classList.remove("active"));
                 e.target.classList.add("active");
-
-                const today = new Date().toISOString().split("T")[0]; // yyyy-mm-dd
-                if (e.target.textContent === "Today") {
-                    const dateInputs = modalContainer.querySelectorAll(".date-input");
-                    dateInputs[0].value = today; // From
-                    dateInputs[1].value = today; // To
-                }
             }
         });
-
+        
         modalContainer.addEventListener("click", (e) => {
-            if (e.target === modalContainer) {
+            const modalContent = modalContainer.querySelector(".modal-content");
+            // modal-content 바깥을 클릭했는지 확인
+            if (!modalContent.contains(e.target)) {
                 closeModal();
             }
         });
@@ -90,41 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
             modalContainer.querySelectorAll(".date-btn").forEach(btn => btn.classList.remove("active"));
         });
 
-        modalContainer.querySelector(".apply-btn").addEventListener("click", async () => {
+        modalContainer.querySelector(".apply-btn").addEventListener("click", () => {
             const fromDate = modalContainer.querySelectorAll(".date-input")[0].value;
             const toDate = modalContainer.querySelectorAll(".date-input")[1].value;
             const activeBtn = modalContainer.querySelector(".date-btn.active")?.textContent || "선택 없음";
-        
             console.log("📌 필터 적용:", { fromDate, toDate, activeBtn });
-        
-            // 현재 선택된 지점들 가져오기
-            const selectedBranchIds = Array.from(document.querySelectorAll(".branch-btn.active"))
-                .map(b => b.getAttribute("data-branch"));
-        
-            if (selectedBranchIds.length === 0) {
-                clearPayTable();
-                closeModal();
-                return;
-            }
-        
-            try {
-                const query = selectedBranchIds.join(",");
-                const response = await fetch(
-                    `/admin/pay/api/filter?ids=${query}&from=${fromDate}&to=${toDate}`
-                );
-        
-                if (!response.ok) throw new Error("필터링된 결제 내역을 불러올 수 없습니다.");
-        
-                const data = await response.json();
-                console.log("📅 필터링된 데이터:", data);
-                updatePayTable(data);
-            } catch (error) {
-                console.error("❌ 필터링 fetch 실패:", error);
-            }
-        
+
             closeModal();
         });
-        
     }
 
     function closeModal() {
@@ -138,56 +106,32 @@ document.addEventListener("DOMContentLoaded", () => {
         openModalBtn.addEventListener("click", createModal);
     }
 
-    // === 다중 지점 결제 내역 ===
+    // === 지점별 결제 내역 ===
+    fetchBranchData(1); // 기본: 강서지점(branchId = 1)
     initBranchButtons();
 
     function initBranchButtons() {
         document.querySelectorAll(".branch-btn").forEach(btn => {
             btn.addEventListener("click", () => {
-                const isActive = btn.classList.contains("active");
-                const activeBtns = document.querySelectorAll(".branch-btn.active");
-    
-                // ❗️마지막 하나를 해제하려고 하면 막기
-                if (isActive && activeBtns.length === 1) {
-                    alert("최소 하나 이상의 지점은 선택되어야 합니다.");
-                    return;
-                }
-    
-                // ✅ 중복 선택 가능
-                btn.classList.toggle("active");
-    
-                const selectedBranchIds = Array.from(document.querySelectorAll(".branch-btn.active"))
-                    .map(b => b.getAttribute("data-branch"));
-    
-                fetchMultipleBranchData(selectedBranchIds);
+                document.querySelectorAll(".branch-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                const branchId = btn.getAttribute("data-branch");
+                fetchBranchData(branchId);
             });
         });
     }
-    
 
-    async function fetchMultipleBranchData(branchIds) {
+    async function fetchBranchData(branchId) {
         try {
-            const query = branchIds.join(",");
-            const response = await fetch(`/admin/pay/api/branches?ids=${query}`);
-
-            if (!response.ok) throw new Error("다중 지점 결제 내역을 불러오지 못했습니다.");
+            const response = await fetch(`/branch/api/branch/${branchId}`);
+            if (!response.ok) throw new Error("지점별 결제 내역을 불러오지 못했습니다.");
 
             const data = await response.json();
-            console.log("💡 [선택된 지점들] 데이터:", JSON.stringify(data, null, 2));
+            console.log(`💡 [지점 ${branchId}] 받은 데이터:`, JSON.stringify(data, null, 2));
             updatePayTable(data);
         } catch (error) {
-            console.error("❌ 다중 지점 데이터 fetch 실패:", error);
-        }
-    }
-
-    function clearPayTable() {
-        const tableBody = document.querySelector(".stock-table-body");
-        if (tableBody) {
-            tableBody.innerHTML = `
-                <tr>
-                    <td colspan="7" class="no-data">선택된 지점이 없습니다.</td>
-                </tr>
-            `;
+            console.error(`❌ Error fetching branch ${branchId} data:`, error);
         }
     }
 
@@ -202,7 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
         tableBody.innerHTML = "";
 
         if (!data || data.length === 0) {
-            clearPayTable();
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="7" class="no-data">결제 내역이 없습니다.</td>
+                </tr>
+            `;
             return;
         }
 
