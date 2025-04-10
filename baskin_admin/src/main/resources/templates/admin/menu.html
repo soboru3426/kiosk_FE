@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Page</title>
+    <link rel="stylesheet" href="/pay/style.css">
+</head>
+<body>
+    <div class="container">
+        <h3>통합품질관리시스템</h3>
+        <div class="select-session">
+            <a class="stock-link">Stock</a>
+            <a class="pay-link">Pay</a>
+            <a class="menu-link">Menu</a>
+        </div>
+
+        <p class="divide"></p>
+
+        <div class="stock-session">
+            <div class="session">
+                <div class="filter-session">
+                    <button id="filter" class="filter-btn">
+                        <img src="/stock/images/filter.png" alt="필터 아이콘" class="filter-icon">
+                        Filter
+                    </button>
+                    <input class="filter-input" type="text" placeholder="메뉴명 입력해주세요">
+                </div>
+                
+                <div class="branch-session">
+                    <button class="branch-btn">메뉴추가</button>
+                </div>
+            </div>
+
+            <table class="stock-table">
+                <thead class="session-name">
+                    <tr>
+                        <th>NO</th>
+                        <th>메뉴명</th>
+                        <th>메뉴코드</th>
+                        <th>메뉴이미지경로</th>
+                        <th>판매상태</th>
+                        <th>비고</th>
+                    </tr>
+                </thead>
+                <tbody class="stock-table-body">
+                    <tr>
+                        <td colspan="6">조회 내역이 없습니다.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script src="/js/admin/common.js"></script>
+</body>
+</html>
