@@ -1,11 +1,13 @@
 package com.example.kiosk.pay;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +50,24 @@ public class PayController {
     public ResponseEntity<List<PayDTO>> getPaysByBranch(@PathVariable Long branchId) {
         return ResponseEntity.ok(payService.getPaysByBranch(branchId));
     }
+
+    @ResponseBody
+    @GetMapping("/api/branch/{branchId}/filter")
+    public ResponseEntity<List<PayDTO>> getFilteredPayments(
+        @PathVariable Long branchId,
+        @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
+        @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
+
+        List<PayDTO> data;
+        if (start != null && end != null) {
+            data = payService.getPaysByBranchAndDateRange(branchId, start, end);
+        } else {
+            data = payService.getPaysByBranch(branchId);
+        }
+
+        return ResponseEntity.ok(data);
+    }
+
 
     // ✅ 다중 지점
     @ResponseBody

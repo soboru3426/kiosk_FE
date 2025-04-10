@@ -150,48 +150,57 @@ body {
     text-align: center;
     font-size: 14px;
     color: #333;
-    border: 1px solid 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-collapse: collapse;
 }
 
-.stock-table th, .stock-table td {
+/* thead는 스크롤 영향 안 받고 고정 */
+.stock-table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* tbody를 블록처럼 만들어서 높이 지정 + 스크롤 가능하게 */
+.stock-table-body {
+    display: block;
+    max-height: 542px; /* 10행 * 54px */
+    overflow-y: scroll;
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE, Edge */
+}
+
+/* Chrome, Edge, Safari - 스크롤 숨김 */
+.stock-table-body::-webkit-scrollbar {
+    display: none;
+}
+
+/* tbody 내부 tr 정렬용 */
+.stock-table-body tr {
+    display: table;
+    width: 100%;
+    height: 54px; /* 고정 높이 */
+    table-layout: fixed;
+}
+
+/* 셀 공통 스타일 */
+.stock-table th,
+.stock-table td {
     padding: 10px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
-.stock-table-body {
-    text-align: center;
-    font-size: 14px;
-    color: #333;
-    height: 500px;
-}
-
 /* 각 열의 넓이 지정 */
-.stock-table th:nth-child(1), .stock-table td:nth-child(1) {
-    width: 5%; /* NO 열 */
-}
-.stock-table th:nth-child(2), .stock-table td:nth-child(2) {
-    width: 10%; /* 지점명 열 */
-}
-.stock-table th:nth-child(3), .stock-table td:nth-child(3) {
-    width: 15%; /* 메뉴명 열 */
-}
-.stock-table th:nth-child(4), .stock-table td:nth-child(4) {
-    width: 20%; /* 이미지파일주소 열 */
-}
-.stock-table th:nth-child(5), .stock-table td:nth-child(5) {
-    width: 10%; /* 재고량 열 */
-}
-.stock-table th:nth-child(6), .stock-table td:nth-child(6) {
-    width: 10%; /* 상품상태 열 */
-}
-.stock-table th:nth-child(7), .stock-table td:nth-child(7) {
-    width: 10%; /* 발주상태 열 */
-}
-.stock-table th:nth-child(8), .stock-table td:nth-child(8) {
-    width: 10%; /* 발주하기 열 */
-}
+.stock-table th:nth-child(1), .stock-table td:nth-child(1) { width: 5%; }
+.stock-table th:nth-child(2), .stock-table td:nth-child(2) { width: 10%; }
+.stock-table th:nth-child(3), .stock-table td:nth-child(3) { width: 15%; }
+.stock-table th:nth-child(4), .stock-table td:nth-child(4) { width: 20%; }
+.stock-table th:nth-child(5), .stock-table td:nth-child(5) { width: 10%; }
+.stock-table th:nth-child(6), .stock-table td:nth-child(6) { width: 10%; }
+.stock-table th:nth-child(7), .stock-table td:nth-child(7) { width: 10%; }
+.stock-table th:nth-child(8), .stock-table td:nth-child(8) { width: 10%; }
+
 
 /* 팝업의 기본 스타일 */
 .popup {

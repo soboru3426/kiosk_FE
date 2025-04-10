@@ -14,54 +14,53 @@ async function fetchBranchData(branch) {
 // 🔹 테이블 업데이트 함수
 function updateTable(data) {
     const tableBody = document.querySelector(".stock-table-body");
-    tableBody.innerHTML = ""; // 기존 데이터 초기화
+    tableBody.innerHTML = "";
 
-    if (data.length === 0) {
-        tableBody.innerHTML = "<tr><td colspan='7'>조회 내역이 없습니다.</td></tr>";
-        return;
-    }
+    const maxRows = 10;
+    const dataLength = data.length;
+    const validRows = Math.min(dataLength, maxRows);
 
-    data.forEach((row, index) => {
-        // 상태에 맞는 색상 클래스 결정
-        const statusClass = getStatusClass(row.orderStatus);
-
-        const newRow = `
-            <tr data-stock-id="${row.stockId}">
-                <td>${index + 1}</td>
+    // 데이터 있는 행 렌더링
+    for (let i = 0; i < validRows; i++) {
+        const row = data[i];
+        const imagePath = row.image || "경로 없음";
+        tableBody.insertAdjacentHTML("beforeend", `
+            <tr>
+                <td>${i + 1}</td>
                 <td>${row.branchName}</td>
                 <td>${row.menuName}</td>
+                <td>${imagePath}</td>
                 <td>${row.quantity}</td>
-                <td class="order-status">${row.productStatus}</td>
+                <td>${row.productStatus}</td>
+                <td>${row.orderStatus}</td>
                 <td>
-                    <div class="status-dropdown" data-stock-id="${row.stockId}">
-                        <div class="status-btn-container">
-                            <button class="status-btn ${statusClass}">
-                                <span class="dot"></span> ${row.orderStatus}
-                            </button>
-                            <!-- 화살표 부분 별도로 배치 -->
-                            <div class="arrow">▼</div>
-                        </div>
-                        
-                        <div class="status-menu">
-                            <div class="status-option orange" data-status="확인중">
-                                <span class="dot"></span> 확인중
-                            </div>
-                            <div class="status-option green" data-status="배송완료">
-                                <span class="dot"></span> 배송완료
-                            </div>
-                            <div class="status-option pink" data-status="배송중">
-                                <span class="dot"></span> 배송중
-                            </div>
-                        </div>
-                    </div>
-
+                    <a href="#" class="pay-btn" data-menu="${row.menuName}" data-branch="${row.branchName}">
+                        <img src="/stock/images/icon.png" alt="Pay" />
+                    </a>
                 </td>
             </tr>
-        `;
-        tableBody.innerHTML += newRow;
+        `);
+    }
+
+    // 나머지 빈 행 렌더링
+    for (let i = validRows; i < maxRows; i++) {
+        tableBody.insertAdjacentHTML("beforeend", `
+            <tr class="empty-row">
+                <td></td>
+                <td colspan="7" style="color: #ccc; text-align: center;">-</td>
+            </tr>
+        `);
+    }
+
+    // 발주 팝업 이벤트 등록 (있는 데이터만)
+    document.querySelectorAll(".pay-btn").forEach(button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            const menu = this.dataset.menu;
+            const branch = this.dataset.branch;
+            showOrderPopup(menu, branch);
+        });
     });
-    console.log("📣 테이블 렌더링 끝. 드롭다운 초기화 시작");
-    initializeStatusDropdown();
 }
 
 // 🔹 상태에 맞는 색상 클래스 반환 함수
