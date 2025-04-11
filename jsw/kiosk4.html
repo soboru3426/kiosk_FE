@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024, initial-scale=1.0">
+    <title>키오스크 화면</title>
+    <!-- jQuery CDN 추가 (최신 버전) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="kiosk4.css">
+    <script src="https://kit.fontawesome.com/872bad34a9.js" crossorigin="anonymous"></script>    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="4images/로고.png" alt="로고" class="logo">
+                <button class="close-button">
+                    <div class="icon-background">
+                        <img src="4images/X.png" alt="닫기 아이콘" class="close-icon" onclick="window.location.href='../baskin/kiosk1.html'">
+                    </div>
+                </button>
+            </div>
+        </header>
+        <div class="wrapper">
+            <div class="step-box">
+              <span class="step">STEP01</span>
+            </div>
+            <span class="description">주문 내역을 확인해주세요</span>
+        </div>          
+
+        <div class="order-list">
+
+        </div>
+
+        <footer>
+            <div class="wrapper">
+                <div class="step-box">
+                    <span class="step">STEP02</span>
+                </div>
+                <span class="description">결제 방법을 선택해주세요</span>
+                <span class="total-price">₩12,800</span>
+            </div>
+            <div class="payment-methods">
+                <button class="cash-button">현금</button>
+                <button class="custom-button" onclick="window.location.href='../osh/kiosk5.html'">
+                    <div class="scard">신용카드</div>
+                    <div class="more">모바일상품권<br>
+                        각종 PAY<br>
+                        APP카드
+                    </div>
+                </button>
+            </div>
+        </footer>          
+    </div>
+    <script src="kiosk4.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상품 정보</title>
+  <link rel="stylesheet" href="common.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <button onclick="history.back()" class="back-btn">이전</button>
+      <h2>상품 정보</h2>
+    </header>
+
+    <div class="product-info">
+      <img id="product-img" src="images/pd_cup.png" alt="상품 이미지">
+      <h3 id="product-name">상품명</h3>
+      <!-- 합계 가격이 변경되어 표시되도록 id="product-price" 업데이트 -->
+      <p id="product-price">₩0</p>
+      <p>원하는 맛을 자유롭게 선택하세요!</p>
+
+      <!-- 옵션 선택 -->
+      <div class="selection">
+        <button class="option" onclick="selectOption('cup')">컵</button>
+        <button class="option" onclick="selectOption('cone')">콘</button>
+        <button class="option" onclick="selectOption('waffle')">와플콘</button>
+      </div>
+
+      <!-- 수량 선택 -->
+      <div class="counter">
+        <button onclick="changeQuantity(-1)">-</button>
+        <span id="quantity">1</span>
+        <button onclick="changeQuantity(1)">+</button>
+      </div>
+
+      <!-- 플레이버 선택 버튼 -->
+      <button onclick="goToFlavor()" class="next-btn">플레이버(맛) 선택</button>
+    </div>
+  </div>
+
+  <script>
+    // 전역 변수에 단가를 저장합니다.
+    let unitPrice = 0;
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("name");
+      const price = params.get("price");
+      const img = params.get("img");
+
+      // 파라미터가 존재할 경우에 표시 및 단가 설정
+      if (name) {
+        document.getElementById("product-name").textContent = name;
+      }
+      if (price) {
+        // 단가를 숫자로 변환하여 전역 변수에 저장
+        unitPrice = parseInt(price, 10) || 0;
+        // 수량 1개 기준 가격 표시
+        document.getElementById("product-price").textContent = `₩${unitPrice * 1}`;
+      }
+      if (img) {
+        document.getElementById("product-img").src = img;
+      }
+    });
+
+    function goToFlavor() {
+      window.location.href = "flavor.html";
+    }
+
+    function selectOption(option) {
+      const imgElem = document.getElementById("product-img");
+      if (option === "cup") {
+        imgElem.src = "images/pd_cup.png";
+      } else if (option === "cone") {
+        imgElem.src = "images/pd_cone.png";
+      } else if (option === "waffle") {
+        imgElem.src = "images/pd_waffle.png";
+      }
+    }
+
+    // 수량 변경 시 단가와 곱하여 가격을 업데이트
+    function changeQuantity(delta) {
+      const quantityElem = document.getElementById("quantity");
+      let current = parseInt(quantityElem.textContent, 10);
+      current = Math.max(1, current + delta);
+      quantityElem.textContent = current;
+      
+      // 현재 수량에 따른 총 가격 계산
+      const totalPrice = current * unitPrice;
+      document.getElementById("product-price").textContent = `₩${totalPrice}`;
+    }
+  </script>
+</body>
+</html>
