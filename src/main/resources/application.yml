@@ -21,6 +21,12 @@ spring:
         - classpath:/static/
         - file:flavor-images/
 
+logging:
+  level:
+    org.springframework.web: DEBUG
+    com.example.kiosk: DEBUG
+
+
 server:
   port: 8088
 

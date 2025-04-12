@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updatePayTable(data) {
         const tableBody = document.querySelector(".stock-table-body");
-    
+        
         if (!tableBody) {
             console.error("❌ .stock-table-body 요소를 찾을 수 없습니다.");
             return;
@@ -180,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
         const maxRows = 10;
     
+        // 데이터가 없을 경우 빈 행을 추가
         if (!data || data.length === 0) {
             tableBody.innerHTML = `
                 <tr>
@@ -225,5 +226,5 @@ document.addEventListener("DOMContentLoaded", () => {
                 </tr>
             `);
         }
-    }    
+    }        
 });
