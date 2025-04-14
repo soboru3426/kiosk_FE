@@ -172,10 +172,8 @@ body {
 /* tbody를 블록처럼 만들어서 높이 지정 + 스크롤 가능하게 */
 .stock-table-body {
     display: block;
-    max-height: 542px; /* 10행 * 54px */
-    overflow-y: scroll;
-    scrollbar-width: none;      /* Firefox */
-    -ms-overflow-style: none;   /* IE, Edge */
+    height: 542px;
+    overflow-y: auto;
 }
 
 /* Chrome, Edge, Safari - 스크롤 숨김 */
@@ -221,6 +219,23 @@ body {
 .stock-table th:nth-child(7), .stock-table td:nth-child(7) {
     width: 20%; /* 결제일련번호 열 */
 }
+
+.stock-table-wrapper {
+    position: relative;
+    min-height: 300px; /* 필요에 따라 조정 */
+  }
+  
+  .empty-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #888;
+    font-size: 18px;
+    display: none;
+    text-align: center;
+    pointer-events: none;
+  }
 
 .modal {
     position: fixed;

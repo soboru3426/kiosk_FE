@@ -53,8 +53,9 @@
                 </div>
             </div>
 
-            <table class="stock-table">
-                <thead class="session-name">
+            <div class="stock-table-wrapper">
+                <table class="stock-table">
+                  <thead class="session-name">
                     <tr>
                         <th>NO</th>
                         <th>지점명</th>
@@ -63,13 +64,13 @@
                         <th>상품상태</th>
                         <th>발주상태</th>
                     </tr>
-                </thead>
-                <tbody class="stock-table-body">
-                    <tr>
-                        <td colspan="6">조회 내역이 없습니다.</td>
-                    </tr>
-                </tbody>
-            </table>
+                  </thead>
+                  <tbody class="stock-table-body"></tbody>
+                </table>
+              
+                <!-- 중앙 정렬 메시지 박스 -->
+                <div class="empty-message">조회 내역이 없습니다.</div>
+            </div>
     </div>
 
     <script src="/js/admin/stock.js"></script>

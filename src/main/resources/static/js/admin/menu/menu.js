@@ -7,8 +7,16 @@ export async function fetchMenus() {
     const menus = await response.json();
     const tableBody = document.querySelector(".stock-table-body");
     const maxRows = 10;
-
+    const emptyMessage = document.querySelector(".empty-message");
+    
     tableBody.innerHTML = "";
+
+    if (menus.length === 0) {
+        emptyMessage.style.display = "block";
+        return;
+    } else {
+        emptyMessage.style.display = "none";
+    }
 
     menus.forEach((menu, index) => {
         const isActive = menu.productStatus && menu.productStatus.trim() === "판매중";

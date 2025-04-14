@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updatePayTable(data) {
         const tableBody = document.querySelector(".stock-table-body");
-        
+        const emptyMessage = document.querySelector(".empty-message");
         if (!tableBody) {
             console.error("❌ .stock-table-body 요소를 찾을 수 없습니다.");
             return;
@@ -180,15 +180,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
         const maxRows = 10;
     
-        // 데이터가 없을 경우 빈 행을 추가
-        if (!data || data.length === 0) {
-            tableBody.innerHTML = `
-                <tr>
-                    <td colspan="7" class="no-data">결제 내역이 없습니다.</td>
-                </tr>
-            `;
+        if (data.length === 0) {
+            emptyMessage.style.display = "block";
             return;
-        }
+        } else {
+            emptyMessage.style.display = "none";
+        }    
     
         const validRows = Math.min(data.length, maxRows);
     

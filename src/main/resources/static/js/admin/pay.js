@@ -137,14 +137,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updatePayTable(data) {
         const tableBody = document.querySelector(".stock-table-body");
-    
-        if (!tableBody) {
-            console.error("❌ .stock-table-body 요소를 찾을 수 없습니다.");
-            return;
-        }
+        const emptyMessage = document.querySelector(".empty-message");
     
         tableBody.innerHTML = "";
     
+        if (data.length === 0) {
+            emptyMessage.style.display = "block";
+            return;
+        } else {
+            emptyMessage.style.display = "none";
+        }
+        
         const maxRows = 10;
     
         if (!data || data.length === 0) {

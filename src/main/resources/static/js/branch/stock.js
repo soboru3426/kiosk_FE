@@ -18,14 +18,17 @@ async function fetchBranchData(branches) {
 // 🔹 테이블 렌더링
 function updateTable(data) {
     const tableBody = document.querySelector(".stock-table-body");
+    const emptyMessage = document.querySelector(".empty-message");
     tableBody.innerHTML = "";
 
     const maxRows = 10;
     const dataLength = data.length;
     if (data.length === 0) {
-        tableBody.innerHTML = "<tr><td colspan='7'>조회 내역이 없습니다.</td></tr>";
+        emptyMessage.style.display = "block";
         return;
-    }
+    } else {
+        emptyMessage.style.display = "none";
+    }    
     const validRows = Math.min(dataLength, maxRows);
 
     // 데이터 있는 행 렌더링

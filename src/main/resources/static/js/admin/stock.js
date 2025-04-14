@@ -14,13 +14,16 @@ async function fetchBranchData(branch) {
 // 🔹 테이블 업데이트 함수
 function updateTable(data) {
     const tableBody = document.querySelector(".stock-table-body");
+    const emptyMessage = document.querySelector(".empty-message");
     tableBody.innerHTML = ""; // 기존 데이터 초기화
 
     const maxRows = 10; // 최대 행 수
 
     if (data.length === 0) {
-        tableBody.innerHTML = "<tr><td colspan='7'>조회 내역이 없습니다.</td></tr>";
+        emptyMessage.style.display = "block";
         return;
+    } else {
+        emptyMessage.style.display = "none";
     }
 
     const validRows = Math.min(data.length, maxRows);

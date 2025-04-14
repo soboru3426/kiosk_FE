@@ -34,8 +34,9 @@
                 </div>
             </div>
 
-            <table class="stock-table">
-                <thead class="session-name">
+            <div class="stock-table-wrapper">
+                <table class="stock-table">
+                  <thead class="session-name">
                     <tr>
                         <th>NO</th>
                         <th>결제수단</th>
@@ -45,12 +46,13 @@
                         <th>결제지점</th>
                         <th>결제일련번호</th>
                     </tr>
-                </thead>
-                <tbody class="stock-table-body">
-                    <tr>
-                        <td colspan="7">조회 내역이 없습니다.</td>
-                    </tr>
-                </tbody>
+                  </thead>
+                  <tbody class="stock-table-body"></tbody>
+                </table>
+              
+                <!-- 중앙 정렬 메시지 박스 -->
+                <div class="empty-message">결제 내역이 없습니다.</div>
+            </div>
             </table>
         </div>
     </div>
