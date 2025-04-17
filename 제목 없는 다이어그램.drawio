@@ -4,11 +4,14 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="R-ZYnTgCwf_NyY1Wy72V-8" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="154" y="50" width="673" height="510" as="geometry" />
+        </mxCell>
         <mxCell id="dEh4cGmL0a7jBWiKpQX9-1" value="본사" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
-          <mxGeometry x="114" y="80" width="30" height="60" as="geometry" />
+          <mxGeometry x="70" y="85" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="dEh4cGmL0a7jBWiKpQX9-2" value="지점" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
-          <mxGeometry x="114" y="463" width="30" height="60" as="geometry" />
+          <mxGeometry x="70" y="463" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="dEh4cGmL0a7jBWiKpQX9-3" value="고객" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
           <mxGeometry x="870" y="255" width="30" height="60" as="geometry" />
@@ -246,6 +249,9 @@
             <mxPoint x="390" y="215" as="targetPoint" />
             <mxPoint as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="R-ZYnTgCwf_NyY1Wy72V-9" value="관리자 페이지&amp;nbsp; ( 지점, 본사 )" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="390" y="50" width="170" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
