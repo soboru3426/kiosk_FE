@@ -244,7 +244,7 @@
             <mxPoint x="120" y="155" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nF9jFXOywA1NNGl533Vz-15" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="R-ZYnTgCwf_NyY1Wy72V-44" source="dEh4cGmL0a7jBWiKpQX9-34" target="dEh4cGmL0a7jBWiKpQX9-30" edge="1">
+        <mxCell id="nF9jFXOywA1NNGl533Vz-15" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="R-ZYnTgCwf_NyY1Wy72V-44" source="dEh4cGmL0a7jBWiKpQX9-34" target="dEh4cGmL0a7jBWiKpQX9-30" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="210" y="210" as="sourcePoint" />
             <mxPoint x="299" y="240" as="targetPoint" />
@@ -257,6 +257,16 @@
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="40" y="200" as="sourcePoint" />
             <mxPoint x="100" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-ZYnTgCwf_NyY1Wy72V-51" value="메뉴 상세보기" style="ellipse;whiteSpace=wrap;html=1;direction=east;" vertex="1" parent="R-ZYnTgCwf_NyY1Wy72V-44">
+          <mxGeometry x="284" y="220" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="R-ZYnTgCwf_NyY1Wy72V-50" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="R-ZYnTgCwf_NyY1Wy72V-44" source="dEh4cGmL0a7jBWiKpQX9-34" target="R-ZYnTgCwf_NyY1Wy72V-51">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="210" y="160" as="sourcePoint" />
+            <mxPoint x="233" y="500" as="targetPoint" />
+            <Array as="points" />
           </mxGeometry>
         </mxCell>
         <mxCell id="R-ZYnTgCwf_NyY1Wy72V-45" value="" style="rounded=0;whiteSpace=wrap;html=1;direction=east;" vertex="1" parent="1">
