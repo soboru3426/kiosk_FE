@@ -189,7 +189,7 @@
           <mxGeometry x="110" y="120" width="90" height="50" as="geometry" />
         </mxCell>
         <mxCell id="dEh4cGmL0a7jBWiKpQX9-31" value="세부 항목선택&lt;div&gt;수량조절&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;direction=east;" parent="R-ZYnTgCwf_NyY1Wy72V-44" vertex="1">
-          <mxGeometry x="303" y="120" width="90" height="50" as="geometry" />
+          <mxGeometry x="284" y="120" width="90" height="50" as="geometry" />
         </mxCell>
         <mxCell id="dEh4cGmL0a7jBWiKpQX9-34" value="장바구니 담기" style="ellipse;whiteSpace=wrap;html=1;direction=east;" parent="R-ZYnTgCwf_NyY1Wy72V-44" vertex="1">
           <mxGeometry x="110" y="220" width="90" height="50" as="geometry" />
@@ -216,7 +216,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="nF9jFXOywA1NNGl533Vz-8" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="R-ZYnTgCwf_NyY1Wy72V-44" source="dEh4cGmL0a7jBWiKpQX9-30" target="dEh4cGmL0a7jBWiKpQX9-31" edge="1">
+        <mxCell id="nF9jFXOywA1NNGl533Vz-8" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.011;entryY=0.57;entryDx=0;entryDy=0;exitX=1.001;exitY=0.59;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" parent="R-ZYnTgCwf_NyY1Wy72V-44" source="dEh4cGmL0a7jBWiKpQX9-30" target="dEh4cGmL0a7jBWiKpQX9-31" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="360" y="80" as="sourcePoint" />
             <mxPoint x="289" y="175" as="targetPoint" />
