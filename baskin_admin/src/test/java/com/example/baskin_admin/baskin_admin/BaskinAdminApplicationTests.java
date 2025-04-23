@@ -8,6 +8,7 @@ class BaskinAdminApplicationTests {
 
 	@Test
 	void contextLoads() {
+		throw new UnsupportedOperationException("Not implemented yet");
 	}
 
 }

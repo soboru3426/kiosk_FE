@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.kiosk.menu.MenuMapper">
+
+    <!-- ✅ menu + product_status 가져오기 위한 resultMap -->
+    <resultMap id="MenuWithProductStatus" type="com.example.kiosk.menu.Menu">
+        <id property="menuId" column="menu_id"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="menuCode" column="menu_code"/>
+        <result property="image" column="image"/>
+        <result property="productStatus" column="product_status"/>
+    </resultMap>
+
+    <!-- ✅ 전체 메뉴 + 상태 -->
+    <select id="findAll" resultMap="MenuWithProductStatus">
+        SELECT 
+            m.menu_id,
+            m.menu_name,
+            m.menu_code,
+            m.image,
+            s.product_status
+        FROM 
+            menu m
+        LEFT JOIN 
+            stock s ON m.menu_id = s.menu_id AND s.branch_id = 1
+    </select>
+
+    <!-- ✅ ID로 단일 메뉴 조회 -->
+    <select id="findById" resultType="com.example.kiosk.menu.Menu" parameterType="int">
+        SELECT * FROM menu WHERE menu_id = #{menuId}
+    </select>
+
+    <!-- ✅ 메뉴 삽입 -->
+    <insert id="insert" parameterType="com.example.kiosk.menu.Menu">
+        INSERT INTO menu (menu_name, menu_code, image)
+        VALUES (#{menuName}, #{menuCode}, #{image})
+    </insert>
+
+    <!-- ✅ 메뉴 상태 업데이트 -->
+    <update id="updateProductStatus" parameterType="map">
+        UPDATE stock
+        SET product_status = #{productStatus}
+        WHERE menu_id = #{menuId}
+    </update>
+
+    <!-- ✅ 메뉴명으로 menu_id 조회 -->
+    <select id="findMenuIdByName" parameterType="string" resultType="int">
+        SELECT menu_id FROM menu WHERE menu_name = #{name}
+    </select>
+
+</mapper>

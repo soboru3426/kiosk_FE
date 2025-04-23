@@ -1,7 +1,3 @@
 ### KIOSK
 
-test
-test2
-test3
-test4
-jm update
+250410 본사 메뉴 페이지

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1024, initial-scale=1.0" />
+  <title>장바구니</title>
+  <script src="https://kit.fontawesome.com/872bad34a9.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="/assets/customer/kiosk4.css" />
+  <script src="/js/customer/kiosk4.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <img src="/icon-images/baskin.png" alt="logo" class="logo" />
+        <button class="close-button">
+          <div class="icon-background">
+            <img src="/icon-images/X.png" alt="close-icon" class="close-icon" />
+          </div>
+        </button>
+      </div>
+    </header>
+
+    <div class="wrapper">
+      <div class="step-box">
+        <span class="step">STEP01</span>
+      </div>
+      <span class="description">주문 내역을 확인해주세요</span>
+    </div>
+
+    <!-- 주문 항목들 (js에서 subItem 단위로 생성됨) -->
+    <div class="order-list"></div>
+
+    <!-- flavor combo 선택 모달 (추후 flavor 조합 선택 개선 예정) -->
+    <div id="flavorChoiceModal" class="modal hidden">
+      <div class="modal-content">
+        <h3>어떤 맛 조합을 변경/삭제하시겠습니까?</h3>
+        <div class="flavor-choice-list">
+          <!-- JS에서 flavor combo 목록 생성 -->
+        </div>
+        <button id="modalCancelBtn">취소</button>
+      </div>
+    </div>
+
+    <footer>
+      <div class="wrapper">
+        <div class="step-box">
+          <span class="step">STEP02</span>
+        </div>
+        <span class="description">결제 방법을 선택해주세요</span>
+        <span class="total-price">₩0</span>
+      </div>
+      <div class="payment-methods">
+        <button class="cash-button">현금</button>
+        <button class="custom-button">
+          <div class="scard">신용카드</div>
+          <div class="more">
+            모바일상품권<br />
+            각종 PAY<br />
+            APP카드
+          </div>
+        </button>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

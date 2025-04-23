@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배스킨라빈스</title>
+  <!-- kiosk1.css 경로는 프로젝트 구조에 맞게 수정 -->
+  <link rel="stylesheet" href="/assets/customer/kiosk1.css">
+  <!-- kiosk1.js가 footer.html 동적 로드 후 localStorage 데이터 기반으로 UI 업데이트 -->
+  <script src="/js/customer/kiosk1.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- 헤더 영역 -->
+    <div id="header-container">
+      <!-- (header.html 동적 로드 전 보여줄 임시 헤더) -->
+      <header class="header">
+        <img src="/icon-images/baskin.png" alt="배스킨라빈스 로고">
+        <button class="close-btn">X</button>
+      </header>
+    </div>
+
+    <main class="content">
+      <nav class="nav">
+        <button class="ice-btn">아이스크림</button>
+        <a href="coffee.html">카페</a>
+        <a href="drink.html">음료</a>
+        <a href="icemocchi.html">아이스모찌</a>
+      </nav>
+
+      <!-- 상품 목록 -->
+      <section class="product-list">
+        <div class="product">
+          <img src="/icon-images/single1.png" alt="싱글레귤러">
+          <p class="name">싱글레귤러</p>
+          <p class="price">₩3,200</p>
+        </div>
+        <div class="product">
+          <img src="/icon-images/single2.png" alt="싱글킹">
+          <p class="name">싱글킹</p>
+          <p class="price">₩4,000</p>
+        </div>
+        <div class="product">
+          <img src="/icon-images/double1.png" alt="더블주니어">
+          <p class="name">더블주니어</p>
+          <p class="price">₩4,300</p>
+        </div>
+        <div class="product">
+          <img src="/icon-images/double2.png" alt="더블레귤러">
+          <p class="name">더블레귤러</p>
+          <p class="price">₩6,200</p>
+        </div>
+        <div class="product">
+          <img src="/icon-images/pint.png" alt="파인트">
+          <p class="name">파인트</p>
+          <p class="price">₩8,200</p>
+        </div>
+        <div class="product">
+          <img src="/icon-images/quarter.png" alt="쿼터">
+          <p class="name">쿼터</p>
+          <p class="price">₩15,500</p>
+        </div>
+        <div class="product">
+          <img src="/icon-images/family.png" alt="패밀리">
+          <p class="name">패밀리</p>
+          <p class="price">₩22,000</p>
+        </div>
+        <div class="product">
+          <img src="/icon-images/half.png" alt="하프갤런">
+          <p class="name">하프갤런</p>
+          <p class="price">₩26,500</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- 푸터 영역 -->
+    <div id="footer-container">
+      <!-- (footer.html 동적 로드 전 보여줄 임시 푸터) -->
+      <footer class="footer">
+        <div class="cart"></div>
+        <div class="pay-wrapper">
+          <button class="pay-btn">
+            결제하기
+            <img src="/purchase-images/arrow_forward_ios2.png" alt="결제">
+          </button>
+          <span class="total-price-indicator"></span>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
