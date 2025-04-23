@@ -151,6 +151,7 @@ body {
     text-align: center;
     font-size: 14px;
     color: #333;
+<<<<<<< HEAD
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-collapse: collapse;
 }
@@ -185,11 +186,19 @@ body {
 /* 셀 공통 스타일 */
 .stock-table th,
 .stock-table td {
+=======
+    border: 1px solid 1px solid rgba(0, 0, 0, 0.2);
+    border-collapse: collapse;
+}
+
+.stock-table th, .stock-table td {
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
     padding: 10px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
+<<<<<<< HEAD
 .stock-table td {
     height: 100%;
     padding: 0 8px; /* 위아래 padding 없애기 */
@@ -225,6 +234,35 @@ body {
     text-align: center;
     pointer-events: none;
   }
+=======
+.stock-table-body {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    height: 500px;
+}
+
+/* 각 열의 넓이 지정 */
+.stock-table th:nth-child(1), .stock-table td:nth-child(1) {
+    width: 5%; /* NO 열 */
+}
+.stock-table th:nth-child(2), .stock-table td:nth-child(2) {
+    width: 15%; /* 지점명 열 */
+}
+.stock-table th:nth-child(3), .stock-table td:nth-child(3) {
+    width: 25%; /* 메뉴명 열 */
+}
+.stock-table th:nth-child(4), .stock-table td:nth-child(4) {
+    width: 10%; /* 주문발주량 열 */
+}
+.stock-table th:nth-child(5), .stock-table td:nth-child(5) {
+    width: 20%; /* 상품상태 열 */
+}
+.stock-table th:nth-child(6), .stock-table td:nth-child(6) {
+    width: 25%; /* 발주상태 열 */
+}
+
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
 
 /* 드롭다운 기본 스타일 */
 .status-dropdown {
@@ -312,24 +350,39 @@ body {
     background-color: #FE81F7;
 }
 
+<<<<<<< HEAD
 .status-dropdown {
     position: relative; /* 추가: 드롭다운 기준점 설정 */
 }
 
+=======
+/* 드롭다운 메뉴 */
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
 .status-menu {
     display: none;
     position: absolute;
     top: 100%;
+<<<<<<< HEAD
     right: 0px;
     z-index: 9999; /* 수정: 다른 요소보다 위로 */
+=======
+    right: -15px;
+    z-index: 100;
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
     background-color: white;
     border-radius: 10px;
     padding: 6px 0;
     min-width: 122px;
+<<<<<<< HEAD
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 
+=======
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
 /* 활성화 시 표시 */
 .status-menu.active {
     display: block;
@@ -371,12 +424,15 @@ body {
     text-align: center;
 }
 
+<<<<<<< HEAD
 .popup-content p {
     font-size: 22px;
     font-weight: 500;
     color: #6E6893;
 }
 
+=======
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
 .popup-buttons button {
     border-radius: 12px;
     padding: 12px 24px;
@@ -396,7 +452,11 @@ body {
 #confirm-no {
     background-color: #6D5BD0;
     color: #F5F5F5;
+<<<<<<< HEAD
     font-weight: 700;
+=======
+    font-weight: 500;
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
     font-size: 16px;
 }
 
@@ -406,8 +466,12 @@ body {
 
 #popup-close {
     margin-top: 12px;
+<<<<<<< HEAD
     font-size: 18px;
     padding: 8px 18px;
+=======
+    padding: 8px 16px;
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
     background-color: #6366f1;
     color: white;
     border: none;

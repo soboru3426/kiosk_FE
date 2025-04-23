@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Page</title>
+    <link rel="stylesheet" href="/pay/style.css">
+</head>
+<body>
+    <div class="container">
+        <h3>통합품질관리시스템</h3>
+        <div class="select-session">
+            <a class="stock-link">Stock</a>
+            <a class="pay-link">Pay</a>
+        </div>
+
+        <p class="divide"></p>
+
+        <div class="stock-session">
+            <div class="session">
+                <div class="filter-session">
+                    <button id="filter" class="filter-btn open-modal-btn">
+                        <img src="/stock/images/filter.png" alt="필터 아이콘" class="filter-icon">
+                        Filter
+                    </button>
+                    <input class="filter-input" type="text" placeholder="메뉴명 입력해주세요">
+                </div>
+                
+                <div class="branch-session">
+                    <button class="branch-btn active" data-branch="1">강서지점</button>
+                    <button class="branch-btn" data-branch="2">상봉지점</button>
+                    <button class="branch-btn" data-branch="3">하남지점</button>
+                </div>
+            </div>
+
+            <div class="stock-table-wrapper">
+                <table class="stock-table">
+                  <thead class="session-name">
+                    <tr>
+                        <th>NO</th>
+                        <th>결제수단</th>
+                        <th>결제내역</th>
+                        <th>결제금액</th>
+                        <th>결제일</th>
+                        <th>결제지점</th>
+                        <th>결제일련번호</th>
+                    </tr>
+                  </thead>
+                  <tbody class="stock-table-body"></tbody>
+                </table>
+                <!-- 중앙 정렬 메시지 박스 -->
+                <div class="empty-message">결제 내역이 없습니다.</div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <script src="/js/branch/pay.js"></script>
+    <script src="/js/branch/common.js"></script>
+</body>
+</html>

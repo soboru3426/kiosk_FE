@@ -3,9 +3,7 @@ package com.example.kiosk.pay;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.example.kiosk.kiosk.SubItemDTO;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/admin/pay")
@@ -48,7 +42,7 @@ public class AdminPayController {
     // 단일 지점
     @ResponseBody
     @GetMapping("/api/branch/{branchId}")
-    public ResponseEntity<List<PayDTO>> getPaysByBranch(@PathVariable Integer branchId) {
+    public ResponseEntity<List<PayDTO>> getPaysByBranch(@PathVariable Long branchId) {
         return ResponseEntity.ok(payService.getPaysByBranch(branchId));
     }
 
@@ -56,16 +50,15 @@ public class AdminPayController {
     @ResponseBody
     @GetMapping("/api/branches")
     public ResponseEntity<List<PayDTO>> getPaysByBranchIds(@RequestParam("ids") String ids) {
-        List<Integer> branchIds = Arrays.stream(ids.split(","))
-                                     .map(Integer::parseInt)  // 수정: Integer.parseInteger -> Integer.parseInt
+        List<Long> branchIds = Arrays.stream(ids.split(","))
+                                     .map(Long::parseLong)
                                      .collect(Collectors.toList());
         return ResponseEntity.ok(payService.getPaysByBranchIds(branchIds));
     }
 
-    // ✅ 날짜 필터링
     @GetMapping("/api/filter")
     public ResponseEntity<List<PayDTO>> filterPayments(
-            @RequestParam List<Integer> ids,
+            @RequestParam List<Long> ids,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
 
@@ -76,32 +69,4 @@ public class AdminPayController {
         List<PayDTO> results = payService.getFilteredPayments(ids, fromDateTime, toDateTime);
         return ResponseEntity.ok(results);
     }
-
-    // ✅ 단일 결제 상세 보기 (subItems 포함)
-    @ResponseBody
-    @GetMapping("/api/detail/{id}")
-    public PayDetailDTO getPaymentDetail(@PathVariable Integer id) {
-        Optional<PayDTO> optional = payService.getPayById(id);
-        if (optional.isEmpty()) {
-            throw new RuntimeException("해당 ID의 결제 정보를 찾을 수 없습니다.");
-        }
-        PayDTO pay = optional.get();
-
-        List<SubItemDTO> subItems = Collections.emptyList();
-        try {
-            String json = pay.getSubItemsJson();
-            if (json != null && !json.isBlank()) {
-                ObjectMapper mapper = new ObjectMapper();
-                subItems = mapper.readValue(json, new TypeReference<List<SubItemDTO>>() {});
-            }
-        } catch (Exception e) {
-            e.printStackTrace();  // 로깅 정도만
-        }
-
-        PayDetailDTO detail = new PayDetailDTO();
-        detail.setPay(pay);
-        detail.setSubItems(subItems);
-        return detail;
-    }
-
 }

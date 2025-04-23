@@ -1,5 +1,6 @@
 package com.example.kiosk.pay;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -10,22 +11,18 @@ import org.apache.ibatis.annotations.Param;
 public interface PayMapper {
     List<PayDTO> findAllPays();
 
-    List<PayDTO> findByBranchId(@Param("branchId") Integer branchId);
+    List<PayDTO> findByBranchId(@Param("branchId") Long branchId);
 
-    List<PayDTO> findByBranchIds(@Param("branchIds") List<Integer> branchIds);
+    List<PayDTO> findByBranchIds(@Param("branchIds") List<Long> branchIds);
 
     void insertPay(Pay pay);
 
-    void insertPayment(Pay pay);
+    PayDTO findById(@Param("id") Long id);
 
-    PayDTO findById(@Param("id") Integer id);
-
-    List<PayDTO> getFilteredPayments(@Param("ids") List<Integer> ids,
+    List<PayDTO> getFilteredPayments(@Param("ids") List<Long> ids,
                                     @Param("from") LocalDateTime from,
                                     @Param("to") LocalDateTime to);
     
-    List<PayDTO> findByBranchIdAndPayDateBetween(@Param("branchId") Integer branchId,
-                                    @Param("start") LocalDateTime start,
-                                    @Param("end") LocalDateTime end);
+    List<Pay> findByBranchIdAndPayDateBetween(Long branchId, LocalDate start, LocalDate end);
 
 }

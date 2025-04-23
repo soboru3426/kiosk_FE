@@ -21,10 +21,6 @@ spring:
         - classpath:/static/
         - file:flavor-images/
 
-recaptcha:
-  site-key: 6LcxWhwrAAAAAOWzawUK53kcycZg8UmdSDetP8oF
-  secret: 6LcxWhwrAAAAADK0jXsxoqJ1_aRjWaELSYgEGvl5
-
 server:
   port: 8088
 

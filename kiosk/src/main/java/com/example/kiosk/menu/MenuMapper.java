@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface MenuMapper {
@@ -17,5 +16,4 @@ public interface MenuMapper {
 
     void updateProductStatus(@Param("menuId") Integer menuId, @Param("productStatus") String productStatus);
 
-    Integer findMenuIdByName(@Param("name") String name);
 }

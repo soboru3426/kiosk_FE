@@ -1,0 +1,251 @@
+/* 전체 화면 스타일 */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw; /* 화면 전체 너비 */
+    height: 100vh; /* 화면 전체 높이 */
+    background-color: #ABABAB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 컨테이너 스타일 */
+.container {
+    width: 375px;
+    height: 675px;
+    border-radius: 26px;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* payment-complete 스타일 */
+.payment-complete {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+}
+
+.payment-complete li {
+    margin: 12px 0;
+}
+
+.payment-complete li:nth-child(1),
+.payment-complete li:nth-child(5) {
+    font-size: 25px;
+    color: #F20C93;
+}
+
+.payment-complete li:nth-child(2) {
+    font-size: 17px;
+    color: #9F9F9F
+}
+
+.receipt-toggle button {
+    background-color: #fff;
+    color: #9F9F9F;
+    border: solid #9F9F9F 1px;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.receipt-info p {
+    margin: 8px 0;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  
+#receipt-menu-list p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+ 
+#receipt-menu-list strong {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+  
+
+.payment-complete li:nth-child(4) {
+    font-size: 22px;
+    color: #000000;
+}
+
+.payment-complete li:nth-child(5) {
+    margin-top: 4px;
+}
+
+/* notice 스타일 */
+.notice {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #F20C93;
+    border-radius: 19px;
+}
+
+.notice img {
+    position: absolute;
+    top: 18px;
+    left: 24px;
+    width: 42px;
+    height: 22px;
+}
+
+.notice div {
+    width: 100%;
+}
+
+.notice ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.notice ul li {
+    margin: 5px 0;
+}
+
+.text-1, .text-2 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.text-1 {
+    font-size: 16px;
+    color: #F20C93;
+}
+
+.text-1 p:first-child {
+    margin-top: 24px;
+}
+
+.text-2 p {
+    margin: 4px;
+}
+
+.text-3 {
+    margin: 4px 20px;
+    font-size: 10px;
+    color: #A6A6A6;
+}
+
+/* footer 스타일 */
+footer.point-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.point-btn button {
+    display: flex;
+    justify-content: space-between;  /* 좌우 정렬 */
+    align-items: center;  /* 수직 중앙 정렬 */
+    margin: 8px;
+}
+
+/* 버튼 스타일 */
+.point-btn button p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+}
+
+.footer-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 32px;
+    margin-right: 10px;  /* 이미지와 텍스트 사이에 간격 추가 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.yes-btn p:first-child {
+    background-color: white;
+}
+
+.no-btn p:first-child {
+    background-color: #E8E8E8;
+}
+
+.yes-btn, .no-btn {
+    padding: 8px 16px;
+    width: 175px;
+    border-radius: 99px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.yes-btn {
+    background-color: #F20C93;
+    border-style: none;
+}
+
+.no-btn {
+    background-color: white;
+    color: #D0CFCF;
+    border: 1px solid #A4A4A4;  /* 이 부분이 제대로 적용되도록 확인 */
+}
+
+.no-btn .footer-circle img {
+    color: #FFFFFF;
+}
+
+.receipt-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+.modal-content {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 80%;
+    overflow-y: auto;
+}
+  
+.close-btn {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.print-receipt-btn {
+    padding: 6px 12px; 
+    background-color: #F20C93; 
+    color: white; 
+    border: none; 
+    border-radius: 4px;
+}

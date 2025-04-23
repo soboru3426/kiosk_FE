@@ -152,7 +152,10 @@ body {
 }
 
 /* 데이터 테이블 */
+<<<<<<< HEAD
 /* 데이터 테이블 */
+=======
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
 .stock-table {
     width: 100%;
     text-align: center;
@@ -162,6 +165,7 @@ body {
     border-collapse: collapse;
 }
 
+<<<<<<< HEAD
 /* thead는 스크롤 영향 안 받고 고정 */
 .stock-table thead {
     display: table;
@@ -192,11 +196,24 @@ body {
 /* 셀 공통 스타일 */
 .stock-table th,
 .stock-table td {
+=======
+.stock-table th, .stock-table td {
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
     padding: 10px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
+<<<<<<< HEAD
+=======
+.stock-table-body {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    height: 500px;
+}
+
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
 /* 각 열의 넓이 지정 */
 .stock-table th:nth-child(1), .stock-table td:nth-child(1) {
     width: 5%; /* NO 열 */
@@ -220,6 +237,7 @@ body {
     width: 20%; /* 결제일련번호 열 */
 }
 
+<<<<<<< HEAD
 .stock-table-wrapper {
     position: relative;
     min-height: 300px; /* 필요에 따라 조정 */
@@ -237,6 +255,8 @@ body {
     pointer-events: none;
   }
 
+=======
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
 .modal {
     position: fixed;
     top: 0;
@@ -366,6 +386,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .calendar-icon {
     cursor: pointer;
 }
+<<<<<<< HEAD
 
 .subitem-modal {
     position: fixed;
@@ -414,3 +435,5 @@ button.close-modal-btn {
     margin-top: 24px;
 }
 
+=======
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9

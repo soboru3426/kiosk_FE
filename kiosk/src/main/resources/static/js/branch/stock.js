@@ -21,10 +21,18 @@ function updateTable(data) {
     tableBody.innerHTML = "";
 
     const maxRows = 10;
+<<<<<<< HEAD
     const actualRows = data.length;
 
     // 데이터 있는 행 렌더링
     for (let i = 0; i < actualRows; i++) {
+=======
+    const dataLength = data.length;
+    const validRows = Math.min(dataLength, maxRows);
+
+    // 데이터 있는 행 렌더링
+    for (let i = 0; i < validRows; i++) {
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
         const row = data[i];
         const imagePath = row.image || "경로 없음";
         tableBody.insertAdjacentHTML("beforeend", `
@@ -45,6 +53,7 @@ function updateTable(data) {
         `);
     }
 
+<<<<<<< HEAD
     // 빈 행 추가: 데이터가 10개 미만일 때만
     if (actualRows < maxRows) {
         for (let i = actualRows; i < maxRows; i++) {
@@ -54,6 +63,16 @@ function updateTable(data) {
                 </tr>
             `);
         }
+=======
+    // 나머지 빈 행 렌더링
+    for (let i = validRows; i < maxRows; i++) {
+        tableBody.insertAdjacentHTML("beforeend", `
+            <tr class="empty-row">
+                <td></td>
+                <td colspan="7" style="color: #ccc; text-align: center;">-</td>
+            </tr>
+        `);
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
     }
 
     // 발주 팝업 이벤트 등록 (있는 데이터만)

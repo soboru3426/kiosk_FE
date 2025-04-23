@@ -5,6 +5,7 @@
 
 <mapper namespace="com.example.kiosk.menu.MenuMapper">
 
+<<<<<<< HEAD
     <!-- ✅ menu + product_status 가져오기 위한 resultMap -->
     <resultMap id="MenuWithProductStatus" type="com.example.kiosk.menu.Menu">
         <id property="menuId" column="menu_id"/>
@@ -29,26 +30,44 @@
     </select>
 
     <!-- ✅ ID로 단일 메뉴 조회 -->
+=======
+    <select id="findAll" resultType="com.example.kiosk.menu.Menu">
+        SELECT m.*, s.product_status
+        FROM menu m
+        LEFT JOIN stock s ON s.menu_id = m.menu_id
+        GROUP BY m.menu_id
+    </select>
+
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
     <select id="findById" resultType="com.example.kiosk.menu.Menu" parameterType="int">
         SELECT * FROM menu WHERE menu_id = #{menuId}
     </select>
 
+<<<<<<< HEAD
     <!-- ✅ 메뉴 삽입 -->
+=======
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
     <insert id="insert" parameterType="com.example.kiosk.menu.Menu">
         INSERT INTO menu (menu_name, menu_code, image)
         VALUES (#{menuName}, #{menuCode}, #{image})
     </insert>
 
+<<<<<<< HEAD
     <!-- ✅ 메뉴 상태 업데이트 -->
+=======
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
     <update id="updateProductStatus" parameterType="map">
         UPDATE stock
         SET product_status = #{productStatus}
         WHERE menu_id = #{menuId}
     </update>
 
+<<<<<<< HEAD
     <!-- ✅ 메뉴명으로 menu_id 조회 -->
     <select id="findMenuIdByName" parameterType="string" resultType="int">
         SELECT menu_id FROM menu WHERE menu_name = #{name}
     </select>
+=======
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
 
 </mapper>

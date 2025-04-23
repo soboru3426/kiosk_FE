@@ -11,4 +11,8 @@ class BaskinAdminApplicationTests {
 		throw new UnsupportedOperationException("Not implemented yet");
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9

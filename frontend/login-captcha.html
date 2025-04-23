@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로그인 페이지 (reCAPTCHA 체크박스)</title>
+  <link rel="stylesheet" href="/login/style.css" />
+  <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+</head>
+<body>
+  <div class="login_area">
+    <div class="login">
+      <h1>System Management</h1>
+
+      <!-- 로그인 폼 -->
+      <form class="login_form" id="loginForm">
+        <input type="text" name="username" placeholder="ID" required />
+        <input type="password" name="password" placeholder="Password" required autocomplete="current-password" />
+        <button type="button" id="loginBtn" class="login_btn">Login</button>
+      </form>
+
+      <!-- 오류 메시지 -->
+      <div id="errorMessage" style="display:none; color:red; margin-top:10px;"></div>
+
+      <!-- ✅ reCAPTCHA 모달 -->
+      <div id="recaptchaModal" class="recaptcha-modal hidden">
+        <div class="recaptcha-modal-content">
+          <div id="recaptcha-popup"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/login/login-captcha.js" defer></script>
+</body>
+</html>

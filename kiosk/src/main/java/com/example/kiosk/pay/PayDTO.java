@@ -11,11 +11,9 @@ import lombok.Data;
 public class PayDTO {
     private Long paymentId;
     private String paymentMethod;
-    private String productName;
+    private String menuName;
     private int totalPrice;
     private LocalDateTime paymentDate;
     private String branchName;
     private String serialNumber;
-
-    private String subItemsJson;
 }

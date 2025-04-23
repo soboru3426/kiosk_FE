@@ -1,0 +1,443 @@
+/* 전체 페이지 스타일 */
+body {
+    background-color: rgba(242, 240, 249, 1);
+    font-family: 'Karla', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    height: 772px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.container h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(110, 104, 147, 1);
+}
+
+.select-session {
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.select-session :nth-child(2),
+.select-session :nth-child(3) {
+    color: rgba(110, 104, 147, 1);
+}
+
+.divide {
+    border: 1px solid rgba(198, 194, 222, 1);
+    margin-bottom: 20px;
+}
+
+
+.stock-session {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 카드형 그림자 */ 
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px; /* 둥근 모서리 */
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.session {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px;
+}
+
+/* filter-session 스타일 */
+.filter-session {
+    display: flex;
+    align-items: center;
+    gap: 14px; 
+}
+
+.filter-select {
+    padding: 12px 4px;
+    border-style: none;
+}
+
+#filter {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+    color: #25213B;
+}
+
+.filter-icon {
+    height: 20px;
+    width: auto;
+    font-size: 10px;
+}
+
+.filter-input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    font-size: 14px;
+    padding-left: 36px;
+    background-image: url('/stock/images/search.png');
+    background-position: 10px center; 
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-color: rgba(244, 242, 255, 1);
+}
+
+/* branch-session 스타일 */
+.branch-session {
+    display: flex; /* 내부 버튼 가로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 10px; /* 버튼 간 간격 */
+}
+
+.branch-session .active {
+    background-color: rgba(109, 91, 208, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.branch-session button {
+    padding: 10px 15px;
+    background-color: rgba(216, 216, 216, 1);
+    color: rgba(122, 122, 122, 1);
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 부드러운 애니메이션 효과 */
+}
+
+
+.session-name {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    font-weight: bold;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(244, 242, 255, 1);
+}
+
+
+.session-name span {
+    color: rgba(110, 104, 147, 1);
+}
+
+/* 데이터 테이블 */
+.stock-table {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    border-collapse: collapse;
+}
+
+/* thead는 스크롤 영향 안 받고 고정 */
+.stock-table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* tbody를 블록처럼 만들어서 높이 지정 + 스크롤 가능하게 */
+/* tbody를 블록처럼 만들어서 높이 지정 + 스크롤 가능하게 */
+.stock-table-body {
+    display: block;
+    height: 542px;
+    overflow-y: none;
+}
+
+/* tbody 내부 tr 정렬용 */
+.stock-table-body tr {
+    display: table;
+    width: 100%;
+    height: 54px; /* 원하는 고정 행 높이 */
+    table-layout: fixed;
+}
+
+/* 셀 공통 스타일 */
+.stock-table th,
+.stock-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.stock-table td {
+    height: 100%;
+    padding: 0 8px; /* 위아래 padding 없애기 */
+    vertical-align: middle;
+    overflow: visible;
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* 각 열의 넓이 지정 */
+.stock-table th:nth-child(1), .stock-table td:nth-child(1) { width: 5%; }
+.stock-table th:nth-child(2), .stock-table td:nth-child(2) { width: 15%; }
+.stock-table th:nth-child(3), .stock-table td:nth-child(3) { width: 25%; }
+.stock-table th:nth-child(4), .stock-table td:nth-child(4) { width: 10%; }
+.stock-table th:nth-child(5), .stock-table td:nth-child(5) { width: 20%; }
+.stock-table th:nth-child(6), .stock-table td:nth-child(6) { width: 25%; }
+
+.stock-table-wrapper {
+    position: relative;
+    min-height: 300px; /* 필요에 따라 조정 */
+  }
+  
+  .empty-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #888;
+    font-size: 18px;
+    display: none;
+    text-align: center;
+    pointer-events: none;
+  }
+
+/* 드롭다운 기본 스타일 */
+.status-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* 드롭다운 버튼 */
+.status-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 드롭다운 화살표 */
+.status-btn-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 4px;
+    padding: 6px 12px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.select-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border-radius: 999px; /* ✅ 완전 동그랗게 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 8px;
+    white-space: nowrap; /* ✅ 줄 바꿈 방지 */
+}
+
+.arrow {
+    font-size: 10px;
+    color: #000;
+    margin-left: 8px;
+    user-select: none;
+}
+
+/* 상태별 색상 */
+.status-btn.orange, .status-option.orange {
+    background-color: #FFECCC;
+    color: #965E00;
+}
+.status-btn.green, .status-option.green {
+    background-color: #CDFFCD;
+    color: #007F00;
+}
+.status-btn.pink, .status-option.pink {
+    background-color: #FFCCFC;
+    color: #965E00;
+}
+
+/* dot 스타일 */
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* dot 색상 */
+.status-option.orange .dot,
+.status-btn.orange .dot {
+    background-color: #965E00;
+}
+
+.status-option.green .dot,
+.status-btn.green .dot  {
+    background-color: #007F00;
+}
+
+.status-option.pink .dot,
+.status-btn.pink .dot {
+    background-color: #FE81F7;
+}
+
+.status-dropdown {
+    position: relative; /* 추가: 드롭다운 기준점 설정 */
+}
+
+.status-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0px;
+    z-index: 9999; /* 수정: 다른 요소보다 위로 */
+    background-color: white;
+    border-radius: 10px;
+    padding: 6px 0;
+    min-width: 122px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/* 활성화 시 표시 */
+.status-menu.active {
+    display: block;
+}
+
+/* 옵션 항목 */
+.status-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 30px;
+    white-space: nowrap; /* ✅ 줄 바꿈 방지 */
+    font-size: 14px;
+}
+
+.status-option:hover {
+    filter: brightness(0.95);
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-content {
+    background: #F4F2FF;
+    padding: 14px 32px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.popup-content p {
+    font-size: 22px;
+    font-weight: 500;
+    color: #6E6893;
+}
+
+.popup-buttons button {
+    border-radius: 12px;
+    padding: 12px 24px;
+    width: 40%;
+    border-style: none;
+    margin: 8px;
+    cursor: pointer;
+}
+
+#confirm-yes {
+    background-color: #ffffff;
+    color: #6E6893;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+#confirm-no {
+    background-color: #6D5BD0;
+    color: #F5F5F5;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+#popup-close {
+    margin-top: 12px;
+    font-size: 18px;
+    padding: 8px 18px;
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#confirm-message {
+    color: #6E6893;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    gap: 8px;
+}
+
+.pagination-btn.active {
+    background-color: #5a3e96;
+    color: white;
+}
+.pagination-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}

@@ -2,12 +2,10 @@ package com.example.kiosk.pay;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
-import com.example.kiosk.kiosk.CartOrderDTO;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,72 +15,54 @@ public class PayService {
     @Autowired
     private PayMapper payMapper;
 
+    // 결제 저장
     public void savePay(Pay pay) {
         pay.initBeforeInsert();
         payMapper.insertPay(pay);
     }
 
+    // 전체 결제 내역
     public List<PayDTO> getAllPays() {
-        List<PayDTO> list = payMapper.findAllPays();
-        for (PayDTO dto : list) {
-            enrichDisplayName(dto);
-        }
-        return list;
+        return payMapper.findAllPays();
     }
 
-    public List<PayDTO> getPaysByBranch(Integer branchId) {
-        List<PayDTO> list = payMapper.findByBranchId(branchId);
-        for (PayDTO dto : list) {
-            enrichDisplayName(dto);
-        }
-        return list;
+    // 지점별 결제 내역 (단일)
+    public List<PayDTO> getPaysByBranch(Long branchId) {
+        return payMapper.findByBranchId(branchId);
     }
 
-    public List<PayDTO> getPaysByBranchIds(List<Integer> branchIds) {
-        List<PayDTO> list = payMapper.findByBranchIds(branchIds);
-        for (PayDTO dto : list) {
-            enrichDisplayName(dto);
-        }
-        return list;
+    // 다중 지점 결제 내역
+    public List<PayDTO> getPaysByBranchIds(List<Long> branchIds) {
+        return payMapper.findByBranchIds(branchIds);
     }
 
-    public Optional<PayDTO> getPayById(Integer id) {
-        PayDTO dto = payMapper.findById(id);
-        enrichDisplayName(dto);
-        return Optional.ofNullable(dto);
+    // 단건 조회
+    public Optional<PayDTO> getPayById(Long id) {
+        return Optional.ofNullable(payMapper.findById(id));
     }
 
-    public List<PayDTO> getFilteredPayments(List<Integer> ids, LocalDateTime from, LocalDateTime to) {
-        List<PayDTO> list = payMapper.getFilteredPayments(ids, from, to);
-        for (PayDTO dto : list) {
-            enrichDisplayName(dto);
-        }
-        return list;
+    // 다중 지점 + 날짜 필터링
+    public List<PayDTO> getFilteredPayments(List<Long> ids, LocalDateTime from, LocalDateTime to) {
+        return payMapper.getFilteredPayments(ids, from, to);
     }
 
-    public List<PayDTO> getPaymentList(Integer branchId, LocalDate start, LocalDate end) {
-        LocalDateTime startDateTime = start.atStartOfDay();
-        LocalDateTime endDateTime = end.atTime(LocalTime.MAX);
-        List<PayDTO> list = payMapper.findByBranchIdAndPayDateBetween(branchId, startDateTime, endDateTime);
-        for (PayDTO dto : list) {
-            enrichDisplayName(dto);
-        }
-        return list;
+    public List<PayDTO> getPaysByBranchAndDateRange(Long branchId, LocalDate start, LocalDate end) {
+        return payMapper.findByBranchIdAndPayDateBetween(branchId, start, end)
+                        .stream()
+                        .map(this::convertToDto)  // `convertToDto` 메서드 호출
+                        .collect(Collectors.toList());
     }
-
-    // ✅ productName 가공 로직
-    private void enrichDisplayName(PayDTO dto) {
-        if (dto == null || dto.getSubItemsJson() == null) return;
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            List<CartOrderDTO> orders = mapper.readValue(dto.getSubItemsJson(), new TypeReference<List<CartOrderDTO>>() {});
-            if (!orders.isEmpty()) {
-                String main = orders.get(0).getName();
-                int extra = orders.size() - 1;
-                dto.setProductName(extra > 0 ? main + " 외 " + extra + "건" : main);
-            }
-        } catch (Exception e) {
-            dto.setProductName("상품 정보 오류");
-        }
+    
+    // Pay 객체를 PayDTO로 변환하는 메서드
+    private PayDTO convertToDto(Pay pay) {
+        PayDTO dto = new PayDTO();
+        dto.setPaymentId(pay.getPaymentId());
+        dto.setPaymentMethod(pay.getPaymentMethod());
+        dto.setMenuName(pay.getMenu() != null ? pay.getMenu().getMenuName() : null);
+        dto.setTotalPrice(pay.getTotalPrice());
+        dto.setPaymentDate(pay.getPaymentDate());
+        dto.setBranchName(pay.getBranch() != null ? pay.getBranch().getBranchName() : null);
+        dto.setSerialNumber(pay.getSerialNumber());
+        return dto;
     }
 }

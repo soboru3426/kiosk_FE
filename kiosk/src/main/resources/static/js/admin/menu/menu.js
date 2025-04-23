@@ -6,6 +6,7 @@ export async function fetchMenus() {
     const response = await fetch("/admin/menus");
     const menus = await response.json();
     const tableBody = document.querySelector(".stock-table-body");
+<<<<<<< HEAD
     const maxRows = 10;
     const emptyMessage = document.querySelector(".empty-message");
 
@@ -52,6 +53,34 @@ export async function fetchMenus() {
          `;
          tableBody.insertAdjacentHTML("beforeend", emptyRow);
     }
+=======
+
+    tableBody.innerHTML = "";
+
+    menus.forEach((menu, index) => {
+        const isActive = menu.productStatus && menu.productStatus.trim() === "판매중";
+
+        const row = `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${menu.menuName}</td>
+                <td>${menu.menuCode}</td>
+                <td>${menu.image || "없음"}</td>
+                <td>
+                    <img 
+                        src="/menu/images/${isActive ? "check-on.png" : "check-off.png"}"
+                        alt="${isActive ? "판매중" : "판매중단"}"
+                        class="status-toggle"
+                        data-menu-id="${menu.menuId}"
+                        data-status="${isActive ? "판매중" : "판매중단"}"
+                        style="width: 24px; cursor: pointer;" />
+                </td>
+                <td>${menu.other || ""}</td>
+            </tr>
+        `;
+        tableBody.insertAdjacentHTML("beforeend", row);
+    });
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
 
     // 상태 이미지 클릭 시 확인 팝업
     document.querySelectorAll(".status-toggle").forEach(img => {
@@ -73,7 +102,11 @@ function showStatusConfirm(menuId, currentStatus) {
     document.getElementById("confirm-yes").onclick = async () => {
         const newStatus = currentStatus === "판매중" ? "판매중단" : "판매중";
 
+<<<<<<< HEAD
         await fetch(`/admin/menus/${menuId}/status`, {
+=======
+        await fetch(`/admin/${menuId}/status`, {
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ productStatus: newStatus })

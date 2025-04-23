@@ -12,6 +12,11 @@ public class LoginService {
     @Autowired
     private UserMapper userMapper;
 
+    public boolean login(String username, String password) {
+        User user = userMapper.findByUsername(username);
+            return user != null && user.getPassword().equals(password);
+    }
+
     public boolean isAdmin(String username) {
         User user = userMapper.findByUsername(username);
             return user != null && "admin".equalsIgnoreCase(user.getRole());

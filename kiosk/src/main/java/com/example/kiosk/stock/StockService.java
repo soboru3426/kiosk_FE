@@ -19,10 +19,6 @@ public class StockService {
         return stockMapper.findByBranchId(branchId);
     }
 
-    public List<Stock> getStockByBranchIds(List<Integer> branchIds) {
-        return stockMapper.findByBranchIds(branchIds);
-    }    
-
     public List<Stock> getAllStock() {
         return stockMapper.findAll();
     }

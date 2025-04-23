@@ -29,6 +29,7 @@ public class MenuService {
     public void addMenu(String menuName, String menuCode, MultipartFile image) {
         String imagePath = saveImage(image, menuName); // 메뉴명 전달
         Menu menu = new Menu(menuName, menuCode, imagePath);
+        menu.setPrice(null);  // 기본값 null로 설정
         menu.setDescription(null);  // 기본값 null로 설정
         menu.setCategory(null);  // 기본값 null로 설정
         menu.setOther(null);  // 기본값 null로 설정
@@ -51,7 +52,7 @@ public class MenuService {
     
             String newFileName = sanitizedMenuName + fileExtension;
     
-            Path folderPath = Paths.get("src/main/resources/static/flavor-images");
+            Path folderPath = Paths.get("flavor-images");
             if (!Files.exists(folderPath)) {
                 Files.createDirectories(folderPath);
             }
@@ -59,7 +60,7 @@ public class MenuService {
             Path fullPath = folderPath.resolve(newFileName);
             Files.copy(file.getInputStream(), fullPath, StandardCopyOption.REPLACE_EXISTING);
     
-            return newFileName;
+            return "flavor-images/" + newFileName;
         } catch (IOException e) {
             throw new RuntimeException("파일 저장에 실패했습니다.", e);
         }

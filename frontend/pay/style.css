@@ -1,0 +1,431 @@
+/* 전체 페이지 스타일 */
+body {
+    background-color: rgba(242, 240, 249, 1);
+    font-family: 'Karla', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    height: 772px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.container h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(110, 104, 147, 1);
+}
+
+.select-session {
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.select-session a {
+    text-decoration: none;
+    color: #000;
+}
+
+.select-session :nth-child(1),
+.select-session a:nth-child(3) {
+    color: rgba(110, 104, 147, 1);
+}
+
+.divide {
+    border: 1px solid rgba(198, 194, 222, 1);
+    margin-bottom: 20px;
+}
+
+
+.stock-session {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 카드형 그림자 */ 
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px; /* 둥근 모서리 */
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.session {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px;
+}
+
+/* filter-session 스타일 */
+.filter-session {
+    display: flex;
+    align-items: center;
+    gap: 14px; 
+}
+
+#filter {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+    color: #25213B;
+    cursor: pointer;
+}
+
+.filter-icon {
+    height: 20px;
+    width: auto;
+    font-size: 10px;
+}
+
+.filter-input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    font-size: 14px;
+    padding-left: 36px;
+    background-image: url('/stock/images/search.png');
+    background-position: 10px center; 
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-color: rgba(244, 242, 255, 1);
+}
+
+/* branch-session 스타일 */
+.branch-session {
+    display: flex; /* 내부 버튼 가로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 10px; /* 버튼 간 간격 */
+}
+
+.branch-session .active {
+    background-color: rgba(109, 91, 208, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.branch-session button {
+    padding: 10px 15px;
+    background-color: rgba(216, 216, 216, 1);
+    color: rgba(122, 122, 122, 1);
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 부드러운 애니메이션 효과 */
+}
+
+
+.session-name {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    font-weight: bold;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(244, 242, 255, 1);
+}
+
+
+.session-name span {
+    color: rgba(110, 104, 147, 1);
+}
+
+/* 데이터 테이블 */
+/* 데이터 테이블 */
+.stock-table {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    border-collapse: collapse;
+}
+
+/* thead는 스크롤 영향 안 받고 고정 */
+.stock-table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* tbody를 블록처럼 만들어서 높이 지정 + 스크롤 가능하게 */
+.stock-table-body {
+    display: block;
+    height: 542px;
+    overflow-y: none;
+}
+
+/* tbody 내부 tr 정렬용 */
+.stock-table-body tr {
+    display: table;
+    width: 100%;
+    height: 54px; /* 고정 높이 */
+    table-layout: fixed;
+}
+
+/* 셀 공통 스타일 */
+.stock-table th,
+.stock-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 각 열의 넓이 지정 */
+.stock-table th:nth-child(1), .stock-table td:nth-child(1) {
+    width: 5%; /* NO 열 */
+}
+.stock-table th:nth-child(2), .stock-table td:nth-child(2) {
+    width: 10%; /* 결제수단 열 */
+}
+.stock-table th:nth-child(3), .stock-table td:nth-child(3) {
+    width: 15%; /* 메뉴명 열 */
+}
+.stock-table th:nth-child(4), .stock-table td:nth-child(4) {
+    width: 10%; /* 결제금액 열 */
+}
+.stock-table th:nth-child(5), .stock-table td:nth-child(5) {
+    width: 20%; /* 결제 열 */
+}
+.stock-table th:nth-child(6), .stock-table td:nth-child(6) {
+    width: 10%; /* 결제지점 열 */
+}
+.stock-table th:nth-child(7), .stock-table td:nth-child(7) {
+    width: 20%; /* 결제일련번호 열 */
+}
+
+.stock-table-wrapper {
+    position: relative;
+    min-height: 300px; /* 필요에 따라 조정 */
+  }
+  
+  .empty-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #888;
+    font-size: 18px;
+    display: none;
+    text-align: center;
+    pointer-events: none;
+  }
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* 어두운 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white; /* 내부 박스 배경 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 443.74px; /* 원하는 크기 */
+    height: 417.81px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-wrapper {
+    width: 398.58px;
+    height: 350.06px;
+    gap: 27.1px;
+}
+
+.modal-body {
+    width: 398.58px;
+    display: flex;
+    flex-direction: column;
+    gap: 18.07px;
+}
+.date-picker {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-wrapper input {
+    width: 150px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.calendar-icon {
+    position: absolute;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+}
+.date-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.date-btn {
+    width: 125.33px;
+    height: 54.2px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ECEDF0;
+    background-color: #fff; /* 기본 색상 */
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.date-btn.active {
+    background-color: #F3F0FF !important; /* 선택된 버튼 색상 */
+}
+
+
+.sort-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+select {
+    padding: 8px;
+    border-radius: 4px;
+    width: 398.58px;
+    height: 54.2px;
+    border: 1px solid #ccc;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+.reset-btn, .apply-btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    width: 398.58px;
+    height: 59.14px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0 12px;
+    margin-top: 24px;
+}
+.reset-btn {
+    background-color: #f0e8ff;
+    color: #5a3e96;
+}
+.apply-btn {
+    background-color: #5a3e96;
+    color: white;
+}
+
+/* 기본 캘린더 아이콘 숨기기 */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+/* 아이콘 스타일 */
+.calendar-icon {
+    cursor: pointer;
+}
+
+.subitem-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+.subitem-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 300px;
+    text-align: center;
+}
+
+.subitem-modal-content .subitem-row {
+    margin-bottom: 14px;
+}
+
+.subitem-modal-content h3 {
+    font-size: 24px;
+    color: rgba(90, 61, 139, 1);
+}
+
+.subitem-row > div:nth-child(2),
+.subitem-row > div:nth-child(3),
+.subitem-row > div:nth-child(4) {
+    font-size: 14px;
+}
+
+button.close-modal-btn {
+    margin-left: auto; /* ✅ 버튼을 오른쪽 끝으로 밀어줌 */
+    padding: 10px 24px;
+    border-style: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: rgba(90, 61, 139, 1);
+    color: #fff;
+    font-size: 16px;
+    display: block;
+    margin-top: 24px;
+}
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    gap: 8px;
+}
+
+.pagination-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.pagination-btn.active {
+    background-color: #5a3e96;
+    color: white;
+}

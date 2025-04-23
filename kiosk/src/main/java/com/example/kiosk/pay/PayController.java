@@ -16,50 +16,50 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/branch")
 public class PayController {
-
+    
     @Autowired
     private PayService payService;
 
-    // 결제 페이지로 이동
+    // 페이지 이동
     @GetMapping("/pay")
     public String showPayPage() {
         return "branch/pay";
     }
 
-    // ✅ 전체 결제 내역 조회
+    // ✅ 전체 결제 내역
     @ResponseBody
     @GetMapping("/api")
     public ResponseEntity<List<PayDTO>> getAllPays() {
         return ResponseEntity.ok(payService.getAllPays());
     }
 
-    // ✅ 결제 내역 단건 조회
+    // ✅ 단건 조회
     @ResponseBody
     @GetMapping("/api/{id}")
-    public ResponseEntity<PayDTO> getPayById(@PathVariable Integer id) {  // int -> Integer로 변경
+    public ResponseEntity<PayDTO> getPayById(@PathVariable Long id) {
         Optional<PayDTO> pay = payService.getPayById(id);
         return pay.map(ResponseEntity::ok)
                   .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // ✅ 특정 지점의 전체 결제 내역 조회
+    // ✅ 단일 지점 전체
     @ResponseBody
     @GetMapping("/api/branch/{branchId}")
-    public ResponseEntity<List<PayDTO>> getPaysByBranch(@PathVariable Integer branchId) {  // int -> Integer로 변경
+    public ResponseEntity<List<PayDTO>> getPaysByBranch(@PathVariable Long branchId) {
         return ResponseEntity.ok(payService.getPaysByBranch(branchId));
     }
 
-    // ✅ 특정 지점의 날짜별 결제 내역 필터링 (LocalDate 기준)
+    // ✅ 단일 지점 날짜 필터 (LocalDate 기준)
     @ResponseBody
     @GetMapping("/api/branch/{branchId}/filter")
     public ResponseEntity<List<PayDTO>> getFilteredPaymentsByBranch(
-        @PathVariable Integer branchId,  // int -> Integer로 변경
+        @PathVariable Long branchId,
         @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
         @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
 
         List<PayDTO> data;
         if (start != null && end != null) {
-            data = payService.getPaymentList(branchId, start, end);
+            data = payService.getPaysByBranchAndDateRange(branchId, start, end);
         } else {
             data = payService.getPaysByBranch(branchId);
         }
@@ -67,17 +67,17 @@ public class PayController {
         return ResponseEntity.ok(data);
     }
 
-    // ✅ 다중 지점의 전체 결제 내역 조회
+    // ✅ 다중 지점 전체
     @ResponseBody
     @GetMapping("/api/branches")
     public ResponseEntity<List<PayDTO>> getPaysByBranchIds(@RequestParam("ids") String ids) {
-        List<Integer> branchIds = Arrays.stream(ids.split(","))
-                                        .map(Integer::parseInt)  // int -> Integer로 변경
-                                        .collect(Collectors.toList());
+        List<Long> branchIds = Arrays.stream(ids.split(","))
+                                     .map(Long::parseLong)
+                                     .collect(Collectors.toList());
         return ResponseEntity.ok(payService.getPaysByBranchIds(branchIds));
     }
 
-    // ✅ 다중 지점과 날짜 필터링된 결제 내역 조회 (LocalDateTime 기준)
+    // ✅ 다중 지점 + 날짜 필터 (LocalDateTime 기준)
     @ResponseBody
     @GetMapping("/api/payments/filter")
     public ResponseEntity<List<PayDTO>> getFilteredPayments(
@@ -85,9 +85,9 @@ public class PayController {
         @RequestParam("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
         @RequestParam("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to) {
 
-        List<Integer> branchIds = Arrays.stream(ids.split(","))
-                                        .map(Integer::parseInt)  // int -> Integer로 변경
-                                        .collect(Collectors.toList());
+        List<Long> branchIds = Arrays.stream(ids.split(","))
+                                     .map(Long::parseLong)
+                                     .collect(Collectors.toList());
 
         return ResponseEntity.ok(payService.getFilteredPayments(branchIds, from, to));
     }

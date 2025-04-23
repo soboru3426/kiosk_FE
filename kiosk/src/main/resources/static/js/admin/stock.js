@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 console.log("✅ stock.js loaded");
 
 // 🔹 서버에서 지점별 데이터를 가져오는 함수
@@ -8,6 +9,14 @@ async function fetchBranchData(branches) {
         const query = branches.join(",");
         const response = await fetch(`/admin/api/stock/data?branches=${query}`);
         if (!response.ok) throw new Error('데이터를 불러오지 못했습니다.');
+=======
+// 🔹 서버에서 지점별 데이터를 가져오는 함수
+async function fetchBranchData(branch) {
+    try {
+        const response = await fetch(`/admin/stock/data/${branch}`);
+        if (!response.ok) throw new Error('데이터를 불러오지 못했습니다.');
+
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
         const data = await response.json();
         updateTable(data);
     } catch (error) {
@@ -15,6 +24,7 @@ async function fetchBranchData(branches) {
     }
 }
 
+<<<<<<< HEAD
 
 function updateTable(data) {
     const tableBody = document.querySelector(".stock-table-body");
@@ -35,11 +45,29 @@ function updateTable(data) {
     // 실제 데이터 렌더링
     for (let i = 0; i < actualRows; i++) {
         const row = data[i];
+=======
+// 🔹 테이블 업데이트 함수
+function updateTable(data) {
+    const tableBody = document.querySelector(".stock-table-body");
+    tableBody.innerHTML = ""; // 기존 데이터 초기화
+
+    if (data.length === 0) {
+        tableBody.innerHTML = "<tr><td colspan='7'>조회 내역이 없습니다.</td></tr>";
+        return;
+    }
+
+    data.forEach((row, index) => {
+        // 상태에 맞는 색상 클래스 결정
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
         const statusClass = getStatusClass(row.orderStatus);
 
         const newRow = `
             <tr data-stock-id="${row.stockId}">
+<<<<<<< HEAD
                 <td>${i + 1}</td>
+=======
+                <td>${index + 1}</td>
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
                 <td>${row.branchName}</td>
                 <td>${row.menuName}</td>
                 <td>${row.quantity}</td>
@@ -50,8 +78,15 @@ function updateTable(data) {
                             <button class="status-btn ${statusClass}">
                                 <span class="dot"></span> ${row.orderStatus}
                             </button>
+<<<<<<< HEAD
                             <div class="arrow">▼</div>
                         </div>
+=======
+                            <!-- 화살표 부분 별도로 배치 -->
+                            <div class="arrow">▼</div>
+                        </div>
+                        
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
                         <div class="status-menu">
                             <div class="select-container">
                                 <div class="status-option orange" data-status="확인중">
@@ -70,6 +105,7 @@ function updateTable(data) {
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                 </td>
             </tr>
         `;
@@ -87,11 +123,22 @@ function updateTable(data) {
         }
     }
 
+=======
+
+                </td>
+            </tr>
+        `;
+        tableBody.innerHTML += newRow;
+    });
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
     console.log("📣 테이블 렌더링 끝. 드롭다운 초기화 시작");
     initializeStatusDropdown();
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
 // 🔹 상태에 맞는 색상 클래스 반환 함수
 function getStatusClass(orderStatus) {
     // 상태에 맞는 색상 클래스 반환
@@ -218,5 +265,24 @@ document.addEventListener("DOMContentLoaded", () => {
     popupCloseBtn.addEventListener("click", () => {
         document.getElementById("status-popup").classList.add("hidden");
     });
+<<<<<<< HEAD
     setupBranchButtons(fetchBranchData); // common.js에서 전달받은 콜백
+=======
+
+    const branchButtons = document.querySelectorAll(".branch-session .branch-btn");
+
+    branchButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            branchButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            const branch = btn.dataset.branch;
+            fetchBranchData(branch);
+        });
+    });
+
+    if (branchButtons.length > 0) {
+        branchButtons[0].click();
+    }
+>>>>>>> 632d004ef52f6b56085a7fb9b23edc0c768ba4f9
 });

@@ -5,61 +5,59 @@
 
 <mapper namespace="com.example.kiosk.pay.PayMapper">
 
-    <!-- 전체 결제 내역 -->
+    <!-- 조회: 전체 결제 내역 DTO -->
     <select id="findAllPays" resultType="com.example.kiosk.pay.PayDTO">
         SELECT 
             p.payment_id AS paymentId,
             p.payment_method AS paymentMethod,
-            pr.product_name AS productName,
+            m.menu_name AS menuName,
             p.total_price AS totalPrice,
             p.payment_date AS paymentDate,  
             b.branch_name AS branchName,
-            p.serial_number AS serialNumber,
-            p.sub_items_json AS subItemsJson
+            p.serial_number AS serialNumber
         FROM 
             payment p
         JOIN 
-            product pr ON p.product_id = pr.product_id
+            menu m ON p.menu_id = m.menu_id
         JOIN 
             branch b ON p.branch_id = b.branch_id
     </select>
 
-    <!-- 단일 지점 -->
-    <select id="findByBranchId" parameterType="java.lang.Integer" resultType="com.example.kiosk.pay.PayDTO">
+    <!-- 조회: 지점 기준 결제 내역 DTO -->
+    <!-- 조회: 단일 지점 -->
+    <select id="findByBranchId" parameterType="long" resultType="com.example.kiosk.pay.PayDTO">
         SELECT 
             p.payment_id AS paymentId,
             p.payment_method AS paymentMethod,
-            pr.product_name AS productName,
+            m.menu_name AS menuName,
             p.total_price AS totalPrice,
             p.payment_date AS paymentDate,
             b.branch_name AS branchName,
-            p.serial_number AS serialNumber,
-            p.sub_items_json AS subItemsJson
+            p.serial_number AS serialNumber
         FROM 
             payment p
         JOIN 
-            product pr ON p.product_id = pr.product_id
+            menu m ON p.menu_id = m.menu_id
         JOIN 
             branch b ON p.branch_id = b.branch_id
         WHERE 
             p.branch_id = #{branchId}
     </select>
 
-    <!-- 다중 지점 -->
+    <!-- 조회: 다중 지점 -->
     <select id="findByBranchIds" parameterType="list" resultType="com.example.kiosk.pay.PayDTO">
         SELECT 
             p.payment_id AS paymentId,
             p.payment_method AS paymentMethod,
-            pr.product_name AS productName,
+            m.menu_name AS menuName,
             p.total_price AS totalPrice,
             p.payment_date AS paymentDate,
             b.branch_name AS branchName,
-            p.serial_number AS serialNumber,
-            p.sub_items_json AS subItemsJson
+            p.serial_number AS serialNumber
         FROM 
             payment p
         JOIN 
-            product pr ON p.product_id = pr.product_id
+            menu m ON p.menu_id = m.menu_id
         JOIN 
             branch b ON p.branch_id = b.branch_id
         WHERE 
@@ -69,21 +67,21 @@
         </foreach>
     </select>
 
+
     <!-- 단건 조회 -->
-    <select id="findById" parameterType="java.lang.Integer" resultType="com.example.kiosk.pay.PayDTO">
+    <select id="findById" parameterType="long" resultType="com.example.kiosk.pay.PayDTO">
         SELECT
             p.payment_id AS paymentId,
             p.payment_method AS paymentMethod,
-            pr.product_name AS productName,
+            m.menu_name AS menuName,
             p.total_price AS totalPrice,
             p.payment_date AS paymentDate,
             b.branch_name AS branchName,
-            p.serial_number AS serialNumber,
-            p.sub_items_json AS subItemsJson
+            p.serial_number AS serialNumber
         FROM
             payment p
         JOIN
-            product pr ON p.product_id = pr.product_id
+            menu m ON p.menu_id = m.menu_id
         JOIN
             branch b ON p.branch_id = b.branch_id
         WHERE
@@ -91,11 +89,11 @@
     </select>
 
     <!-- 삽입 -->
-    <insert id="insertPayment" parameterType="com.example.kiosk.pay.Pay">
+    <insert id="insertPay" parameterType="com.example.kiosk.pay.Pay">
         INSERT INTO payment 
-            (product_id, branch_id, quantity, total_price, payment_method, serial_number, payment_date, sub_items_json)
+            (menu_id, branch_id, quantity, total_price, payment_date, serial_number, payment_method)
         VALUES 
-            (#{product.productId}, #{branch.branchId}, #{quantity}, #{totalPrice}, #{paymentMethod}, #{serialNumber}, #{paymentDate}, #{subItemsJson})
+            (#{menu.menuId}, #{branch.branchId}, #{quantity}, #{totalPrice}, #{paymentDate}, #{serialNumber}, #{paymentMethod})
     </insert>
 
     <!-- 필터링 조회 -->
@@ -103,53 +101,49 @@
         SELECT
             p.payment_id AS paymentId,
             p.payment_method AS paymentMethod,
-            pr.product_name AS productName,
+            m.menu_name AS menuName,
             p.total_price AS totalPrice,
             p.payment_date AS paymentDate,
             b.branch_name AS branchName,
-            p.serial_number AS serialNumber,
-            p.sub_items_json AS subItemsJson
+            p.serial_number AS serialNumber
         FROM
             payment p
         JOIN
-            product pr ON p.product_id = pr.product_id
+            menu m ON p.menu_id = m.menu_id
         JOIN
             branch b ON p.branch_id = b.branch_id
         <where>
-            <if test="ids != null and ids.size() > 0">
-                p.branch_id IN 
-                <foreach item="id" collection="ids" open="(" separator="," close=")">
-                    #{id}
-                </foreach>
-            </if>
-            <if test="from != null and to != null">
-                AND p.payment_date BETWEEN #{from, jdbcType=TIMESTAMP} AND #{to, jdbcType=TIMESTAMP}
-            </if>
+            p.branch_id IN
+            <foreach item="id" collection="ids" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+            AND p.payment_date BETWEEN #{from, jdbcType=TIMESTAMP} AND #{to, jdbcType=TIMESTAMP}
         </where>
         ORDER BY
             p.payment_date DESC
     </select>
 
-    <!-- 단일 지점 + 날짜 필터 -->
-    <select id="findByBranchIdAndPayDateBetween" parameterType="map" resultType="com.example.kiosk.pay.PayDTO">
+    <!-- 지점 기준 + 날짜 필터링 조회 -->
+    <select id="findByBranchIdAndPayDateBetween" resultType="com.example.kiosk.pay.PayDTO">
         SELECT
             p.payment_id AS paymentId,
             p.payment_method AS paymentMethod,
-            pr.product_name AS productName,
+            m.menu_name AS menuName,
             p.total_price AS totalPrice,
             p.payment_date AS paymentDate,
             b.branch_name AS branchName,
-            p.serial_number AS serialNumber,
-            p.sub_items_json AS subItemsJson
+            p.serial_number AS serialNumber
         FROM
             payment p
         JOIN
-            product pr ON p.product_id = pr.product_id
+            menu m ON p.menu_id = m.menu_id
         JOIN
             branch b ON p.branch_id = b.branch_id
         WHERE
             p.branch_id = #{branchId}
             AND p.payment_date BETWEEN #{start} AND #{end}
+        ORDER BY
+            p.payment_date DESC
     </select>
-
+    
 </mapper>
