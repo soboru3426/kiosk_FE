@@ -1,0 +1,6 @@
+<!-- app/src/main/res/values/strings.xml -->
+<resources>
+    <string name="app_name">KioskApplication</string>
+    <string name="channel_name">Kiosk 결제 알림 채널</string>
+    <string name="channel_description">키오스크 결제 시 전송되는 알림입니다.</string>
+</resources>

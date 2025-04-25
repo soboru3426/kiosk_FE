@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "885500436728",
+    "project_id": "kioskapplication-e57ff",
+    "storage_bucket": "kioskapplication-e57ff.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885500436728:android:be033b2a412c9ebbdf5b0d",
+        "android_client_info": {
+          "package_name": "com.example.kioskapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKa9KXq614JU9BJNm2hkOxcVPTVhVacx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

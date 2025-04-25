@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- 모든 평문 통신을 허용하고 싶다면 아래 한 줄만 써도 됩니다.
+    <base-config cleartextTrafficPermitted="true" />
+    -->
+    <!-- tomhoon.duckdns.org (실제 서버) -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">tomhoon.duckdns.org</domain>
+    </domain-config>
+</network-security-config>
