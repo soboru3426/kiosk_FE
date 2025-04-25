@@ -1,0 +1,360 @@
+/* 전체 페이지 스타일 */
+body {
+    background-color: rgba(242, 240, 249, 1);
+    font-family: 'Karla', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    height: 772px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.container h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(110, 104, 147, 1);
+}
+
+.select-session {
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.select-session :nth-child(2) {
+    color: rgba(110, 104, 147, 1);
+}
+
+.divide {
+    border: 1px solid rgba(198, 194, 222, 1);
+    margin-bottom: 20px;
+}
+
+
+.stock-session {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 카드형 그림자 */ 
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px; /* 둥근 모서리 */
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.session {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px;
+}
+
+/* filter-session 스타일 */
+.filter-session {
+    display: flex;
+    align-items: center;
+    gap: 14px; 
+}
+
+.filter-select {
+    padding: 12px 4px;
+    border-style: none;
+}
+
+#filter {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+    color: #25213B;
+}
+
+.filter-icon {
+    height: 20px;
+    width: auto;
+    font-size: 10px;
+}
+
+.filter-input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    font-size: 14px;
+    padding-left: 36px;
+    background-image: url('/stock/images/search.png');
+    background-position: 10px center; 
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-color: rgba(244, 242, 255, 1);
+}
+
+/* branch-session 스타일 */
+.branch-session {
+    display: flex; /* 내부 버튼 가로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 10px; /* 버튼 간 간격 */
+}
+
+.branch-session .active {
+    background-color: rgba(109, 91, 208, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.branch-session button {
+    padding: 10px 15px;
+    background-color: rgba(216, 216, 216, 1);
+    color: rgba(122, 122, 122, 1);
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 부드러운 애니메이션 효과 */
+}
+
+
+.session-name {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    font-weight: bold;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(244, 242, 255, 1);
+}
+
+
+.session-name span {
+    color: rgba(110, 104, 147, 1);
+}
+
+/* 데이터 테이블 */
+.stock-table {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    border-collapse: collapse;
+}
+
+/* thead는 스크롤 영향 안 받고 고정 */
+.stock-table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* tbody를 블록처럼 만들어서 높이 지정 + 스크롤 가능하게 */
+.stock-table-body {
+    display: block;
+    height: 542px;
+    overflow-y: none;
+}
+
+/* tbody 내부 tr 정렬용 */
+.stock-table-body tr {
+    display: table;
+    width: 100%;
+    height: 54px; /* 고정 높이 */
+    table-layout: fixed;
+}
+
+/* 셀 공통 스타일 */
+.stock-table th,
+.stock-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 각 열의 넓이 지정 */
+.stock-table th:nth-child(1), .stock-table td:nth-child(1) { width: 5%; }
+.stock-table th:nth-child(2), .stock-table td:nth-child(2) { width: 10%; }
+.stock-table th:nth-child(3), .stock-table td:nth-child(3) { width: 15%; }
+.stock-table th:nth-child(4), .stock-table td:nth-child(4) { width: 20%; }
+.stock-table th:nth-child(5), .stock-table td:nth-child(5) { width: 10%; }
+.stock-table th:nth-child(6), .stock-table td:nth-child(6) { width: 10%; }
+.stock-table th:nth-child(7), .stock-table td:nth-child(7) { width: 10%; }
+.stock-table th:nth-child(8), .stock-table td:nth-child(8) { width: 10%; }
+
+.stock-table-wrapper {
+    position: relative;
+    min-height: 300px; /* 필요에 따라 조정 */
+  }
+  
+  .empty-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #888;
+    font-size: 18px;
+    display: none;
+    text-align: center;
+    pointer-events: none;
+  }
+  
+
+/* 팝업의 기본 스타일 */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 280px;
+    text-align: center;
+    z-index: 10001;
+}
+
+/* 배경 흐리게 처리 */
+.popup-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10000;
+}
+
+/* 아이스크림 이미지 스타일 */
+.popup img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* 메뉴명 스타일 */
+.popup p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+/* 수량 조절 버튼 */
+.popup .quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.popup .quantity-control button {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    background-color: #f3f3f3;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup .quantity-control #decrease-btn {
+    color: #101010;
+}
+
+.popup .quantity-control #increase-btn {
+    margin-top: 4px;
+}
+
+.popup .quantity-control button:hover {
+    background-color: #ddd;
+}
+
+.popup .quantity-control span {
+    font-size: 16px;
+    font-weight: bold;
+    width: 30px;
+    text-align: center;
+}
+
+/* 발주하기 & 취소 버튼 */
+.popup .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.popup .cancel-btn, .popup #order-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+.popup .cancel-btn {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+}
+
+.popup #order-btn {
+    background-color: #7F56D9;
+    color: white;
+    margin-left: 5px;
+}
+
+.popup .cancel-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.popup #order-btn:hover {
+    background-color: #5a3ee5;
+}
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    gap: 8px;
+}
+
+.pagination-btn.active {
+    background-color: #5a3e96;
+    color: white;
+}
+.pagination-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}

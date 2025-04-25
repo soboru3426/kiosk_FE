@@ -1,0 +1,483 @@
+/* 전체 페이지 스타일 */
+body {
+    background-color: rgba(242, 240, 249, 1);
+    font-family: 'Karla', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    height: 772px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.container h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(110, 104, 147, 1);
+}
+
+.select-session {
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.select-session :nth-child(1),
+.select-session :nth-child(2) {
+    color: rgba(110, 104, 147, 1);
+}
+
+.divide {
+    border: 1px solid rgba(198, 194, 222, 1);
+    margin-bottom: 20px;
+}
+
+/* stock-session 스타일 */
+.stock-session {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.session {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+/* filter-session 스타일 */
+.filter-session {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+#filter {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+    color: #25213B;
+    cursor: pointer;
+}
+
+.filter-icon {
+    height: 20px;
+    width: auto;
+    font-size: 10px;
+}
+
+.filter-input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    font-size: 14px;
+    padding-left: 36px;
+    background-image: url('/stock/images/search.png');
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-color: rgba(244, 242, 255, 1);
+}
+
+/* branch-session 스타일 */
+.branch-session {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.branch-session .active {
+    background-color: rgba(109, 91, 208, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.branch-session button {
+    padding: 10px 15px;
+    background-color: rgba(216, 216, 216, 1);
+    color: rgba(122, 122, 122, 1);
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* session-name 스타일 */
+.session-name {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    font-weight: bold;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(244, 242, 255, 1);
+}
+
+.session-name span {
+    color: rgba(110, 104, 147, 1);
+}
+
+/* 데이터 테이블 */
+.stock-table {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    border-collapse: collapse;
+}
+
+/* thead는 스크롤 영향 안 받고 고정 */
+.stock-table thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* tbody를 블록처럼 만들어서 높이 지정 + 스크롤 가능하게 */
+.stock-table-body {
+    display: block;
+    height: 542px;
+    overflow-x: visible;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+.stock-table-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.stock-table-body::-webkit-scrollbar-thumb {
+    background-color: rgba(150, 150, 150, 0.5);
+    border-radius: 4px;
+}
+.stock-table-body::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+/* tbody 내부 tr 정렬용 */
+.stock-table-body tr {
+    display: table;
+    width: 100%;
+    height: 54px; /* 원하는 고정 행 높이 */
+    table-layout: fixed;
+}
+
+/* 셀 공통 스타일 */
+.stock-table th,
+.stock-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.stock-table td {
+    height: 100%;
+    padding: 0 8px; /* 위아래 padding 없애기 */
+    vertical-align: middle;
+    overflow: visible;
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 각 열의 넓이 지정 */
+.stock-table th:nth-child(1), .stock-table td:nth-child(1) {
+    width: 5%; /* NO 열 */
+}
+.stock-table th:nth-child(2), .stock-table td:nth-child(2) {
+    width: 15%; /* 메뉴명 열 */
+}
+.stock-table th:nth-child(3), .stock-table td:nth-child(3) {
+    width: 15%; /* 메뉴코드 열 */
+}
+.stock-table th:nth-child(4), .stock-table td:nth-child(4) {
+    width: 25%; /* 메뉴이미지경로 열 */
+}
+.stock-table th:nth-child(5), .stock-table td:nth-child(5) {
+    width: 10%; /* 판매상태 열 */
+}
+.stock-table th:nth-child(6), .stock-table td:nth-child(6) {
+    width: 30%; /* 비고 열 */
+}
+
+.stock-table-wrapper {
+    position: relative;
+    min-height: 300px; /* 필요에 따라 조정 */
+  }
+  
+  .empty-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #888;
+    font-size: 18px;
+    display: none;
+    text-align: center;
+    pointer-events: none;
+  }
+
+.menu-btn {
+    background-color: rgba(109, 91, 208, 1); /* 기본 배경색 */
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 1);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+}
+
+.menu-btn:hover {
+    background-color: rgba(82, 70, 210, 1); /* 어두운 배경으로 변경 */
+}
+
+/* 🔹 메뉴추가 팝업 스타일 */
+#menu-add-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.popup-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-form h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    color: rgba(110, 104, 147, 1);
+}
+
+.upload-box {
+    border: 2px dashed rgba(198, 194, 222, 1);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: rgba(244, 242, 255, 1);
+    color: rgba(110, 104, 147, 1);
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+}
+
+.upload-box.dragging {
+    background-color: rgba(198, 194, 222, 0.5); /* 드래그 중일 때 색 변경 */
+}
+
+/* 파일 선택 버튼 숨기기 */
+.upload-box input[type="file"] {
+    display: none;
+}
+
+/* 파일을 선택하기 전 기본 텍스트 */
+.upload-box p {
+    display: block;
+}
+
+/* 파일을 선택한 후 이미지와 파일명 표시 */
+#preview-img {
+    max-width: 200px;
+    margin-top: 10px;
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#file-name {
+    display: none;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgba(110, 104, 147, 1);
+}
+
+/* 이미지 미리보기 */
+.upload-box img {
+    max-width: 200px;
+    max-height: 200px;
+    display: none;
+    margin-bottom: 10px;
+}
+
+/* 파일을 선택한 후 이미지 미리보기 */
+#menuImage:valid + #preview-img {
+    display: block;
+}
+
+/* 텍스트와 파일 선택 버튼 숨기기 */
+.upload-box p {
+    display: none; /* 파일 선택 시 텍스트 숨기기 */
+}
+
+/* 이미지 아래 파일 이름 표시 */
+#menuImage:valid + #preview-img + #file-name {
+    display: block;
+}
+
+.popup-form label {
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+    color: rgba(110, 104, 147, 1);
+}
+
+.popup-form input[type="text"],
+.popup-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(198, 194, 222, 1);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.popup-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(92, 80, 229, 1);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.popup-form button[type="submit"]:hover {
+    background-color: rgba(82, 70, 210, 1);
+}
+
+/* 🔹 팝업 전체 배경 */
+#status-confirm-popup {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+/* 🔹 팝업 박스 */
+.status-popup-box {
+    background-color: #ffffff;
+    padding: 42px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    width: 360px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    animation: fadeIn 0.3s ease;
+}
+
+/* 🔹 텍스트 */
+.status-popup-box p {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(110, 104, 147, 1);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* 🔹 버튼 그룹 */
+.status-popup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+/* 🔹 버튼 공통 */
+.status-popup-buttons button {
+    flex: 1;
+    padding: 12px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* 🔹 예 버튼 */
+.status-popup-buttons .confirm {
+    background-color: #F4F2FF;
+    color: #5C50E5;
+}
+
+.status-popup-buttons .confirm:hover {
+    background-color: #e2dcff;
+}
+
+/* 🔹 아니요 버튼 */
+.status-popup-buttons .cancel {
+    background-color: #5C50E5;
+    color: #fff;
+}
+
+.status-popup-buttons .cancle:hover {
+    background-color: #4c3ed5;
+}
+
+/* 🔹 애니메이션 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}

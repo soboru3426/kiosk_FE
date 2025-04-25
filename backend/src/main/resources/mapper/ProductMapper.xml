@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.kiosk.product.ProductMapper">
+
+    <!-- 제품 전체 조회 -->
+    <select id="findAll" resultType="com.example.kiosk.product.Product">
+        SELECT * FROM product
+    </select>
+
+    <select id="findByName" parameterType="string" resultType="com.example.kiosk.product.Product">
+        SELECT * FROM product WHERE product_name = #{name}
+    </select>
+
+    <!-- 제품명으로 ID 조회 -->
+    <select id="findProductIdByName" parameterType="string" resultType="int">
+        SELECT product_id FROM product WHERE product_name = #{name}
+    </select>
+
+    <!-- 제품명으로 가격 조회 -->
+    <select id="getPriceByProductName" parameterType="string" resultType="int">
+        SELECT price FROM product WHERE product_name = #{name}
+    </select>
+
+    <!-- 제품 삽입 -->
+    <insert id="insert" parameterType="com.example.kiosk.product.Product">
+        INSERT INTO product (product_name, price, max_flavors)
+        VALUES (#{productName}, #{price}, #{maxFlavors})
+    </insert>
+
+    <!-- 제품 수정 -->
+    <update id="update" parameterType="com.example.kiosk.product.Product">
+        UPDATE product
+        SET price = #{price},
+            max_flavors = #{maxFlavors}
+        WHERE product_id = #{productId}
+    </update>
+
+    <!-- 제품 삭제 -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM product WHERE product_id = #{productId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Page</title>
+    <link rel="stylesheet" href="/stock/branch.css">
+</head>
+<body>
+    <div class="empty-message" style="display: none; color: gray; text-align: center; margin-top: 1rem;">
+        조회된 재고가 없습니다.
+    </div>
+    
+    <div class="container">
+        <h3>통합품질관리시스템</h3>
+        <div class="select-session">
+            <a class="stock-link">Stock</a>
+            <a class="pay-link">Pay</a>
+        </div>
+
+        <p class="divide"></p>
+
+        <div class="stock-session">
+            <div class="session">
+                <div class="filter-session">
+                    <select class="filter-select">
+                        <option value="menuName">메뉴명</option>
+                        <option value="productStatus">상품상태</option>
+                        <option value="orderStatus">발주상태</option>
+                    </select>
+                    <input type="text" class="filter-input" placeholder="메뉴명을 입력해주세요">
+                </div>
+                
+                <div class="branch-session">
+                    <button class="branch-btn active" data-branch="1">강서지점</button>
+                    <button class="branch-btn" data-branch="2">상봉지점</button>
+                    <button class="branch-btn" data-branch="3">하남지점</button>
+                </div>
+            </div>
+
+            <table class="stock-table">
+                <thead class="session-name">
+                    <tr>
+                        <th>NO</th>
+                        <th>지점명</th>
+                        <th>메뉴명</th>
+                        <th>이미지파일주소</th>
+                        <th>재고량</th>
+                        <th>상품상태</th>
+                        <th>발주상태</th>
+                        <th>발주하기</th>
+                    </tr>
+                </thead>
+                <tbody class="stock-table-body">
+                    <tr>
+                        <td colspan="7">조회 내역이 없습니다.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="/js/branch/stock.js"></script>
+    <script src="/js/branch/common.js"></script>
+</body>
+</html>

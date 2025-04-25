@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/customer/kiosk5.css"> 
+    <title>결제 페이지</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/customer/kiosk1.html" class="logo">
+                <img src="/icon-images/baskin.png" alt="logo">
+            </a>
+            <div class="tab-menu">
+                <div class="active">
+                    <p class="circle">STEP01</p>
+                    포인트/할인
+                </div>
+                <div>
+                    <p class="circle">STEP02</p>
+                    쿠폰/결제
+                </div>
+            </div>
+        </header>
+        
+        <section class="total-section">
+            <h2>해피포인트 회원이신가요?</h2>
+            <div class="point-box">
+                <div class="point-icons">
+                    <div>
+                        <img src="/purchase-images/happypoint.png" alt="해피포인트 적립">
+                        <p>적립하기</p>
+                    </div>
+                    <div>
+                        <img src="/purchase-images/happypoint.png" alt="해피포인트 사용">
+                        <p>사용하기</p>
+                    </div>
+                </div>
+
+                <ul class="point-text">
+                    <li><strong>* 해피포인트 적립하기</strong></li>
+                    <li>해피포인트를 선택하시면 결제 후 자동 적립됩니다.</li>
+                    <li><strong>* 해피포인트 사용하기</strong></li>
+                    <li>100포인트 이상 보유 시 사용 가능합니다.</li>
+                </ul>
+            </div>
+
+            <div class="discount-box">
+                <div class="discount-icons">
+                    <div>
+                        <img src="/purchase-images/ktlogo.png" alt="KT 할인">
+                        <p>KT 멤버십할인</p>
+                    </div>
+                    <div>
+                        <img src="/purchase-images/partner.png" alt="파트너 할인">
+                        <p>임직원 할인</p>
+                    </div>
+                </div>
+                <ul class="discount-text">
+                    <li><strong>* KT 더블할인</strong></li>
+                    <li>상품이름에 KT가 붙어있는</li>
+                    <li>KT전용 상품만 할인가능합니다.</li>
+                    <li>제휴사 할인 적용시</li>
+                    <li>해피포인트는 동일하게 0.1% 적립 됩니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="payment-summary">
+            <div class="total">
+                <h2>최종 결제금액</h2>
+                <h2 id="final-total-amount">₩ 0</h2>
+            </div>
+            
+            <div class="amount">
+                <span>총 주문 금액</span>
+                <strong id="order-total-price">₩ 0</strong>
+                <span>-</span>
+                <span>총 할인 금액</span>
+                <strong id="total-discount-price">₩ 0</strong>
+            </div>
+        </section>        
+
+        <footer>
+            <button class="prev-btn">
+                <img src="/purchase-images/arrow_forward_ios.png" alt="이전">
+                <p>이전</p>
+            </button>
+            <button class="next-btn">다음단계(결제하기)</button>
+        </footer>
+    </div>
+    <script src="/js/customer/kiosk5-7.js"></script>
+</body>
+</html>

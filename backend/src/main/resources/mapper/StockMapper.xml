@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.kiosk.stock.StockMapper">
+
+    <!-- ✅ 지점 매핑 -->
+    <resultMap id="BranchResultMap" type="com.example.kiosk.branch.Branch">
+        <id property="branchId" column="branch_id"/>
+        <result property="branchName" column="branch_name"/>
+        <result property="location" column="location"/>
+    </resultMap>
+
+    <!-- ✅ 메뉴 매핑 -->
+    <resultMap id="MenuResultMap" type="com.example.kiosk.menu.Menu">
+        <id property="menuId" column="menu_id"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="menuCode" column="menu_code"/>
+        <result property="description" column="description"/>
+        <result property="category" column="category"/>
+        <result property="image" column="image"/>
+    </resultMap>
+
+    <!-- ✅ 재고 매핑 -->
+    <resultMap id="StockResultMap" type="com.example.kiosk.stock.Stock">
+        <id property="stockId" column="stock_id"/>
+        <result property="quantity" column="quantity"/>
+        <result property="productStatus" column="product_status"/>
+        <result property="orderStatus" column="order_status"/>
+        <association property="branch" resultMap="BranchResultMap"/>
+        <association property="menu" resultMap="MenuResultMap"/>
+    </resultMap>
+
+    <!-- 🔍 전체 재고 조회 -->
+    <select id="findAll" resultMap="StockResultMap">
+        SELECT s.stock_id, s.quantity, s.product_status, s.order_status,
+               b.branch_id, b.branch_name, b.location,
+               m.menu_id, m.menu_name, m.menu_code, m.description, m.category, m.image
+        FROM stock s
+        JOIN branch b ON s.branch_id = b.branch_id
+        JOIN menu m ON s.menu_id = m.menu_id
+    </select>
+
+    <select id="findByBranchIds" resultMap="StockResultMap">
+        SELECT s.stock_id, s.quantity, s.product_status, s.order_status,
+            b.branch_id, b.branch_name, b.location,
+            m.menu_id, m.menu_name, m.menu_code, m.description, m.category, m.image
+        FROM stock s
+        JOIN branch b ON s.branch_id = b.branch_id
+        JOIN menu m ON s.menu_id = m.menu_id
+        WHERE s.branch_id IN
+        <foreach item="id" collection="branchIds" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+
+
+    <!-- 🔍 메뉴 ID로 조회 -->
+    <select id="findByMenuId" parameterType="java.lang.Integer" resultMap="StockResultMap">
+        SELECT s.stock_id, s.quantity, s.product_status, s.order_status,
+               b.branch_id, b.branch_name, b.location,
+               m.menu_id, m.menu_name, m.menu_code, m.description, m.category, m.image
+        FROM stock s
+        JOIN branch b ON s.branch_id = b.branch_id
+        JOIN menu m ON s.menu_id = m.menu_id
+        WHERE s.menu_id = #{menuId}
+    </select>
+
+    <!-- 🔍 지점 ID로 조회 -->
+    <select id="findByBranchId" parameterType="java.lang.Integer" resultMap="StockResultMap">
+        SELECT s.stock_id, s.quantity, s.product_status, s.order_status,
+               b.branch_id, b.branch_name, b.location,
+               m.menu_id, m.menu_name, m.menu_code, m.description, m.category, m.image
+        FROM stock s
+        JOIN branch b ON s.branch_id = b.branch_id
+        JOIN menu m ON s.menu_id = m.menu_id
+        WHERE s.branch_id = #{branchId}
+    </select>
+
+    <!-- 🔍 지점 + 메뉴 ID로 조회 -->
+    <select id="findByBranchIdAndMenuId" parameterType="map" resultMap="StockResultMap">
+        SELECT s.stock_id, s.quantity, s.product_status, s.order_status,
+               b.branch_id, b.branch_name, b.location,
+               m.menu_id, m.menu_name, m.menu_code, m.description, m.category, m.image
+        FROM stock s
+        JOIN branch b ON s.branch_id = b.branch_id
+        JOIN menu m ON s.menu_id = m.menu_id
+        WHERE s.branch_id = #{branchId} AND s.menu_id = #{menuId}
+    </select>
+
+    <!-- 🔍 stock_id 기준 단일 조회 -->
+    <select id="findById" parameterType="java.lang.Integer" resultMap="StockResultMap">
+        SELECT s.stock_id, s.quantity, s.product_status, s.order_status,
+               b.branch_id, b.branch_name, b.location,
+               m.menu_id, m.menu_name, m.menu_code, m.description, m.category, m.image
+        FROM stock s
+        JOIN branch b ON s.branch_id = b.branch_id
+        JOIN menu m ON s.menu_id = m.menu_id
+        WHERE s.stock_id = #{stockId}
+    </select>
+
+    <!-- ✅ 발주 상태 변경 -->
+    <update id="updateOrderStatus" parameterType="map">
+        UPDATE stock
+        SET order_status = #{orderStatus}
+        WHERE stock_id = #{stockId}
+    </update>
+
+    <!-- ✅ 판매 상태 변경 -->
+    <update id="updateStockStatus" parameterType="map">
+        UPDATE stock
+        SET product_status = #{productStatus}
+        WHERE stock_id = #{stockId}
+    </update>
+
+    <!-- ✅ 선택된 맛 수량 차감 -->
+    <update id="decreaseStockQuantity" parameterType="map">
+        UPDATE stock
+        SET quantity = quantity - #{quantity}
+        WHERE menu_id = (
+            SELECT menu_id FROM menu WHERE menu_name = #{flavor}
+        ) AND branch_id = #{branchId}
+    </update>
+
+</mapper>

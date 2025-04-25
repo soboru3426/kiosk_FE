@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu Page</title>
+  <link rel="stylesheet" href="/menu/style.css" />
+</head>
+<body>
+  <!-- 판매상태 변경 확인 팝업 -->
+  <div id="status-confirm-popup" style="display: none;" class="popup-background">
+    <div class="status-popup-box">
+      <p>정말 판매상태를 변경하시겠습니까?</p>
+      <div class="status-popup-buttons">
+        <button id="confirm-yes" class="confirm">예</button>
+        <button id="confirm-no" class="cancel">아니요</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 메뉴추가 팝업 -->
+  <div id="menu-add-popup" style="display: none;">
+    <div class="popup-form">
+      <h2>메뉴추가</h2>
+      <form id="menu-add-form" method="POST" action="/admin/menus" enctype="multipart/form-data">
+        <div class="upload-box">
+          <p id="drag-drop-text">Drag & drop files or <span class="browse">Browse</span></p>
+          <!-- 미리보기 이미지 표시 영역 -->
+          <img id="preview-img" src="" alt="미리보기 이미지" style="max-width: 200px; margin-top: 10px; display: none;">
+          <p id="file-name" style="display:none; text-align: center;"></p>
+          <input type="file" id="image" name="image" accept="image/*" style="display:none;">
+        </div>
+
+        <label for="menuName">메뉴명</label>
+        <input type="text" id="menuName" name="menuName" required>
+
+        <label for="menuCode">메뉴코드</label>
+        <input type="text" id="menuCode" name="menuCode" required>
+
+        <button type="submit">등록하기</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 🔹 메인 컨텐츠 -->
+  <div class="container">
+    <h3>통합품질관리시스템</h3>
+    <div class="select-session">
+      <a class="stock-link">Stock</a>
+      <a class="pay-link">Pay</a>
+      <a class="menu-link">Menu</a>
+    </div>
+    <p class="divide"></p>
+    <div class="stock-session">
+      <div class="session">
+        <div class="filter-session">
+          <button id="filter" class="filter-btn">
+            <img src="/stock/images/filter.png" class="filter-icon" />
+            Menu
+          </button>
+          <input class="filter-input" type="text" placeholder="메뉴명 입력해주세요" />
+        </div>
+        <div class="menu-session">
+          <button class="menu-btn">메뉴추가</button>
+        </div>
+      </div>
+      <div class="stock-table-wrapper">
+        <table class="stock-table">
+          <thead class="session-name">
+            <tr>
+                <th>NO</th>
+                <th>메뉴명</th>
+                <th>메뉴코드</th>
+                <th>메뉴이미지</th>
+                <th>판매상태</th>
+                <th>비고</th>
+            </tr>
+          </thead>
+          <tbody class="stock-table-body"></tbody>
+        </table>
+        <!-- 중앙 정렬 메시지 박스 -->
+        <div class="empty-message">등록된 메뉴가 없습니다.</div>
+        </div>
+
+        <div class="pagination-wrapper"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/admin/menu/main.js"></script>
+  <script src="/js/admin/common.js"></script>
+</body>
+</html>
