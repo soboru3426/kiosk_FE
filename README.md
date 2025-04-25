@@ -1,7 +1,3 @@
 ### KIOSK
 
-test
-test2
-test3
-test4
-jm update
+최종 구현한 소스코드 업로드

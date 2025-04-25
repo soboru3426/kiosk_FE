@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 페이지</title>
+    <link rel="stylesheet" href="/assets/customer/success.css"> 
+</head>
+<body>
+    <!-- 영수증 팝업 -->
+    <div id="receipt-modal" class="modal" style="display: none">
+        <div class="modal-content">
+        <span id="close-receipt" class="close-btn">&times;</span>
+        <h2>영수증 상세</h2>
+        <div class="receipt-info">
+            <p><strong>주문번호:</strong> <span id="receipt-order-id"></span></p>
+            <p><strong>결제일시:</strong> <span id="receipt-approved-at"></span></p>
+            <p><strong>결제수단:</strong> <span id="receipt-provider"></span></p>
+            <p><strong>결제금액:</strong> <span id="receipt-amount"></span>원</p>
+        </div>
+        <hr />
+            <div id="receipt-menu-list"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <ul class="payment-complete">
+            <li>결제가 완료되었습니다.</li>
+            <li>영수증을 확인하세요</li>
+            <!-- ✅ 상세 보기 버튼 -->
+            <div class="receipt-toggle">
+              <button id="toggle-receipt">영수증 보기</button>
+            </div>
+            <li>대기번호</li>
+            <li id="queue-number">154</li>
+        </ul>
+
+        <div class="notice">
+            <img src="/purchase-images/happypoint.png">
+            <div class="text-1">
+                <p>잠깐.</p>
+                <p>해피포인트 적립 잊지말고 챙기세요!</p>
+            </div>
+            <div class="text-2">
+                <p>동의 후 휴대폰 번호를 입력하시면</p>
+                <p>문자로 직접 안내메세지를 보내드립니다.</p>
+            </div>
+            <ul class="text-3">
+                <li>수집항목  휴대폰번호</li>
+                <li>수집항목  해피포인트 적립 안내문자 전송</li>
+                <li>수집항목  30일 이내</li>
+            </ul>
+        </div>
+
+        <footer class="point-btn">
+            <button class="yes-btn">
+                <p class="footer-circle">
+                    <img src="/purchase-images/check.png">
+                </p>
+                <p>네, 동의하고 <br> 적립할래요!</p>
+            </button>
+            <button class="no-btn">
+                <p class="footer-circle">
+                    <img src="/purchase-images/check2.png">
+                </p>
+                <p>아니요, <br> 적립 안할래요</p>
+            </button>
+        </footer>
+    </div>  
+    <script src="/js/customer/kiosk7.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>로그인 페이지</title>
+  <link rel="stylesheet" href="/login/style.css" />
+</head>
+<body>
+  <div class="login_area">
+    <div class="login">
+      <h1>System Management</h1>
+      <div class="login_form">
+        <input class="id" type="text" name="username" placeholder="ID" required />
+        <input class="password" type="password" name="password" placeholder="Password" required />
+        <button id="loginBtn" type="button" class="login_btn">Login</button>
+      </div>    
+      <div id="errorMessage" style="display:none; color:red; margin-top:10px;"></div>
+    </div>
+  </div>
+
+  <!-- ❌ reCAPTCHA 관련 스크립트 제거 -->
+  <!-- ✅ 로그인 로직만 포함 -->
+  <script src="/js/login/login.js"></script>
+</body>
+</html>

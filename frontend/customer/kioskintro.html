@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>키오스크 시작화면</title>
+    <link rel="stylesheet" href="/assets/customer/kioskintro.css">
+</head>
+<body>
+    <div class="container" onclick="goToNextPage()">
+        <a href="http://tomhoon.duckdns.org:9999/login-captcha.html">
+            <button class="login-btn">로그인 페이지 이동</button>
+        </a>
+        
+        <div class="intro-content">
+            <div class="intro-img">
+                <img src="/icon-images/mainlogo.png" alt="메인 로고">
+            </div>
+            <p class="intro-text">주문하시려면 화면을 터치해주세요.</p>
+        </div>
+    </div>
+
+    <script>
+        function goToNextPage() {
+            window.location.href = "/customer/kiosk1.html";
+        }
+    </script>
+</body>
+</html>
